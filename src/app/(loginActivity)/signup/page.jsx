@@ -6,8 +6,8 @@ const Signup = () => {
                 <div className="card mx-2 w-100 py-3" id="login-page">
                     <h2 className="text-center fw-bolder">Register Account</h2>
                     <div className="d-flex justify-content-center align-items-center px-2 gap-1 my-3">
-                            <a href="/signup" className="btn btn-outline-success w-100 py-2 fw-bold" role="button">Sign Up</a>
-                            <a href="/login" className="btn btn-success w-100 py-2 fw-bold" role="button">Login</a>
+                        <a href="/signup" className="btn btn-outline-success w-100 py-2 fw-bold" role="button">Sign Up</a>
+                        <a href="/login" className="btn btn-success w-100 py-2 fw-bold" role="button">Login</a>
                     </div>
                     <form action="" className="my-2 px-3">
                         <div className="mb-2">
@@ -32,7 +32,7 @@ const Signup = () => {
                     </form>
                     <div id="google-signin" className="text-center px-3">
                         <div className="fw-semibold my-1">OR</div>
-                        <button className="btn btn-dark w-100 py-2 fw-bold">Google Signin</button>
+                        <button className="btn btn-dark w-100 py-2 fw-bold">Google Sign Up</button>
                     </div>
                 </div>
             </div>
