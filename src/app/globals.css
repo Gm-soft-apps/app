@@ -3,6 +3,6 @@
   padding: 0 !important;
 }
 
-.h-90 {
-  min-height: 90dvh !important;
+.h-100 {
+  min-height: 100vh;
 }
