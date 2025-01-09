@@ -1,3 +1,5 @@
+import {auth} from './auth'
+
 const Signup = () => {
     return (
         <>
@@ -9,10 +11,10 @@ const Signup = () => {
                         <a href="/signup" className="btn btn-outline-success w-100 py-2 fw-bold" role="button">Sign Up</a>
                         <a href="/login" className="btn btn-success w-100 py-2 fw-bold" role="button">Login</a>
                     </div>
-                    <form action="" className="my-2 px-3">
+                    <form action={auth} className="my-2 px-3">
                         <div className="mb-2">
-                            <label htmlFor="mobile-number" className="form-label fw-semibold">Phone Number</label>
-                            <input type="tel" className="form-control p-2 my-1" id="mobile-number" name="mobile-number" placeholder="Enter Mobile Number" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
+                            <label htmlFor="phone-number" className="form-label fw-semibold">Phone Number</label>
+                            <input type="tel" className="form-control p-2 my-1" id="phone-number" name="phone-number" placeholder="Enter Mobile Number" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
                         </div>
                         <div className="mb-2">
                             <label htmlFor="password" className="form-label fw-semibold">Password</label>
@@ -22,10 +24,10 @@ const Signup = () => {
                             <label htmlFor="confirm-password" className="form-label fw-semibold">Confirm Password</label>
                             <input type="password" className="form-control p-2 my-1" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required />
                         </div>
-                        <div className="mb-2">
+                        {/* <div className="mb-2">
                             <label htmlFor="referral-code" className="form-label fw-semibold">Referral Code</label>
                             <input type="text" className="form-control p-2 my-1" id="referral-code" name="referral-code" placeholder="(optional)" />
-                        </div>
+                        </div> */}
                         <div className="">
                             <button type="submit" className="btn btn-dark w-100 p-2 fw-bold">Register Now</button>
                         </div>

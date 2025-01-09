@@ -1,3 +1,5 @@
+import {auth} from "./auth"
+
 const Login = () => {
     return (
         <>
@@ -9,7 +11,7 @@ const Login = () => {
                         <a href="/signup" className="btn btn-success w-100 py-2 fw-bold" role="button">Sign Up</a>
                         <a href="/login" className="btn btn-outline-success w-100 py-2 fw-bold" role="button">Login</a>
                     </div>
-                    <form action="" className="my-2 px-3">
+                    <form action={auth} method="POST" className="my-2 px-3">
                         <div className="mb-2">
                             <label htmlFor="mobile-number" className="form-label fw-semibold">Phone Number</label>
                             <input type="tel" className="form-control p-2 my-1" id="mobile-number" name="mobile-number" placeholder="Enter Mobile Number" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
