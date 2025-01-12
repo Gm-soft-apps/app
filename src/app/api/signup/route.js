@@ -8,8 +8,9 @@ export const POST = async (req, res) => {
         });
     }
 
-    try{
 
+    try{
+// DB
         return new Response(JSON.stringify({isAccountCreated: true, message: "Account created successfully"}),{
             status: 201,
             headers: {'Content-Type': 'application/json'},
