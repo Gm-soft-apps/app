@@ -3,6 +3,7 @@
 import Loading from "app/components/loading";
 import Link from "next/link";
 import { useState } from "react";
+import { auth } from "./auth";
 
 const Login = () => {
 
@@ -17,6 +18,7 @@ const Login = () => {
         setPassword("");
         // setMessage("");
         setLoading(false);
+        // setStatus(false);
     }
 
     const handleSubmit = async (e) => {
@@ -24,31 +26,21 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const response = await fetch("/api/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ phoneNumber, password })
-            });
+            const resp = await auth({ phoneNumber, password });
 
-            const data = await response.json();
+            setStatus(resp.status);
+            setLoading(false);
+            setMessage(resp.message);
 
-            if (response.ok) {
-                setMessage(data.message);
-                setStatus(response.ok);
-                setLoading(false);
-            } else {
-                setMessage(data.message);
-                setStatus(response.ok);
-                setLoading(false);
-                return;
+            if (resp.status) {
+                resetForm();
             }
-        } catch (err) {
-            setMessage("something went wrong! try again...")
-        }
 
-        resetForm();
+        } catch (err) {
+            setStatus(false);
+            setLoading(false);
+            setMessage("Something went wrong, Try again!");
+        }
     }
 
     return (

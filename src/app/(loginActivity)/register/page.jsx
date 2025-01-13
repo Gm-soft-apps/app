@@ -3,13 +3,14 @@
 import Loading from "app/components/loading";
 import { useState } from "react";
 import Link from 'next/link'
+import { auth } from "./auth";
 
 const Signup = () => {
 
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
-    const [referralCode, setReferralCode] = useState("");
+    const [invitedBy, setInvitedBy] = useState("");
     const [message, setMessage] = useState("");
     const [passMatch, setPassMatch] = useState(false);
     const [status, setStatus] = useState(false);
@@ -19,7 +20,7 @@ const Signup = () => {
         setPhoneNumber("");
         setPassword("");
         setConfirmPass("");
-        setReferralCode("");
+        setInvitedBy("");
         setPassMatch(false);
         // setStatus(false);
         setLoading(false);
@@ -39,37 +40,28 @@ const Signup = () => {
 
         if (!passMatch) {
             setStatus(false);
-            setLoading(false)
-            setMessage("confirm password not matched");
+            setLoading(false);
+            setMessage("Both passwords not matched.");
             return;
         }
 
         try {
-            const response = await fetch('/api/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ phoneNumber, password, confirmPass, referralCode }),
-            });
+            const resp = await auth({ phoneNumber, password, confirmPass, invitedBy });
 
-            const data = await response.json();
-
-            if (response.ok) {
-                setMessage(data.message);
+            if (resp.status) {
+                setStatus(resp.status);
                 setLoading(false);
-                setStatus(true);
+                setMessage(resp.message);
+                resetForm();
             } else {
-                setMessage(data.message || 'Something went wrong.');
-                setLoading(false);
                 setStatus(false);
+                setLoading(false);
+                setMessage(resp.message);
             }
-
-            resetForm();
-        } catch (error) {
-            setMessage("Error submitting the form!");
-            setLoading(false);
+        } catch (err) {
             setStatus(false);
+            setLoading(false);
+            setMessage("Something went wrong!")
         }
     }
 
@@ -97,8 +89,8 @@ const Signup = () => {
                             <input type="password" value={confirmPass} onChange={(e) => { setConfirmPass(e.target.value); checkPass(e) }} className={`form-control p-2 my-1 fw-semibold`} id="confirm-password" name="confirm-password" placeholder="Confirm Password" required />
                         </div>
                         <div className="mb-2">
-                            <label htmlFor="referral-code" className="form-label fw-semibold">Referral Code</label>
-                            <input type="text" value={referralCode} onChange={(e) => setReferralCode(e.target.value)} className="form-control p-2 my-1 fw-semibold" id="referral-code" name="referral-code" placeholder="(optional)" />
+                            <label htmlFor="invitedBy" className="form-label fw-semibold">Referral Code</label>
+                            <input type="text" value={invitedBy} onChange={(e) => setInvitedBy(e.target.value)} className="form-control p-2 my-1 fw-semibold" id="invitedBy" name="invitedBy" placeholder="(optional)" />
                         </div>
                         <div id="error-msg" className={`fw-semibold m-1 ${status ? "text-success" : "text-danger"}`}>{message}</div>
                         <div className="">
