@@ -1,3 +1,5 @@
+import { createUser } from "db/users/handler";
+
 export const POST = async (req, res) => {
     const { phoneNumber, password, confirmPass, referralCode } = await req.json();
 
@@ -9,16 +11,17 @@ export const POST = async (req, res) => {
     }
 
 
-    try{
-// DB
-        return new Response(JSON.stringify({isAccountCreated: true, message: "Account created successfully"}),{
+    try {
+        await createUser({ phoneNumber, password });
+
+        return new Response(JSON.stringify({ isAccountCreated: true, message: "Account created successfully" }), {
             status: 201,
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
         })
     } catch (error) {
-        return new Response(JSON.stringify({isAccountCreated: false}, "something went wrong! try again."),{
+        return new Response(JSON.stringify({ isAccountCreated: false }, "something went wrong! try again."), {
             status: 500,
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
         })
     }
 }

@@ -56,9 +56,9 @@ const Login = () => {
             <div className="my-4 text-center"><h1>LOGO</h1></div>
             <div className="d-flex justify-content-center align-items-center">
                 <div className="card mx-2 w-100 py-3" id="login-page">
-                    <h2 className="text-center fw-bolder">Login to Account</h2>
+                    <h2 className="text-center fw-bolder">Login Account</h2>
                     <div className="d-flex justify-content-center align-items-center px-2 gap-1 my-3">
-                        <Link href="/signup" className="btn btn-success w-100 py-2 fw-bold" role="button">Register</Link>
+                        <Link href="/register" className="btn btn-success w-100 py-2 fw-bold" role="button">Register</Link>
                         <Link href="/login" className="btn btn-outline-success w-100 py-2 fw-bold" role="button">Login</Link>
                     </div>
                     <form onSubmit={handleSubmit} className="my-2 px-3">
