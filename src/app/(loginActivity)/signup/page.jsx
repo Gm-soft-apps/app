@@ -12,16 +12,17 @@ const Signup = () => {
     const [referralCode, setReferralCode] = useState("");
     const [message, setMessage] = useState("");
     const [passMatch, setPassMatch] = useState(false);
-    const [isAccountCreated, setIsAccountCreated] = useState(false);
+    const [status, setStatus] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const resetForm = () => {
-        // setPhoneNumber("");
-        // setPassword("");
-        // setConfirmPass("");
-        // setReferralCode("");
-        // setPassMatch(false);
-        // // setIsAccountCreated(false);
+        setPhoneNumber("");
+        setPassword("");
+        setConfirmPass("");
+        setReferralCode("");
+        setPassMatch(false);
+        // setStatus(false);
+        setLoading(false);
     }
 
     const checkPass = (e) => {
@@ -37,8 +38,9 @@ const Signup = () => {
         setLoading(true);
 
         if (!passMatch) {
-            setIsAccountCreated(false)
-            setMessage("confirm password not matched")
+            setStatus(false);
+            setLoading(false)
+            setMessage("confirm password not matched");
             return;
         }
 
@@ -56,17 +58,18 @@ const Signup = () => {
             if (response.ok) {
                 setMessage(data.message);
                 setLoading(false);
-                setIsAccountCreated(true)
+                setStatus(true);
             } else {
                 setMessage(data.message || 'Something went wrong.');
                 setLoading(false);
-                setIsAccountCreated(false)
+                setStatus(false);
             }
 
             resetForm();
         } catch (error) {
-            setMessage('Error submitting the form.');
+            setMessage("Error submitting the form!");
             setLoading(false);
+            setStatus(false);
         }
     }
 
@@ -97,7 +100,7 @@ const Signup = () => {
                             <label htmlFor="referral-code" className="form-label fw-semibold">Referral Code</label>
                             <input type="text" value={referralCode} onChange={(e) => setReferralCode(e.target.value)} className="form-control p-2 my-1 fw-semibold" id="referral-code" name="referral-code" placeholder="(optional)" />
                         </div>
-                        <div id="error-msg" className={`fw-semibold m-1 ${isAccountCreated ? "text-success" : "text-danger"}`}>{message}</div>
+                        <div id="error-msg" className={`fw-semibold m-1 ${status ? "text-success" : "text-danger"}`}>{message}</div>
                         <div className="">
                             <button type="submit" className="btn btn-dark w-100 p-2 fw-bold">Register Now</button>
                         </div>
@@ -108,7 +111,7 @@ const Signup = () => {
                     </div> */}
                 </div>
                 {
-                    loading ? <Loading/> : ""
+                    loading ? <Loading /> : ""
                 }
             </div>
         </>
