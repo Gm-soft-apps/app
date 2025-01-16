@@ -1,6 +1,7 @@
 "use server"
 
 import { loginUser } from "db/users/handler";
+import { redirect } from "next/navigation";
 
 export const auth = async ({phoneNumber, password}) => {
 
@@ -19,6 +20,7 @@ export const auth = async ({phoneNumber, password}) => {
     }
 
     if (await loginUser({phoneNumber, password})) {
+        redirect("/dashboard")
         return {
             status: true,
             message: "Account login successful."
