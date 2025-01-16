@@ -3,7 +3,7 @@
 import { loginUser } from "db/users/handler";
 import { redirect } from "next/navigation";
 
-export const auth = async ({phoneNumber, password}) => {
+export const loginAuth = async ({phoneNumber, password}) => {
 
     if (!phoneNumber || !password) {
         return {

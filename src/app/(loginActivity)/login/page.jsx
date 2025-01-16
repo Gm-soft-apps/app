@@ -3,7 +3,7 @@
 import Loading from "app/components/loading";
 import Link from "next/link";
 import { useState } from "react";
-import { auth } from "./auth";
+import { loginAuth } from "app/actions/loginAuth";
 
 const Login = () => {
 
@@ -26,7 +26,7 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const resp = await auth({ phoneNumber, password });
+            const resp = await loginAuth({ phoneNumber, password });
 
             setStatus(resp.status);
             setLoading(false);
@@ -51,7 +51,7 @@ const Login = () => {
                     <h2 className="text-center fw-bolder">Login Account</h2>
                     <div className="d-flex justify-content-center align-items-center px-2 gap-1 my-3">
                         <Link href="/register" className="btn btn-success w-100 py-2 fw-bold" role="button">Register</Link>
-                        <Link href="/login" className="btn btn-outline-success w-100 py-2 fw-bold" role="button">Login</Link>
+                        <Link href="/login" className="btn btn-outline-success w-100 py-2 fw-bold disabled" role="button">Login</Link>
                     </div>
                     <form onSubmit={handleSubmit} className="my-2 px-3">
                         <div className="mb-2">

@@ -2,7 +2,7 @@
 
 import { createUser } from "db/users/handler"
 
-export const auth = async ({phoneNumber, password, confirmPass, invitedBy}) => {
+export const registerAuth = async ({phoneNumber, password, confirmPass, invitedBy}) => {
 
     if (!phoneNumber || !password || !confirmPass) {
         return {

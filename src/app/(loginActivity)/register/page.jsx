@@ -3,7 +3,7 @@
 import Loading from "app/components/loading";
 import { useState } from "react";
 import Link from 'next/link'
-import { auth } from "./auth";
+import { registerAuth } from "app/actions/registerAuth";
 
 const Signup = () => {
 
@@ -46,7 +46,7 @@ const Signup = () => {
         }
 
         try {
-            const resp = await auth({ phoneNumber, password, confirmPass, invitedBy });
+            const resp = await registerAuth({ phoneNumber, password, confirmPass, invitedBy });
 
             if (resp.status) {
                 setStatus(resp.status);
@@ -72,7 +72,7 @@ const Signup = () => {
                 <div className="card mx-2 w-100 py-3" id="login-page">
                     <h2 className="text-center fw-bolder">Register Account</h2>
                     <div className="d-flex justify-content-center align-items-center px-2 gap-1 my-3">
-                        <Link href="/register" className="btn btn-outline-success w-100 py-2 fw-bold" role="button">Register</Link>
+                        <Link href="/register" className="btn btn-outline-success w-100 py-2 fw-bold disabled" role="button">Register</Link>
                         <Link href="/login" className="btn btn-success w-100 py-2 fw-bold" role="button">Login</Link>
                     </div>
                     <form onSubmit={handleSubmit} className="my-2 px-3">
