@@ -29,7 +29,8 @@ const Login = () => {
             const { success, error, data } = signInSchema.safeParse({ phoneNumber, password })
 
             if (success) {
-                await SignIn({ phoneNumber, password })
+                const err = await SignIn({ phoneNumber, password })
+                console.log("Login Error: ", err)
             } else {
                 setMessage(error.issues[0].message);
             }

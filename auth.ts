@@ -1,10 +1,24 @@
 import { loginUser } from "db/users/handler"
 import { signInSchema } from "lib/zod"
-import NextAuth from "next-auth"
+import NextAuth, { AuthError } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { ZodError } from "zod"
 
+export class CustomAuthError extends AuthError {
+  constructor(msg: string) {
+    super();
+    this.message = msg;
+    this.stack = undefined;
+  }
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  trustHost: true,
+  debug: true,
+  secret: process.env.AUTH_SECRET,
+  pages: {
+    signIn: "/login",
+  },
   providers: [
     Credentials({
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
@@ -24,15 +38,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           if (!user) {
             // No user found, so this is their first attempt to login
             // Optionally, this is also the place you could do a user registration
-            throw new Error("Invalid credentials.")
+            throw new CustomAuthError("Invalid credentials.")
           }
 
           // return user object with their profile data
           return user
         } catch (err) {
           if (err instanceof ZodError) {
-            return null;
+            throw new CustomAuthError("zod error: "+err.message )
           }
+          throw new CustomAuthError(err.message)
         }
       },
     }),
