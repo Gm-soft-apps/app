@@ -21,9 +21,9 @@ const Dashboard = () => {
             {
                 categories.map((category, idx) => {
                     return (
-                        <div className="p-2 bg-white mx-2 rounded my-2" key={category + idx}>
-                            <div className="d-flex justify-content-center align-items-center mb-3">
-                                <img src="https://portal.amfiindia.com/images/logos/logo63.gif" alt="img" className="w-25" />
+                        <div className="p-2 bg-white mx-2 rounded my-2 shadow-lg" key={category + idx}>
+                            <div className="d-flex justify-content-between align-items-center mb-3">
+                                <img src="https://portal.amfiindia.com/images/logos/logo63.gif" alt="img" width={50} height={50} className="border"/>
                                 <h3 className="w-75 ms-2">App Name</h3>
                             </div>
                             <div className="my-2">Task Rules</div>
@@ -35,7 +35,7 @@ const Dashboard = () => {
 
             <div className="bg-white text-center fs-1 fw-semibold pt-1 row align-items-center sticky-bottom shadow-lg border-top border-2">
                 <div className="col d-flex justify-content-center align-items-center flex-column"><i className="bi bi-currency-dollar"></i><span>refer</span></div>
-                <div className="col d-flex justify-content-center align-items-center flex-column"><i className="bi bi-house-check"></i><span>home</span></div>
+                <div className="col d-flex justify-content-center align-items-center flex-column text-success"><i className="bi bi-house-check"></i><span>home</span></div>
                 <div className="col d-flex justify-content-center align-items-center flex-column"><i className="bi bi-wallet2"></i><span>wallet</span></div>
             </div>
         </>
