@@ -7,6 +7,11 @@
   min-height: 100vh;
 }
 
-/* .bi {
-  text-shadow: 0.6px 0.6px 0 black;
-} */
+i {
+  -webkit-text-stroke: 0.6px;
+  line-height: 0;
+}
+
+.sticky-bottom div span{
+  font-size: 0.84rem;
+}

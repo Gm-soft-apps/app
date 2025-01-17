@@ -1,11 +1,12 @@
+
 const Dashboard = () => {
     const categories = ["category", "category", "category", "category", "category", "category"]
     return (
         <>
-            <div className="d-flex justify-content-between align-items-center mb-2 bg-white px-1 py-1">
-                <div className="fs-1 btn px-2"><span className="bi bi-person-check"></span></div>
+            <div className="d-flex justify-content-between align-items-center mb-2 bg-white p-1 shadow-lg">
+                <div className="fs-1 btn px-2"><i className="bi bi-person-check"></i></div>
                 <div><h2>LOGO</h2></div>
-                <div className="fs-1 btn px-2 btn-outline-danger"><span className="bi bi-power"></span></div>
+                <div className="fs-1 btn px-2 btn-outline-danger"><i className="bi bi-power"></i></div>
             </div>
             <div id="categories" className="row row-cols-3 my-2 mx-1">
                 {
@@ -20,9 +21,9 @@ const Dashboard = () => {
             {
                 categories.map((category, idx) => {
                     return (
-                        <div className="p-2 bg-white mx-2 rounded my-2" key={category+idx}>
+                        <div className="p-2 bg-white mx-2 rounded my-2" key={category + idx}>
                             <div className="d-flex justify-content-center align-items-center mb-3">
-                                <img src="https://portal.amfiindia.com/images/logos/logo63.gif" alt="img" className="w-25"/>
+                                <img src="https://portal.amfiindia.com/images/logos/logo63.gif" alt="img" className="w-25" />
                                 <h3 className="w-75 ms-2">App Name</h3>
                             </div>
                             <div className="my-2">Task Rules</div>
@@ -32,14 +33,13 @@ const Dashboard = () => {
                 })
             }
 
-            <div className="mt-5">&nbsp;</div>
-            <div className="bg-white row text-center w-100 position-fixed bottom-0 bg-success">
-                <div className="fs-4 col pt-1 btn"><span className="bi bi-people fs-1"></span> refer</div>
-                <div className="fs-4 col pt-1 btn bg-success text-white rounded-top-4 rounded-bottom-0"><span className="bi bi-house-check fs-1"></span></div>
-                <div className="fs-4 col pt-1 btn"><span className="bi bi-wallet2 fs-1"></span> wallet</div>
+            <div className="bg-white text-center fs-1 fw-semibold pt-1 row align-items-center sticky-bottom shadow-lg border-top border-2">
+                <div className="col d-flex justify-content-center align-items-center flex-column"><i className="bi bi-currency-dollar"></i><span>refer</span></div>
+                <div className="col d-flex justify-content-center align-items-center flex-column"><i className="bi bi-house-check"></i><span>home</span></div>
+                <div className="col d-flex justify-content-center align-items-center flex-column"><i className="bi bi-wallet2"></i><span>wallet</span></div>
             </div>
         </>
     )
 }
 
-export default Dashboard
+export default Dashboard;
