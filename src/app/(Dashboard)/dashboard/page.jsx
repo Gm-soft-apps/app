@@ -23,7 +23,7 @@ const Dashboard = () => {
                     return (
                         <div className="p-2 bg-white mx-2 rounded my-2 shadow-lg" key={category + idx}>
                             <div className="d-flex justify-content-between align-items-center mb-3">
-                                <img src="https://portal.amfiindia.com/images/logos/logo63.gif" alt="img" width={50} height={50} className="border"/>
+                                <img src="https://portal.amfiindia.com/images/logos/logo63.gif" alt="img" width={65} height={65} className="border"/>
                                 <h3 className="w-75 ms-2">App Name</h3>
                             </div>
                             <div className="my-2">Task Rules</div>
