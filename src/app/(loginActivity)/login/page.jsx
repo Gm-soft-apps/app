@@ -3,7 +3,10 @@
 import Loading from "app/components/loading";
 import Link from "next/link";
 import { useState } from "react";
-import { loginAuth } from "app/actions/loginAuth";
+// import { loginAuth } from "app/actions/loginAuth";
+// import { signIn } from "../../../../auth";
+import { SignIn } from "app/actions/signInAuth";
+import { signInSchema } from "lib/zod";
 
 const Login = () => {
 
@@ -21,25 +24,18 @@ const Login = () => {
         // setStatus(false);
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-
+    const submitForm = async () => {
         try {
-            const resp = await loginAuth({ phoneNumber, password });
+            const { success, error, data } = signInSchema.safeParse({ phoneNumber, password })
 
-            setStatus(resp.status);
-            setLoading(false);
-            setMessage(resp.message);
-
-            if (resp.status) {
-                resetForm();
+            if (success) {
+                await SignIn({ phoneNumber, password })
+            } else {
+                setMessage(error.issues[0].message);
             }
 
         } catch (err) {
-            setStatus(false);
-            setLoading(false);
-            setMessage("Something went wrong, Try again!");
+            setMessage("Invalid Credentials!")
         }
     }
 
@@ -53,7 +49,8 @@ const Login = () => {
                         <Link href="/register" className="btn btn-success w-100 py-2 fw-bold" role="button">Register</Link>
                         <Link href="/login" className="btn btn-outline-success w-100 py-2 fw-bold disabled" role="button">Login</Link>
                     </div>
-                    <form onSubmit={handleSubmit} className="my-2 px-3">
+                    {/* <form onSubmit={handleSubmit} className="my-2 px-3"> */}
+                    <form action={async () => submitForm()} className="my-2 px-3">
                         <div className="mb-2">
                             <label htmlFor="phone-number" className="form-label fw-semibold">Phone Number</label>
                             <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className="form-control p-2 my-1 fw-semibold" id="phone-number" name="phone-number" placeholder="Enter Phone Number" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
