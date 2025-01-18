@@ -1,7 +1,7 @@
 import { z } from "zod"
 import validator from "validator";
 
-export const signUpFormSchema = z.object({
+export const validateSignIn = z.object({
     phoneNumber: z
         .string()
         .trim()
@@ -19,16 +19,26 @@ export const signUpFormSchema = z.object({
         })
         .max(32, { message: 'Must be less than 32 characters long.' })
         .trim(),
+});
+
+export const validateSignUp = validateSignIn.extend({
     confirmPass: z
         .string()
         .min(8, { message: 'Must be at least 8 characters long.' })
         .trim(),
     invitedBy: z
         .string()
-        .length(6, {message: 'Invalid Referral code.'})
-        .regex(/[A-Z0-9]/,{message: 'Invalid Referral code.'})
+        .length(6, { message: 'Invalid Referral code.' })
+        .regex(/[A-Z0-9]/, { message: 'Invalid Referral code.' })
         .trim().optional(),
 }).refine((data) => data.password === data.confirmPass, {
     message: 'Passwords do not match.',
     path: ["confirmPassword"],
 });
+
+export const validatePhoneNumber = z
+    .string()
+    .trim()
+    .refine((val) => validator.isMobilePhone(val, 'en-IN'), {
+        message: "Invalid phone number!"
+    })

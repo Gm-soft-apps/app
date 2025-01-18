@@ -56,7 +56,11 @@ const Login = () => {
                     <form onSubmit={handleSubmit} className="my-2 px-3">
                         <div className="mb-2">
                             <label htmlFor="phone-number" className="form-label fw-semibold">Phone Number</label>
-                            <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className="form-control p-2 my-1 fw-semibold" id="phone-number" name="phone-number" placeholder="Enter Phone Number" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
+                            <div className="input-group my-1">
+                                <span className="input-group-text px-2 fw-semibold">+91</span>
+                                <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className="form-control p-2 fw-semibold" id="phone-number" name="phone-number" placeholder="Enter Phone Number" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
+                            </div>
+                            <div className="invalid-feedback">{message}</div>
                         </div>
                         <div className="mb-2">
                             <label htmlFor="password" className="form-label fw-semibold">Password</label>

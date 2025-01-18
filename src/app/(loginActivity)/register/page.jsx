@@ -4,7 +4,7 @@ import Loading from "app/components/loading";
 import { useState } from "react";
 import Link from 'next/link'
 import { registerAuth } from "app/actions/registerAuth";
-import { signUpFormSchema } from "app/lib/validations";
+import { validateSignUp } from "app/lib/validations";
 
 const Signup = () => {
 
@@ -13,7 +13,12 @@ const Signup = () => {
     const [confirmPass, setConfirmPass] = useState("");
     const [invitedBy, setInvitedBy] = useState(undefined);
     const [message, setMessage] = useState("");
-    const [passMatch, setPassMatch] = useState(false);
+    const [alert, setAlert] = useState({
+        phoneNumber: null,
+        password: null,
+        confirmPass: null,
+        invitedBy: null,
+    });
     const [status, setStatus] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -22,43 +27,26 @@ const Signup = () => {
         setPassword("");
         setConfirmPass("");
         setInvitedBy("");
-        setPassMatch(false);
         // setStatus(false);
         setLoading(false);
     }
 
-    const checkFormBS = () => {
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (() => {
-            'use strict'
-
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const form = document.querySelector('.needs-validation')
-
-            // Loop over them and prevent submission
-
-            form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-
-                }
-                form.classList.add('was-validated');
-            }, false)
-        })()
+    const isvalid = (props) => {
+        return props ? "is-invalid" : props === null ? "" : "is-valid"
     }
 
     const handleSubmit = async (e) => {
-        checkFormBS();
         e.preventDefault();
         setLoading(true);
-        console.log(invitedBy)
-        const { success, data, error } = signUpFormSchema.safeParse({ phoneNumber, password, confirmPass, invitedBy })
+
+        const { success, data, error } = validateSignUp.safeParse({ phoneNumber, password, confirmPass, invitedBy });
         if (!success) {
-            error.errors.forEach((error) => {
-                console.log(`Field: ${error.path.join(".")} - Error: ${error.message}`);
-                // console.log(error.path.includes("password"))
-            });
+            const formattedErrors = Object.fromEntries(
+                Object.entries(error.format()).map(([key, value]) => [key, value._errors])
+            );
+
+            // Set alert state
+            setAlert(formattedErrors);
             setLoading(false);
             return;
         }
@@ -93,35 +81,35 @@ const Signup = () => {
                         <Link href="/register" className="btn btn-outline-success w-100 py-2 fw-bold disabled" role="button">Register</Link>
                         <Link href="/login" className="btn btn-success w-100 py-2 fw-bold" role="button">Login</Link>
                     </div>
-                    <form onSubmit={handleSubmit} className="my-2 px-3 needs-validation" noValidate>
+                    <form onSubmit={handleSubmit} className="my-2 px-3 needs-validations" noValidate>
                         <div className="mb-2">
                             <label htmlFor="phone-number" className="form-label fw-semibold">Phone Number</label>
                             <div className="input-group my-1">
                                 <span className="input-group-text px-2 fw-semibold">+91</span>
-                                <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className="form-control p-2 fw-semibold" id="phone-number" name="phone-number" placeholder="Enter Phone Number" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
+                                <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className={`form-control p-2 fw-semibold ${isvalid(alert.phoneNumber)}`} id="phone-number" name="phone-number" placeholder="Enter Phone Number" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
+                                <div className="invalid-feedback">{alert.phoneNumber}</div>
                             </div>
-                            <div className="invalid-feedback">{message}</div>
                         </div>
                         <div className="mb-2">
                             <label htmlFor="password" className="form-label fw-semibold">Password</label>
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control p-2 my-1 was-validated fw-semibold" id="password" name="password" placeholder="Enter Password" required />
-                            <div className="invalid-feedback">{message}</div>
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className={`form-control p-2 my-1 was-validated fw-semibold ${isvalid(alert.password)}`} id="password" name="password" placeholder="Enter Password" required />
+                            <div className="invalid-feedback">{alert.password}</div>
                         </div>
                         <div className="mb-2">
                             <label htmlFor="confirm-password" className="form-label fw-semibold">Confirm Password</label>
-                            <input type="password" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} className={`form-control p-2 my-1 fw-semibold`} id="confirm-password" name="confirm-password" placeholder="Confirm Password" required />
-                            <div className="invalid-feedback">{message}</div>
+                            <input type="password" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} className={`form-control p-2 my-1 fw-semibold  ${isvalid(alert.confirmPass)}`} id="confirm-password" name="confirm-password" placeholder="Confirm Password" required />
+                            <div className="invalid-feedback">{alert.confirmPass}</div>
                         </div>
                         <div className="mb-2">
                             <label htmlFor="invitedBy" className="form-label fw-semibold">Referral Code</label>
-                            <input type="text" value={invitedBy} onChange={(e) => setInvitedBy(e.target.value)} className="form-control p-2 my-1 fw-semibold" id="invitedBy" name="invitedBy" placeholder="(optional)" />
-                            <div className="invalid-feedback">{message}</div>
+                            <input type="text" value={invitedBy} onChange={(e) => setInvitedBy(e.target.value)} className={`form-control p-2 my-1 fw-semibold  ${isvalid(alert.invitedBy)}`} id="invitedBy" name="invitedBy" placeholder="(optional)" />
+                            <div className="invalid-feedback">{alert.invitedBy}</div>
                         </div>
-                        <div id="error-msg" className={`fw-semibold m-1 ${status ? "text-success" : "text-danger"}`}>{message}</div>
-                        <div className="">
+                        <div className="mt-3">
                             <button type="submit" className="btn btn-dark w-100 p-2 fw-bold">Register Now</button>
                         </div>
                     </form>
+                    {/* {console.log(alert.phoneNumber)} */}
                 </div>
                 {
                     loading ? <Loading /> : ""
