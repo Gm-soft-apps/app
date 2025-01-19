@@ -1,11 +1,8 @@
 "use client"
 
-import AuthCard from "app/ui/(AuthForm)/AuthCard";
 import AuthErrorMsg from "app/ui/(AuthForm)/AuthErrorMsg";
-import AuthNavBtns from "app/ui/(AuthForm)/AuthNavBtns";
 import AuthSubmitButton from "app/ui/(AuthForm)/AuthSubmitButton";
 import Loading from "app/ui/(AuthForm)/loading";
-import LogoComponent from "app/ui/(AuthForm)/LogoComponent";
 import { useState } from "react";
 
 const Login = () => {
@@ -48,9 +45,6 @@ const Login = () => {
 
     return (
         <>
-            <LogoComponent />
-            <AuthCard title="Login Account" id="login">
-                <AuthNavBtns isRegisterPage={false} isLoginPage={true} />
                 <form onSubmit={handleSubmit} className="my-2 px-3">
                     <div className="mb-2">
                         <label htmlFor="phone-number" className="form-label fw-semibold">Phone Number</label>
@@ -70,7 +64,6 @@ const Login = () => {
                 {
                     loading ? <Loading /> : ""
                 }
-            </AuthCard>
         </>
     );
 }
