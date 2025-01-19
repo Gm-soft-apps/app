@@ -1,13 +1,7 @@
-
 const Dashboard = () => {
     const categories = ["category", "category", "category", "category", "category", "category"]
     return (
         <>
-            <div className="d-flex justify-content-between align-items-center mb-2 bg-white p-1 shadow-lg">
-                <div className="fs-1 btn px-2"><i className="bi bi-person-check"></i></div>
-                <div><h2>LOGO</h2></div>
-                <div className="fs-1 btn px-2 btn-outline-danger"><i className="bi bi-power"></i></div>
-            </div>
             <div id="categories" className="row row-cols-3 my-2 mx-1">
                 {
                     categories.map((category, idx) => {
@@ -32,12 +26,6 @@ const Dashboard = () => {
                     );
                 })
             }
-
-            <div className="bg-white text-center fs-1 fw-semibold pt-1 row align-items-center sticky-bottom shadow-lg border-top border-2">
-                <div className="col d-flex justify-content-center align-items-center flex-column"><i className="bi bi-currency-dollar"></i><span>refer</span></div>
-                <div className="col d-flex justify-content-center align-items-center flex-column text-success"><i className="bi bi-house-check"></i><span>home</span></div>
-                <div className="col d-flex justify-content-center align-items-center flex-column"><i className="bi bi-wallet2"></i><span>wallet</span></div>
-            </div>
         </>
     )
 }
