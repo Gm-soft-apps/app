@@ -33,12 +33,5 @@ export const validateSignUp = validateSignIn.extend({
         .trim().optional(),
 }).refine((data) => data.password === data.confirmPass, {
     message: 'Passwords do not match.',
-    path: ["confirmPassword"],
+    path: ["confirmPass"],
 });
-
-export const validatePhoneNumber = z
-    .string()
-    .trim()
-    .refine((val) => validator.isMobilePhone(val, 'en-IN'), {
-        message: "Invalid phone number!"
-    })

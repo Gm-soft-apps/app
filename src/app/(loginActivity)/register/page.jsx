@@ -32,7 +32,10 @@ const Signup = () => {
     }
 
     const isvalid = (props) => {
-        return props ? "is-invalid" : props === null ? "" : "is-valid"
+        // return props ? "is-invalid" : props === null ? "" : "is-valid"
+        if (props === null) return ""; // No validation applied
+        if (Array.isArray(props)) return "is-invalid"; // Error
+        return "is-valid"; // Valid
     }
 
     const handleSubmit = async (e) => {
@@ -44,12 +47,13 @@ const Signup = () => {
             const formattedErrors = Object.fromEntries(
                 Object.entries(error.format()).map(([key, value]) => [key, value._errors])
             );
-
             // Set alert state
             setAlert(formattedErrors);
             setLoading(false);
             return;
         }
+
+        setAlert(data);
 
         try {
             const resp = await registerAuth({ phoneNumber: data.phoneNumber, password: data.password, confirmPass: data.confirmPass, invitedBy: data.invitedBy });
@@ -93,7 +97,10 @@ const Signup = () => {
                         <div className="mb-2">
                             <label htmlFor="password" className="form-label fw-semibold">Password</label>
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className={`form-control p-2 my-1 was-validated fw-semibold ${isvalid(alert.password)}`} id="password" name="password" placeholder="Enter Password" required />
-                            <div className="invalid-feedback">{alert.password}</div>
+                            <div className="invalid-feedback">
+                                <div className="fw-semibold">Password must be:</div>
+                                <ul>{Array.isArray(alert.password   ) ? alert.password.map((err)=><li className="list-unstyled ms-2" key={err}>- {err}</li>) : undefined}</ul>
+                            </div>
                         </div>
                         <div className="mb-2">
                             <label htmlFor="confirm-password" className="form-label fw-semibold">Confirm Password</label>
@@ -109,7 +116,6 @@ const Signup = () => {
                             <button type="submit" className="btn btn-dark w-100 p-2 fw-bold">Register Now</button>
                         </div>
                     </form>
-                    {/* {console.log(alert.phoneNumber)} */}
                 </div>
                 {
                     loading ? <Loading /> : ""
