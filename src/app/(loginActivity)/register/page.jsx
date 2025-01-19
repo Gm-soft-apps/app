@@ -99,13 +99,16 @@ const Signup = () => {
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className={`form-control p-2 my-1 was-validated fw-semibold ${isvalid(alert.password)}`} id="password" name="password" placeholder="Enter Password" required />
                             <div className="invalid-feedback">
                                 <div className="fw-semibold">Password must be:</div>
-                                <ul>{Array.isArray(alert.password   ) ? alert.password.map((err)=><li className="list-unstyled ms-2" key={err}>- {err}</li>) : undefined}</ul>
+                                <ul>{Array.isArray(alert.password) ? alert.password.map((err)=><li className="list-unstyled ms-2" key={err}>- {err}</li>) : null}</ul>
                             </div>
                         </div>
                         <div className="mb-2">
                             <label htmlFor="confirm-password" className="form-label fw-semibold">Confirm Password</label>
                             <input type="password" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} className={`form-control p-2 my-1 fw-semibold  ${isvalid(alert.confirmPass)}`} id="confirm-password" name="confirm-password" placeholder="Confirm Password" required />
-                            <div className="invalid-feedback">{alert.confirmPass}</div>
+                            <div className="invalid-feedback">
+                                <div className="fw-semibold">Fix</div>
+                                <ul>{Array.isArray(alert.confirmPass) ? alert.confirmPass.map((err)=><li className="list-unstyled ms-2" key={err}>- {err}</li>) : null}</ul>
+                            </div>
                         </div>
                         <div className="mb-2">
                             <label htmlFor="invitedBy" className="form-label fw-semibold">Referral Code</label>
