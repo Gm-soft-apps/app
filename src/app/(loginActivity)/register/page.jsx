@@ -19,7 +19,6 @@ const Signup = () => {
         confirmPass: null,
         invitedBy: null,
     });
-    const [status, setStatus] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const resetForm = () => {
@@ -27,7 +26,6 @@ const Signup = () => {
         setPassword("");
         setConfirmPass("");
         setInvitedBy("");
-        // setStatus(false);
         setLoading(false);
     }
 
@@ -59,17 +57,14 @@ const Signup = () => {
             const resp = await registerAuth({ phoneNumber: data.phoneNumber, password: data.password, confirmPass: data.confirmPass, invitedBy: data.invitedBy });
 
             if (resp.status) {
-                setStatus(resp.status);
                 setLoading(false);
                 setMessage(resp.message);
                 resetForm();
             } else {
-                setStatus(false);
                 setLoading(false);
                 setMessage(resp.message);
             }
         } catch (err) {
-            setStatus(false);
             setLoading(false);
             setMessage("Something went wrong!")
         }
@@ -115,7 +110,8 @@ const Signup = () => {
                             <input type="text" value={invitedBy} onChange={(e) => setInvitedBy(e.target.value)} className={`form-control p-2 my-1 fw-semibold  ${isvalid(alert.invitedBy)}`} id="invitedBy" name="invitedBy" placeholder="(optional)" />
                             <div className="invalid-feedback">{alert.invitedBy}</div>
                         </div>
-                        <div className="mt-3">
+                        <div className="fw-semibold text-danger">{message}</div>
+                        <div className="mt-1">
                             <button type="submit" className="btn btn-dark w-100 p-2 fw-bold">Register Now</button>
                         </div>
                     </form>
