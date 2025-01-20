@@ -1,9 +1,11 @@
+"use server"
+
 import { auth } from "auth"
 
 const Dashboard = async () => {
 
     const session = await auth();
-    console.log(session.user)
+    console.log("dashboard",session)
     if(!session){
 
     }

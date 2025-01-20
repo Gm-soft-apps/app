@@ -20,8 +20,25 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             }
         }),
     ],
+    callbacks: {
+        jwt: ({ token, user }) => {
+            if(user) token.id = user.id
+            return token;
+        },
+        session: ({ session, token }) => {
+            const today = new Date()
+            session.expires = new Date(today.setDate(7 + today.getDate())).toISOString()
+            session.user.id = token.id;
+            return session;
+        },
+        authorized: async ({ auth }) => {
+            return !!auth;
+        }
+    },
     secret: process.env.AUTH_SECRET,
-    pages: {
-        signIn: "/login"
-    }
+    trustHost: true,
+    useSecureCookies: process.env.NODE_ENV === 'production',
+    // pages: {
+    //     signIn: "/login"
+    // }
 });

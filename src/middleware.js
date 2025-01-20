@@ -1,8 +1,9 @@
-// import { auth } from "auth";
+// import { auth } from 'auth';
 
-export const middleware = async ()=>{
-    // console.log("middleware")
-    
-    // const session = await auth();
-    // console.log("session")
-}
+// export default auth((req) => {
+//     // if(!req.auth && req.nextUrl.pathname !== '/login') {
+
+//     // }
+// })
+
+export default () => {}
