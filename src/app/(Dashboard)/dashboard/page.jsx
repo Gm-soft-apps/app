@@ -1,4 +1,12 @@
-const Dashboard = () => {
+import { auth } from "auth"
+
+const Dashboard = async () => {
+
+    const session = await auth();
+    console.log(session.user)
+    if(!session){
+
+    }
     const categories = ["category", "category", "category", "category", "category", "category"]
     return (
         <>

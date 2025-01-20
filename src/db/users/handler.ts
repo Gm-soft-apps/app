@@ -20,3 +20,11 @@ export const loginUser = async (user: ILoginUser): Promise<any> => {
         return false;
     }
 }
+
+export const getUserFromDb = async (formData) => {
+    const resp = await db.select().from(users).where(and(eq(users.phoneNumber, formData.phoneNumber), eq(users.password, formData.password)));
+    if (resp.length != 1) {
+        return null;
+    }
+    return resp;
+}

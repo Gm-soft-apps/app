@@ -1,5 +1,6 @@
 "use client"
 
+import { authLogin } from "app/actions/auth";
 import { validateSignIn } from "app/lib/validations";
 import AuthErrorMsg from "app/ui/(AuthForm)/AuthErrorMsg";
 import AuthSubmitButton from "app/ui/(AuthForm)/AuthSubmitButton";
@@ -47,7 +48,8 @@ const Login = () => {
         setAlert(data);
 
         try {
-
+            const resp = await authLogin({ phoneNumber: data.phoneNumber, password: data.password });
+            // console.log("resp in /login ")
 
         } catch (err) {
             setMessage("Something went wrong, Try again!");
