@@ -1,6 +1,13 @@
 import { getUserFromDb } from "db/users/handler";
 import Credentials from "next-auth/providers/credentials";
-import { NextAuthConfig } from "next-auth";
+import { AuthError, NextAuthConfig } from "next-auth";
+export class CustomAuthError extends AuthError {
+    constructor(msg: string) {
+        super();
+        this.message = msg;
+        this.stack = undefined;
+    }
+}
 
 export const authConfig = {
     providers: [
@@ -11,19 +18,15 @@ export const authConfig = {
             },
             authorize: async (credentials) => {
                 let user = await getUserFromDb(credentials);
-                if (!user) throw new Error("Invalid Credentials!")
+                if (!user) throw new CustomAuthError("Invalid Credentials!");
                 return user[0] as any;
             }
         }),
     ]
 } satisfies NextAuthConfig;
-
-interface user {
-    id: number;
-}
 declare module "next-auth" {
-    interface User extends user {
-        // id?: string;
+    interface User {
+        id?: string;
         phoneNumber: string;
         password: string;
         referralCode: string;

@@ -1,15 +1,18 @@
-import { getUserFromDb } from "db/users/handler";
-import {auth} from "auth"
+import { auth } from "auth"
 
-// export default async () => {
-//     const resp = await getUserFromDb({ phoneNumber: "9848012345", password: "#Sai12345" });
-//     console.log("middleware: ", resp);
-// }
+export default auth((req) => {
+    const path = req.nextUrl.pathname;
+    const PublicUrl = ["/login", "/register"];
+    const isPublicUrl = PublicUrl.includes(path);
 
-export default auth((req) =>{
-    const isPublicUrl = ["/login", "/register"].includes(req.nextUrl.pathname)
-    if(!isPublicUrl && !req.auth?.user){
-        console.log("You are not allowed");
+    if (!isPublicUrl && !req.auth?.user) { // for logout users
+        const newUrl = new URL("/login", req.nextUrl.origin);
+        return Response.redirect(newUrl);
+    }
+
+    if(req.auth?.user && isPublicUrl){
+        const newUrl = new URL("/dashboard", req.nextUrl.origin);
+        return Response.redirect(newUrl);
     }
 })
 export const config = {

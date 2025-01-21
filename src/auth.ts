@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import { authConfig } from "auth.config";
-import { JWT } from "next-auth/jwt" // dont comment this line
+import { JWT } from "next-auth/jwt" // dont comment this line, or dont remove
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     ...authConfig,

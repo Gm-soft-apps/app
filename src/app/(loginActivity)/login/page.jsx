@@ -21,14 +21,6 @@ const Login = () => {
         invitedBy: null,
     });
 
-    const resetForm = () => {
-        setPhoneNumber("");
-        setPassword("");
-        // setMessage("");
-        setLoading(false);
-        // setStatus(false);
-    }
-
     const isValid = (props) => {
         // return props ? "is-invalid" : props === null ? "" : "is-valid"
         if (props === null) return ""; // No validation applied
@@ -49,10 +41,9 @@ const Login = () => {
 
         try {
             const resp = await authLogin({ phoneNumber: data.phoneNumber, password: data.password });
-            // console.log("resp in /login ")
-
-        } catch (err) {
-            setMessage("Something went wrong, Try again!");
+            (typeof resp === "object" ? setAlert : setMessage)(resp);
+        } catch (error) {
+            setMessage("Something went wrong, Try again!")
         }
     }
 
@@ -62,16 +53,16 @@ const Login = () => {
                 <label htmlFor="phone-number" className="form-label fw-semibold">Phone Number</label>
                 <div className="input-group my-1">
                     <span className="input-group-text px-2 fw-semibold">+91</span>
-                    <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className={`form-control p-2 fw-semibold ${isValid(alert.phoneNumber)}`} id="phone-number" name="phone-number" placeholder="Enter Phone Number" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
-                    <div className="invalid-feedback">{alert.phoneNumber}</div>
+                    <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className={`form-control p-2 fw-semibold ${isValid(alert?.phoneNumber)}`} id="phone-number" name="phone-number" placeholder="Enter Phone Number" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
+                    <div className="invalid-feedback">{alert?.phoneNumber}</div>
                 </div>
             </div>
             <div className="mb-2">
                 <label htmlFor="password" className="form-label fw-semibold">Password</label>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className={`form-control p-2 my-1 was-validated fw-semibold ${isValid(alert.password)}`} id="password" name="password" placeholder="Enter Password" required />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className={`form-control p-2 my-1 was-validated fw-semibold ${isValid(alert?.password)}`} id="password" name="password" placeholder="Enter Password" required />
                 <div className="invalid-feedback">
                     <div className="fw-semibold">Password must be:</div>
-                    <ul>{Array.isArray(alert.password) ? alert.password.map((err) => <li className="list-unstyled ms-2" key={err}>- {err}</li>) : null}</ul>
+                    <ul>{Array.isArray(alert?.password) ? alert?.password.map((err) => <li className="list-unstyled ms-2" key={err}>- {err}</li>) : null}</ul>
                 </div>
             </div>
             <AuthErrorMsg message={message} />

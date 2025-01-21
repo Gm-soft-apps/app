@@ -1,16 +1,27 @@
 "use server"
 
+import { validateSignIn } from "app/lib/validations";
 import { signIn } from "auth";
+import { redirect } from "next/navigation";
 
 export const authLogin = async (formData) => {
-    // try {
+
+    //server side form validation
+    const { success, data, error } = validateSignIn.safeParse(formData);
+    if (!success) {
+        return error.flatten().fieldErrors;
+    }
+
+    try {
         const resp = await signIn("credentials", {
-            phoneNumber: formData.phoneNumber,
-            password: formData.password,
-            redirectTo: "/dashboard"
+            phoneNumber: data.phoneNumber,
+            password: data.password,
+            redirectTo: "/dashboard",
+            redirect: false,
         });
-        // console.log("authLogin resp : ", resp)
-    // } catch (err) {
-    //     console.log("Error in authLogin catch: ", err)
-    // }
+    } catch (error) {
+        return error.message;
+    }
+
+    redirect("/dashboard")
 }
