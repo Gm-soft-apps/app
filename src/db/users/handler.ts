@@ -1,3 +1,5 @@
+"use server"
+
 import { and, eq } from "drizzle-orm";
 import { users } from "../users"
 import { db } from "turso"

@@ -4,11 +4,11 @@ import { auth } from "auth"
 
 const Dashboard = async () => {
 
-    const session = await auth();
-    console.log("dashboard",session)
-    if(!session){
+    // const session = await auth();
+    // console.log("dashboard",session)
+    // if(!session){
 
-    }
+    // }
     const categories = ["category", "category", "category", "category", "category", "category"]
     return (
         <>
