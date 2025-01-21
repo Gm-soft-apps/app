@@ -1,7 +1,7 @@
 "use server"
 
 import { validateSignIn } from "app/lib/validations";
-import { signIn } from "auth";
+import { signIn, signOut } from "auth";
 import { redirect } from "next/navigation";
 
 export const authLogin = async (formData) => {
@@ -24,4 +24,8 @@ export const authLogin = async (formData) => {
     }
 
     redirect("/dashboard")
+}
+
+export const authSignOut = async ()=>{
+    await signOut();
 }
