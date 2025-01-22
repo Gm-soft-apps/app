@@ -1,4 +1,4 @@
-import { getUserFromDb } from "db/users/handler";
+import { createUser, getUserFromDb } from "db/users/handler";
 import Credentials from "next-auth/providers/credentials";
 import { AuthError, NextAuthConfig } from "next-auth";
 export class CustomAuthError extends AuthError {
@@ -9,15 +9,33 @@ export class CustomAuthError extends AuthError {
     }
 }
 
+interface Credentials {
+    phoneNumber: string;
+    password: string;
+    isRegistering: boolean;
+    invitedBy?: string; // Optional field if not always present
+}
+
 export const authConfig = {
     providers: [
         Credentials({
             credentials: {
                 phoneNumber: { label: "Phone Number", type: "tel" },
                 password: { label: "Password", type: "password" },
+                invitedBy: { label: "Invited By", type: "text" },
+                isRegistering: { label: "Is a Registered User", type: "boolean" },
             },
-            authorize: async (credentials) => {
-                let user = await getUserFromDb(credentials);
+            authorize: async (credentials: Credentials) => {
+                let user = null;
+                if (credentials.isRegistering) {
+                    try {
+                        user = await createUser(credentials);
+                        return user[0] as any;
+                    } catch (error) {
+                        throw new CustomAuthError(`Already Account Exists, please Login!!`);
+                    }
+                }
+                user = await getUserFromDb(credentials);
                 if (!user) throw new CustomAuthError("Invalid Credentials!");
                 return user[0] as any;
             }

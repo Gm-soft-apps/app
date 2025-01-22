@@ -5,7 +5,7 @@ import { users } from "../users"
 import { db } from "turso"
 
 export const createUser = async (user: typeof users.$inferInsert) => {
-    await db.insert(users).values(user);
+    return await db.insert(users).values(user).returning();
 }
 
 type ILoginUser = { phoneNumber: string, password: string };

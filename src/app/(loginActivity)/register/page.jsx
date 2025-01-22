@@ -1,10 +1,10 @@
 "use client"
 
-import Loading from "app/ui/(AuthForm)/loading";
 import { useState } from "react";
 import { validateSignUp } from "app/lib/validations";
 import AuthSubmitButton from "app/ui/(AuthForm)/AuthSubmitButton";
 import AuthErrorMsg from "app/ui/(AuthForm)/AuthErrorMsg";
+import { signUpAction } from "app/actions/auth";
 
 const Signup = () => {
 
@@ -13,21 +13,12 @@ const Signup = () => {
     const [confirmPass, setConfirmPass] = useState("");
     const [invitedBy, setInvitedBy] = useState(undefined);
     const [message, setMessage] = useState("");
-    const [loading, setLoading] = useState(false);
     const [alert, setAlert] = useState({
         phoneNumber: null,
         password: null,
         confirmPass: null,
         invitedBy: null,
     });
-
-    const resetForm = () => {
-        setPhoneNumber("");
-        setPassword("");
-        setConfirmPass("");
-        setInvitedBy("");
-        setLoading(false);
-    }
 
     const isValid = (props) => {
         // return props ? "is-invalid" : props === null ? "" : "is-valid"
@@ -44,13 +35,13 @@ const Signup = () => {
             setAlert(error.flatten().fieldErrors);
             return;
         }
-
         setAlert(data);
 
         try {
-
-
-        } catch (err) {
+            const resp = await signUpAction(data);
+            (typeof resp === "object" ? setAlert : setMessage)(resp);
+        } catch (error) {
+            if (error.message === "NEXT_REDIRECT") return null;
             setMessage("Something went wrong!")
         }
     }
@@ -87,7 +78,7 @@ const Signup = () => {
                 <div className="invalid-feedback">{alert.invitedBy}</div>
             </div>
             <AuthErrorMsg message={message} />
-            <AuthSubmitButton btnText={loading ? <Loading /> : "Register"} />
+            <AuthSubmitButton btnText={"Register"} />
         </form>
     );
 }

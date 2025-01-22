@@ -1,10 +1,9 @@
 "use client"
 
-import { authLogin } from "app/actions/auth";
+import { loginAction } from "app/actions/auth";
 import { validateSignIn } from "app/lib/validations";
 import AuthErrorMsg from "app/ui/(AuthForm)/AuthErrorMsg";
 import AuthSubmitButton from "app/ui/(AuthForm)/AuthSubmitButton";
-import Loading from "app/ui/(AuthForm)/loading";
 import { useState } from "react";
 
 const Login = () => {
@@ -12,8 +11,6 @@ const Login = () => {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [status, setStatus] = useState(false);
     const [alert, setAlert] = useState({
         phoneNumber: null,
         password: null,
@@ -32,7 +29,6 @@ const Login = () => {
         e.preventDefault();
 
         const { success, data, error } = validateSignIn.safeParse({ phoneNumber, password });
-
         if (!success) {
             setAlert(error.flatten().fieldErrors);
             return;
@@ -40,9 +36,10 @@ const Login = () => {
         setAlert(data);
 
         try {
-            const resp = await authLogin({ phoneNumber: data.phoneNumber, password: data.password });
+            const resp = await loginAction(data);
             (typeof resp === "object" ? setAlert : setMessage)(resp);
         } catch (error) {
+            if (error.message === "NEXT_REDIRECT") return null;
             setMessage("Something went wrong, Try again!")
         }
     }
@@ -66,7 +63,7 @@ const Login = () => {
                 </div>
             </div>
             <AuthErrorMsg message={message} />
-            <AuthSubmitButton btnText={loading ? <Loading /> : "Login"} />
+            <AuthSubmitButton btnText={"Login"} />
         </form>
     );
 }
