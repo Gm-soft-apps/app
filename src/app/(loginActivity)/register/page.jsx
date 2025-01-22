@@ -13,6 +13,7 @@ const Signup = () => {
     const [confirmPass, setConfirmPass] = useState("");
     const [invitedBy, setInvitedBy] = useState(undefined);
     const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
     const [alert, setAlert] = useState({
         phoneNumber: null,
         password: null,
@@ -38,9 +39,12 @@ const Signup = () => {
         setAlert(data);
 
         try {
+            setLoading(true);
             const resp = await signUpAction(data);
+            setLoading(false);
             (typeof resp === "object" ? setAlert : setMessage)(resp);
         } catch (error) {
+            setLoading(false);
             if (error.message === "NEXT_REDIRECT") return null;
             setMessage("Something went wrong!")
         }
@@ -78,7 +82,7 @@ const Signup = () => {
                 <div className="invalid-feedback">{alert.invitedBy}</div>
             </div>
             <AuthErrorMsg message={message} />
-            <AuthSubmitButton btnText={"Register"} />
+            <AuthSubmitButton loading={loading} btnText={"Register"} />
         </form>
     );
 }

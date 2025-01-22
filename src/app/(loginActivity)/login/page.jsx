@@ -11,6 +11,7 @@ const Login = () => {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
     const [alert, setAlert] = useState({
         phoneNumber: null,
         password: null,
@@ -36,9 +37,12 @@ const Login = () => {
         setAlert(data);
 
         try {
+            setLoading(true);
             const resp = await loginAction(data);
+            setLoading(false);
             (typeof resp === "object" ? setAlert : setMessage)(resp);
         } catch (error) {
+            setLoading(false);
             if (error.message === "NEXT_REDIRECT") return null;
             setMessage("Something went wrong, Try again!")
         }
@@ -63,7 +67,7 @@ const Login = () => {
                 </div>
             </div>
             <AuthErrorMsg message={message} />
-            <AuthSubmitButton btnText={"Login"} />
+            <AuthSubmitButton loading={loading} btnText={"Login"} />
         </form>
     );
 }
