@@ -12,6 +12,7 @@ i {
   line-height: 0;
 }
 
-.sticky-bottom div span{
+#bottom-nav span{
   font-size: 0.84rem;
 }
+
