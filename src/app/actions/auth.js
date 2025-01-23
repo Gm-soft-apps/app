@@ -45,5 +45,5 @@ export const signUpAction = async (formData) => {
         return error.message;
     }
 
-    redirect("/dashboard")
+    return redirect("/dashboard");
 }

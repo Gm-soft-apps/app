@@ -1,7 +1,7 @@
 "use server"
 
 import { and, eq } from "drizzle-orm";
-import { users } from "../users"
+import { users } from "../dbSchema"
 import { db } from "turso"
 
 export const createUser = async (user: typeof users.$inferInsert) => {
