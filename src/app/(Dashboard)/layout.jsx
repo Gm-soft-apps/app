@@ -6,6 +6,7 @@ const DashboardLayout = (props) => {
         <>
             <TopNavBar />
             {props.children}
+            <div className="mt-5">&nbsp;</div>
             <BottomNavBar />
         </>
     );

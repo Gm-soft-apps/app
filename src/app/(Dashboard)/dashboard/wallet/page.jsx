@@ -1,7 +1,7 @@
 const Wallet = () => {
     return (
         <div className="mx-2">
-            <div className="d-flex justify-content-end align-items-center"><span className="px-1 my-1 btn rounded-1">History <i className="bi bi-list"></i></span></div>
+            <div className="d-flex justify-content-end align-items-center"><span className="px-2 my-1 py-1 btn btn-outline-dark rounded-1">History <i className="bi bi-list"></i></span></div>
             <div className="card rounded-1 p-2 text-center shadow my-2">
                 <h3>Available Balance</h3>
                 <h3 className="fw-bold fs-1 my-3">₹---</h3>
@@ -29,7 +29,7 @@ const Wallet = () => {
                     <h3 className="ms-3 w-100">Text Info</h3>
                 </div>
                 <div className="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                    <div className="progress-bar progress-bar-striped bg-success fw-bold" style={{width:"50%"}}>50%</div>
+                    <div className="progress-bar progress-bar-striped bg-success fw-bold" style={{width:"75%"}}>75%</div>
                 </div>
             </div>
         </div>
