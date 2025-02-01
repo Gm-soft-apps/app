@@ -4,6 +4,9 @@ import Link from "next/link";
 const Refer = async () => {
     const headersList = await headers();
     const host = headersList.get("host");
+    const protocal = headersList.get("x-forwarded-proto");
+    const device = headersList.get("user-agent")
+    console.log(device)
 
     return (
         <div className="mx-2">
@@ -30,11 +33,13 @@ const Refer = async () => {
             </div>
 
             <div id="shareIcons" className="my-4 fs-1 d-flex justify-content-evenly align-items-center">
-                <Link href={`https://api.whatsapp.com/send?text=${host}`}           className="bi bi-whatsapp link-dark"></Link>
-                <Link href={`https://www.facebook.com/sharer/sharer.php?u=${host}`} className="bi bi-facebook link-dark"></Link>
-                <Link href={`https://telegram.dog/share/url?url=${host}`}           className="bi bi-telegram link-dark"></Link>
+                <Link href={`https://api.whatsapp.com/send?text=${protocal+"://"+host}`}           className="bi bi-whatsapp link-dark"></Link>
+                <Link href={`https://www.facebook.com/sharer/sharer.php?u=${protocal+"://"+host}`} className="bi bi-facebook link-dark"></Link>
+                <Link href={`https://telegram.dog/share/url?url=${protocal+"://"+host}`}           className="bi bi-telegram link-dark"></Link>
                 {/* <Link href="" className="bi bi-instagram"></Link> */}
             </div>
+            <b>Your device details:</b>
+            <div>{device}</div>
         </div>
     );
 }
