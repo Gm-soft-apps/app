@@ -5,8 +5,6 @@ const Refer = async () => {
     const headersList = await headers();
     const host = headersList.get("host");
     const protocal = headersList.get("x-forwarded-proto");
-    const device = headersList.get("user-agent")
-    console.log(device)
 
     return (
         <div className="mx-2">
@@ -38,8 +36,6 @@ const Refer = async () => {
                 <Link href={`https://telegram.dog/share/url?url=${protocal+"://"+host}`}           className="bi bi-telegram link-dark"></Link>
                 {/* <Link href="" className="bi bi-instagram"></Link> */}
             </div>
-            <b>Your device details:</b>
-            <div>{device}</div>
         </div>
     );
 }
