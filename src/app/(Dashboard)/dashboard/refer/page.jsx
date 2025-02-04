@@ -13,7 +13,8 @@ const Refer = async () => {
             </div><hr />
 
             <div className="bg-success text-white fw-bold fs-3 d-flex justify-content-around align-items-center my-2 py-2 rounded-1">
-                <span>Referral</span>
+                <span>Referred</span>
+                <span>-</span>
                 <span>10</span>
             </div>
 
@@ -31,6 +32,7 @@ const Refer = async () => {
             </div>
 
             <div id="shareIcons" className="my-4 fs-1 d-flex justify-content-evenly align-items-center">
+                <span className="fw-semibold">Share:</span>
                 <Link href={`https://api.whatsapp.com/send?text=${protocal+"://"+host}`}           className="bi bi-whatsapp link-dark"></Link>
                 <Link href={`https://www.facebook.com/sharer/sharer.php?u=${protocal+"://"+host}`} className="bi bi-facebook link-dark"></Link>
                 <Link href={`https://telegram.dog/share/url?url=${protocal+"://"+host}`}           className="bi bi-telegram link-dark"></Link>
