@@ -23,11 +23,12 @@ export const authConfig = {
                 phoneNumber: { label: "Phone Number", type: "tel" },
                 password: { label: "Password", type: "password" },
                 invitedBy: { label: "Invited By", type: "text" },
-                isRegistering: { label: "Is a Registered User", type: "boolean" },
+                isRegistering: { label: "Is a Registered User", type: "text" },
             },
             authorize: async (credentials: Credentials) => {
                 let user = null;
-                if (credentials.isRegistering) {
+                console.log(credentials)
+                if (credentials.isRegistering && !credentials) {
                     try {
                         user = await createUser(credentials);
                         return user[0] as any;

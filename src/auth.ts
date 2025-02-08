@@ -35,6 +35,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     secret: process.env.AUTH_SECRET,
     trustHost: true,
     useSecureCookies: process.env.NODE_ENV === 'production',
+    pages:{
+        signIn: "/login",
+    }
 });
  
 declare module "next-auth/jwt" {
