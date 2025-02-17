@@ -18,9 +18,9 @@ const BottomNavBar = () => {
         // </div>
 
         <div className="position-fixed bottom-0 bg-white w-100 fs-1 fw-semibold pt-1 border-top border-2 row" id="bottom-nav">
-            <Link href="/dashboard/refer"  className={`col text-decoration-none ${isPathRefer ? "text-success" : "text-dark"}`}><div className="row text-center"><i className="bi bi-currency-dollar"></i><span>refer</span></div></Link>
-            <Link href="/dashboard"        className={`col text-decoration-none ${isPathHome ? "text-success" : "text-dark"}`}><div className="row text-center"><i className="bi bi-house-check"></i><span>home</span></div></Link>
-            <Link href="/dashboard/wallet" className={`col text-decoration-none ${isPathWallet ? "text-success" : "text-dark"}`}><div className="row text-center"><i className="bi bi-wallet2"></i><span>wallet</span></div></Link>
+            <Link href="/dashboard/refer"  prefetch={true} className={`col text-decoration-none ${isPathRefer ? "text-success" : "text-dark"}`}><div className="row text-center"><i className="bi bi-currency-dollar"></i><span>refer</span></div></Link>
+            <Link href="/dashboard"        prefetch={true} className={`col text-decoration-none ${isPathHome ? "text-success" : "text-dark"}`}><div className="row text-center"><i className="bi bi-house-check"></i><span>home</span></div></Link>
+            <Link href="/dashboard/wallet" prefetch={true} className={`col text-decoration-none ${isPathWallet ? "text-success" : "text-dark"}`}><div className="row text-center"><i className="bi bi-wallet2"></i><span>wallet</span></div></Link>
         </div>
     );
 }
