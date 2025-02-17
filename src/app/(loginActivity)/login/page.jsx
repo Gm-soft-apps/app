@@ -53,7 +53,7 @@ const Login = () => {
             <div className="mb-2">
                 <label htmlFor="phone-number" className="form-label fw-semibold">Phone Number</label>
                 <div className="input-group my-1">
-                    <span className="input-group-text px-2 fw-semibold"><i className="bi bi-telephone-fill fs-5"></i></span>
+                    <span className="input-group-text px-2 fw-semibold"><i className="bi bi-telephone-fill px-1"></i></span>
                     <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className={`form-control p-2 fw-semibold ${isValid(alert?.phoneNumber)}`} id="phone-number" name="phone-number" placeholder="Enter Phone Number" required pattern="[0-9]{10}" minLength={10} maxLength={10} />
                     <div className="invalid-feedback">{alert?.phoneNumber}</div>
                 </div>
