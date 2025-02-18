@@ -1,5 +1,5 @@
-import TopNavBar from "app/ui/(Dashboard)/TopNavNar";
-import BottomNavBar from "app/ui/(Dashboard)/BottomNavBar";
+import TopNavBar from "app/ui/Dashboard/TopNavNar";
+import BottomNavBar from "app/ui/Dashboard/BottomNavBar";
 
 const DashboardLayout = (props) => {
     return (

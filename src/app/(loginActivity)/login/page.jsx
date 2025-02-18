@@ -2,8 +2,8 @@
 
 import { loginAction } from "app/actions/auth";
 import { validateSignIn } from "app/lib/validations";
-import AuthErrorMsg from "app/ui/(AuthForm)/AuthErrorMsg";
-import AuthSubmitButton from "app/ui/(AuthForm)/AuthSubmitButton";
+import AuthErrorMsg from "app/ui/AuthForm/AuthErrorMsg";
+import AuthSubmitButton from "app/ui/AuthForm/AuthSubmitButton";
 import { useState } from "react";
 
 const Login = () => {

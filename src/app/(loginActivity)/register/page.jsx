@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { validateSignUp } from "app/lib/validations";
-import AuthSubmitButton from "app/ui/(AuthForm)/AuthSubmitButton";
-import AuthErrorMsg from "app/ui/(AuthForm)/AuthErrorMsg";
+import AuthSubmitButton from "app/ui/AuthForm/AuthSubmitButton";
+import AuthErrorMsg from "app/ui/AuthForm/AuthErrorMsg";
 import { signUpAction } from "app/actions/auth";
 
 const Signup = () => {

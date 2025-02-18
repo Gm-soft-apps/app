@@ -1,9 +1,9 @@
-import UserDashboard from "app/ui/(Dashboard)/UserDashboard";
+import UserDashboard from "app/ui/Dashboard/UserDashboard";
 
 const Dashboard = async () => {
-    return(
+    return (
         <>
-            <UserDashboard/>
+            <UserDashboard />
         </>
     );
 }

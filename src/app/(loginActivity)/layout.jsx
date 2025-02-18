@@ -1,8 +1,8 @@
 "use client"
 
-import AuthButton from "app/ui/(AuthForm)/AuthButton";
-import AuthCard from "app/ui/(AuthForm)/AuthCard";
-import LogoComponent from "app/ui/(AuthForm)/LogoComponent";
+import AuthButton from "app/ui/AuthForm/AuthButton";
+import AuthCard from "app/ui/AuthForm/AuthCard";
+import LogoComponent from "app/ui/AuthForm/LogoComponent";
 import { usePathname } from "next/navigation";
 
 const AuthLayout = (props) => {
