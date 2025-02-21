@@ -10,10 +10,14 @@ export class CustomAuthError extends AuthError {
 }
 
 interface Credentials {
+    id: number;
     phoneNumber: string;
     password: string;
+    referralCode: string;
     isRegistering: boolean;
     invitedBy?: string; // Optional field if not always present
+    registeredOn: Date;
+    lastUpdated: Date;
 }
 
 export const authConfig = {
@@ -27,13 +31,12 @@ export const authConfig = {
             },
             authorize: async (credentials: Credentials) => {
                 let user = null;
-                console.log(credentials)
-                if (credentials.isRegistering && !credentials) {
+                if (credentials.isRegistering) {
                     try {
                         user = await createUser(credentials);
                         return user[0] as any;
                     } catch (error) {
-                        throw new CustomAuthError(`Already Account Exists, please Login!!`);
+                        throw new CustomAuthError(`Already Account Exists, please Login!! ${error}`);
                     }
                 }
                 user = await getUserFromDb(credentials);
@@ -43,6 +46,7 @@ export const authConfig = {
         }),
     ]
 } satisfies NextAuthConfig;
+
 declare module "next-auth" {
     interface User {
         id?: string;

@@ -26,11 +26,30 @@ export const validateSignUp = validateSignIn.extend({
         .string()
         .min(8, { message: 'Must be at least 8 characters long.' })
         .trim(),
+    // invitedBy: z
+    //     .string()
+    //     .length(6, { message: 'Invalid Referral code.' })
+    //     .regex(/[A-Z0-9]/, { message: 'Invalid Referral code.' })
+    //     .trim().optional(),
+
     invitedBy: z
         .string()
-        .length(6, { message: 'Invalid Referral code.' })
-        .regex(/[A-Z0-9]/, { message: 'Invalid Referral code.' })
-        .trim().optional(),
+        .trim()
+        // .optional()
+        .refine(
+            (val) => {
+                // If no value provided , it's invalid
+                if (!val) return false;
+                
+                // If no value provided or "WELCOME", it's valid
+                if (val === "WELCOME") return true;
+                // Otherwise, check length and character requirements
+                return val.length === 6 && /^[A-Z0-9]+$/.test(val);
+            },
+            {
+                message: "Invalid Referral Code!",
+            }
+        ),
 }).refine((data) => data.password === data.confirmPass, {
     message: 'Passwords do not match.',
     path: ["confirmPass"],

@@ -3,9 +3,17 @@
 import { and, eq } from "drizzle-orm";
 import { users } from "../dbSchema"
 import { db } from "turso"
+import { nanoidInt, nanoidString } from "utils/nanoid";
 
 export const createUser = async (user: typeof users.$inferInsert) => {
-    return await db.insert(users).values(user).returning();
+    const newUser = {
+        ...user,
+        id: nanoidInt(6),
+        referralCode: nanoidString(6),
+        registeredOn: new Date(),
+        lastUpdated: new Date(),
+    }
+    return await db.insert(users).values(newUser).returning();
 }
 
 type ILoginUser = { phoneNumber: string, password: string };

@@ -5,13 +5,16 @@ import { validateSignUp } from "app/lib/validations";
 import AuthSubmitButton from "app/ui/AuthForm/AuthSubmitButton";
 import AuthErrorMsg from "app/ui/AuthForm/AuthErrorMsg";
 import { signUpAction } from "app/actions/auth";
+import { useSearchParams } from "next/navigation";
 
 const Signup = () => {
+    const searchParams = useSearchParams();
+    const referral = searchParams.get("ref");
 
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
-    const [invitedBy, setInvitedBy] = useState(undefined);
+    const [invitedBy, setInvitedBy] = useState(referral || "WELCOME");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const [alert, setAlert] = useState({
@@ -32,6 +35,7 @@ const Signup = () => {
         e.preventDefault();
 
         const { success, data, error } = validateSignUp.safeParse({ phoneNumber, password, confirmPass, invitedBy });
+        console.log(error)
         if (!success) {
             setAlert(error.flatten().fieldErrors);
             return;
@@ -78,7 +82,7 @@ const Signup = () => {
             </div>
             <div className="mb-2">
                 <label htmlFor="invitedBy" className="form-label fw-semibold">Referral Code</label>
-                <input type="text" value={invitedBy} onChange={(e) => setInvitedBy(e.target.value)} className={`form-control p-2 my-1 fw-semibold  ${isValid(alert.invitedBy)}`} id="invitedBy" name="invitedBy" placeholder="(optional)" />
+                <input type="text" value={invitedBy} onChange={(e) => setInvitedBy(e.target.value)} className={`form-control p-2 my-1 fw-semibold  ${isValid(alert.invitedBy)}`} id="invitedBy" name="invitedBy" placeholder="(optional)" readOnly disabled/>
                 <div className="invalid-feedback">{alert.invitedBy}</div>
             </div>
             <AuthErrorMsg message={message} />
