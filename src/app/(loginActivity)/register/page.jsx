@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { validateSignUp } from "app/lib/validations";
 import AuthSubmitButton from "app/ui/AuthForm/AuthSubmitButton";
 import AuthErrorMsg from "app/ui/AuthForm/AuthErrorMsg";
@@ -82,7 +82,9 @@ const Signup = () => {
             </div>
             <div className="mb-2">
                 <label htmlFor="invitedBy" className="form-label fw-semibold">Referral Code</label>
-                <input type="text" value={invitedBy} onChange={(e) => setInvitedBy(e.target.value)} className={`form-control p-2 my-1 fw-semibold  ${isValid(alert.invitedBy)}`} id="invitedBy" name="invitedBy" placeholder="(optional)" readOnly disabled/>
+                <Suspense>
+                    <input type="text" value={invitedBy} onChange={(e) => setInvitedBy(e.target.value)} className={`form-control p-2 my-1 fw-semibold  ${isValid(alert.invitedBy)}`} id="invitedBy" name="invitedBy" placeholder="(optional)" readOnly disabled />
+                </Suspense>
                 <div className="invalid-feedback">{alert.invitedBy}</div>
             </div>
             <AuthErrorMsg message={message} />
