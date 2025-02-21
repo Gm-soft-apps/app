@@ -36,7 +36,10 @@ export const authConfig = {
                         user = await createUser(credentials);
                         return user[0] as any;
                     } catch (error) {
-                        throw new CustomAuthError(`Account Already Exists, Try Login!`);
+                        if (error.name === "LibsqlError") {
+                            throw new CustomAuthError(`Account Creation Failed, Try Again !`);
+                        }
+                        throw new CustomAuthError(`Account Already Exists, Try Login!$`);
                     }
                 }
                 user = await getUserFromDb(credentials);

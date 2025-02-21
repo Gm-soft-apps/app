@@ -19,7 +19,7 @@ export const loginAction = async (formData) => {
             redirect: false,
         });
     } catch (error) {
-        return error.message;
+        return error.type === "CallbackRouteError" ? "Account Login Failed, Try Again !" : error.message;
     }
 
     redirect("/dashboard")
