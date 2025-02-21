@@ -36,11 +36,11 @@ export const authConfig = {
                         user = await createUser(credentials);
                         return user[0] as any;
                     } catch (error) {
-                        throw new CustomAuthError(`Already Account Exists, please Login!! ${error}`);
+                        throw new CustomAuthError(`Account Already Exists, Try Login!`);
                     }
                 }
                 user = await getUserFromDb(credentials);
-                if (!user) throw new CustomAuthError("Invalid Credentials!");
+                if (!user) throw new CustomAuthError("Invalid Details!");
                 return user[0] as any;
             }
         }),
