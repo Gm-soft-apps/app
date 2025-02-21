@@ -35,7 +35,6 @@ const SignupForm = () => {
         e.preventDefault();
 
         const { success, data, error } = validateSignUp.safeParse({ phoneNumber, password, confirmPass, invitedBy });
-        console.log(error)
         if (!success) {
             setAlert(error.flatten().fieldErrors);
             return;
