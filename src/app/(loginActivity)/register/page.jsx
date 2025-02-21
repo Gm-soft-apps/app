@@ -7,7 +7,7 @@ import AuthErrorMsg from "app/ui/AuthForm/AuthErrorMsg";
 import { signUpAction } from "app/actions/auth";
 import { useSearchParams } from "next/navigation";
 
-const Signup = () => {
+const SignupForm = () => {
     const searchParams = useSearchParams();
     const referral = searchParams.get("ref");
 
@@ -82,9 +82,7 @@ const Signup = () => {
             </div>
             <div className="mb-2">
                 <label htmlFor="invitedBy" className="form-label fw-semibold">Referral Code</label>
-                <Suspense>
-                    <input type="text" value={invitedBy} onChange={(e) => setInvitedBy(e.target.value)} className={`form-control p-2 my-1 fw-semibold  ${isValid(alert.invitedBy)}`} id="invitedBy" name="invitedBy" placeholder="(optional)" readOnly disabled />
-                </Suspense>
+                <input type="text" value={invitedBy} onChange={(e) => setInvitedBy(e.target.value)} className={`form-control p-2 my-1 fw-semibold  ${isValid(alert.invitedBy)}`} id="invitedBy" name="invitedBy" placeholder="(optional)" readOnly disabled />
                 <div className="invalid-feedback">{alert.invitedBy}</div>
             </div>
             <AuthErrorMsg message={message} />
@@ -92,4 +90,12 @@ const Signup = () => {
         </form>
     );
 }
+
+const Signup = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <SignupForm />
+        </Suspense>
+    );
+};
 export default Signup;
