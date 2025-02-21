@@ -38,3 +38,11 @@ export const getUserFromDb = async (formData) => {
     }
     return resp;
 }
+
+export const getUserByID = async (id: number) => {
+    const resp = await db.select().from(users).where(eq(users.id, id));
+    if (resp.length != 1) {
+        return null;
+    }
+    return resp[0];
+}
