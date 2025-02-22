@@ -16,7 +16,7 @@ const Profile = async () => {
         <div id="profile" className="mx-1">
             <div className="card p-3">
                 <div className="mb-3 text-center">
-                    <img src="/avatar.webp" className="border border-2 border-success rounded-pill" alt="" height="100px" width="100px" />
+                    <img src="/avatar.webp" className="border border-2 border-success rounded-pill" alt="" height="150px" width="150px" />
                 </div>
                 <div className="text-start fw-bold">
                     <h2 className="text-center">{user.name || "Your Name"}</h2>
