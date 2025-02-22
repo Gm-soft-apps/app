@@ -1,6 +1,6 @@
 "use server"
 
 export const DDMMYYYY = async (date: Date) => {
-    // return new Date(date).toLocaleDateString()
-    return new Date(date).toDateString();
+    const accDate = new Date(date);
+    return accDate.getDate() + "/" + (accDate.getMonth() + 1) + "/" + accDate.getFullYear();
 }
