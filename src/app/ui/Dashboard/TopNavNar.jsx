@@ -7,7 +7,7 @@ import { signOut } from "next-auth/react";
 const TopNavBar = () => {
     const modalHead = "Do you want to Sign Out?";
     const modalBody = "You will be signed out from your account, Please confirm it by clicking below on button.";
-    const btnText = "YES, Signout";
+    const btnText = "YES";
 
     return (
         <div className="d-flex justify-content-between align-items-center mb-2 bg-white p-1 shadow-lg">

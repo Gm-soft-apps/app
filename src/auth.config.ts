@@ -58,7 +58,7 @@ declare module "next-auth" {
         referralCode: string;
         verifiedAccount: boolean;
         lastVerified: Date;
-        RegisteredOn: Date;
+        registeredOn: Date;
         lastUpdated: Date;
     }
 }
