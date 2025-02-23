@@ -9,8 +9,6 @@ const Profile = async () => {
     const session = await getSession();
     const user = await getUserByID(session.id);
     const verifiedAccount = user.verifiedAccount;
-    // console.log(user)
-
 
     return (
         <div id="profile" className="mx-1">
@@ -20,7 +18,7 @@ const Profile = async () => {
                 </div>
                 <div className="">
                     <div className={`text-white px-2 fw-semibold position-absolute top-0 end-0 ${verifiedAccount ? "bg-success" : "bg-danger"}`}>{verifiedAccount ? "Verified" : "Not Verified"}</div>
-                    <h2 className="text-center my-2">{user.name || "Your Name"}</h2>
+                    <h2 className="text-center mb-2">{user.name || "Tony Stark"}</h2>
                     <table className="table">
                         <tbody>
                             <tr className="">
@@ -36,12 +34,14 @@ const Profile = async () => {
                                 <td className="py-1">{user.email || "name@example.com"}</td>
                             </tr>
                             <tr>
-                                <th className="py-1">Registered On</th>
+                                <th className="py-1">Member Since</th>
                                 <td className="py-1">{DDMMYYYY(user.registeredOn)}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <button type="button" className="w-100 btn btn-dark fw-semibold p-1 mt-2 disabled">Verify Account </button>
+                    {
+                        !verifiedAccount ? <button type="button" className="w-100 btn btn-dark fw-semibold p-1 mt-2 disabled">Verify Account </button> : null
+                    }
                     <button type="button" className="w-100 btn btn-dark fw-semibold p-1 mt-2">Change Password</button>
                     <h2 className="text-center mt-2">Company Contact Details</h2>
                     <table className="table mt-2">
