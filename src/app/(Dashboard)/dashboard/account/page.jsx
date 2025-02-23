@@ -18,37 +18,45 @@ const Profile = async () => {
                 <div className="mb-3 text-center">
                     <img src="/avatar.webp" className="border border-2 border-dark rounded-pill" alt="" height="150px" width="150px" />
                 </div>
-                <div className="fw-bold">
+                <div className="">
                     <div className={`text-white px-2 fw-semibold position-absolute top-0 end-0 ${verifiedAccount ? "bg-success" : "bg-danger"}`}>{verifiedAccount ? "Verified" : "Not Verified"}</div>
-
-                    {/* <h2 className="text-center">{user.name || "Your Name"}</h2>
-                    <div className="my-1">Account ID : <span className="fw-normal">{user.id}</span></div>
-                    <div className="my-1">Mobile No : <span className="fw-normal">{user.countryCode + " " + user.phoneNumber}</span></div>
-                    <div className="my-1">Registered On : <span className="fw-normal">{DDMMYYYY(user.registeredOn)}</span></div>
-                    <div className="my-1">Email ID : <span className="fw-normal">{"name@example.com"}</span></div>
-                    <button type="button" className="w-100 btn btn-primary fw-semibold p-1 mt-2 disabled">Verify Account</button> */}
+                    <h2 className="text-center my-2">{user.name || "Your Name"}</h2>
+                    <table className="table">
+                        <tbody>
+                            <tr className="">
+                                <th className="py-1">Account ID</th>
+                                <td className="py-1">{user.id}</td>
+                            </tr>
+                            <tr>
+                                <th className="py-1">Mobile Number</th>
+                                <td className="py-1">{user.countryCode + " " + user.phoneNumber}</td>
+                            </tr>
+                            <tr>
+                                <th className="py-1">Email ID</th>
+                                <td className="py-1">{user.email || "name@example.com"}</td>
+                            </tr>
+                            <tr>
+                                <th className="py-1">Registered On</th>
+                                <td className="py-1">{DDMMYYYY(user.registeredOn)}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" className="w-100 btn btn-dark fw-semibold p-1 mt-2 disabled">Verify Account </button>
+                    <button type="button" className="w-100 btn btn-dark fw-semibold p-1 mt-2">Change Password</button>
+                    <h2 className="text-center mt-2">Company Contact Details</h2>
+                    <table className="table mt-2">
+                        <tbody>
+                            <tr className="">
+                                <th className="py-1">Email Support</th>
+                                <td className="py-1">support@example.com</td>
+                            </tr>
+                            <tr className="">
+                                <th className="py-1">Telegram ID</th>
+                                <td className="py-1">@gmapp</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <table className="table table-responsive">
-                    <tbody>
-                        <tr>
-                            <th className="py-1">Account ID</th>
-                            <td>{user.id}</td>
-                        </tr>
-                        <tr>
-                            <th className="py-1">Mobile Number</th>
-                            <td>{user.countryCode + " " + user.phoneNumber}</td>
-                        </tr>
-                        <tr>
-                            <th className="py-1">Email ID</th>
-                            <td>{user.email || "name@example.com"}</td>
-                        </tr>
-                        <tr>
-                            <th className="py-1">Registered On</th>
-                            <td>{DDMMYYYY(user.registeredOn)}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button type="button" className="w-100 btn btn-primary fw-semibold p-1 mt-2 disabled">Verify Account</button>
             </div>
         </div>
     );
