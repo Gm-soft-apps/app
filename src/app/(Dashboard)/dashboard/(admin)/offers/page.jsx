@@ -1,12 +1,10 @@
-import { auth } from "auth";
 import { headers } from "next/headers";
 
-const Offers = async (req)=>{
-    
-    const auth = (await headers());
-    console.log(auth, req)
+const Offers = async ()=>{
+
+    const hdr = await headers();
     return (
-        <h2>Offers</h2>
+        <h2>IP: {hdr.get("x-forwarded-for")}</h2>
     );
 }
 
