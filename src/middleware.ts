@@ -5,8 +5,10 @@ export default auth(async (req) => {
     const path = req.nextUrl.pathname;
     const publicUrl = ["/login", "/register"];
     const adminUrl = ["/dashboard/offers", "/dashboard/users"];
+    const userUrl = ["/dashboard/wallet", "/dashboard/refer"];
     const isPublicUrl = publicUrl.includes(path);
     const isAdminUrl = adminUrl.includes(path);
+    const isUserUrl = userUrl.includes(path);
 
     const user = req.auth?.user ? await getUserByID(Number(req.auth.user.id)) : null;
     // if(user){
@@ -27,6 +29,11 @@ export default auth(async (req) => {
     }
 
     if (req.auth?.user && !(user?.role === "admin") && isAdminUrl) {
+        const newUrl = new URL("/dashboard", req.nextUrl.origin);
+        return Response.redirect(newUrl);
+    }
+
+    if (req.auth?.user && (user?.role === "admin") && isUserUrl) {
         const newUrl = new URL("/dashboard", req.nextUrl.origin);
         return Response.redirect(newUrl);
     }
