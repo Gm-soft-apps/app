@@ -40,7 +40,18 @@ export const getUserFromDb = async (formData) => {
 }
 
 export const getUserByID = async (id: number) => {
-    const resp = await db.select().from(users).where(eq(users.id, id));
+    const resp = await db.select({
+        id: users.id,
+        countryCode: users.countryCode,
+        phoneNumber: users.phoneNumber,
+        role: users.role,
+        referralCode: users.referralCode,
+        verifiedAccount: users.verifiedAccount,
+        lastVerified: users.lastVerified,
+        registeredOn: users.registeredOn,
+        lastUpdated: users.lastUpdated,
+    }).from(users).where(eq(users.id, id));
+
     if (resp.length != 1) {
         return null;
     }
