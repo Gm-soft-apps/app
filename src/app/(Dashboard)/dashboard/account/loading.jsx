@@ -2,7 +2,7 @@ import Loading from "app/ui/AuthForm/loading";
 
 const LoadingProfile = () => {
     return (
-        <div id="profile" className="position-relative fs-5 h-100 w-100 d-flex justify-content-center align-items-center">
+        <div id="profile" className="position-absolute top-0 fs-5 h-100 w-100 d-flex justify-content-center align-items-center">
             {/* <div className="card p-3">
                 <div className="mb-3 text-center">
                     <img className="rounded-pill placeholder" alt="" height="150px" width="150px" />
