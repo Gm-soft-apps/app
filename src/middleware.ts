@@ -6,7 +6,7 @@ export default auth(async (req) => {
     const path = req.nextUrl.pathname;
     const publicUrl = ["/login", "/register"];
     const adminUrl = ["/dashboard/offers", "/dashboard/users"];
-    const userUrl = ["/dashboard/wallet", "/dashboard/refer"];
+    const userUrl = ["/dashboard", "/dashboard/wallet", "/dashboard/refer"];
     const isPublicUrl = publicUrl.includes(path);
     const isAdminUrl = adminUrl.includes(path);
     const isUserUrl = userUrl.includes(path);
@@ -39,7 +39,7 @@ export default auth(async (req) => {
 
     // Restrict admin users from regular user URLs
     if (req.auth?.user && user?.role === "admin" && isUserUrl) {
-        const newUrl = new URL("/dashboard", req.nextUrl.origin);
+        const newUrl = new URL("/dashboard/offers", req.nextUrl.origin);
         return Response.redirect(newUrl);
     }
 

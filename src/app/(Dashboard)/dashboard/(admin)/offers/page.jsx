@@ -1,10 +1,13 @@
 import { headers } from "next/headers";
 
-const Offers = async ()=>{
+const Offers = async () => {
 
     const hdr = await headers();
     return (
-        <h2>IP: {hdr.get("x-forwarded-for")}</h2>
+        <div className="text-center">
+            <h2>Offers Page</h2>
+            <h2 className="text-wrap">IP: {hdr.get("x-forwarded-for")}</h2>
+        </div>
     );
 }
 
