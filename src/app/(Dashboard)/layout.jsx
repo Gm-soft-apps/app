@@ -3,6 +3,7 @@
 import TopNavBar from "app/ui/Dashboard/TopNavNar";
 import BottomNavBar from "app/ui/Dashboard/BottomNavBar";
 import { headers } from "next/headers";
+import AdminTopNavBar from "app/ui/Dashboard/AdminTopNavBar";
 
 const DashboardLayout = async (props) => {
     const reqHeaders = await headers();
@@ -27,6 +28,7 @@ const DashboardLayout = async (props) => {
         return (
             <>
                 <TopNavBar />
+                <AdminTopNavBar/>
                 {props.children}
             </>
         );
