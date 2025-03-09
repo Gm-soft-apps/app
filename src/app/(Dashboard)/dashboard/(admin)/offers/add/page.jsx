@@ -1,4 +1,9 @@
 const AddOffer = () => {
+    const priorityArr = [];
+    for (let i = 0; i < 15; i++) {
+        priorityArr.push(<option defaultValue={i + 1}>{i + 1}</option>)
+    }
+
     return (
         <form className="bg-white p-1 fw-semibold">
             <h2 className="text-center bg-warning py-1 mb-2">New Offer</h2>
@@ -8,7 +13,13 @@ const AddOffer = () => {
                     <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-num" name="offer-num" placeholder="Offer No" required autoFocus />
                     <input type="text" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-name" name="offer-name" placeholder="Offer name" required />
                     <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-payout" name="offer-payout" placeholder="Offer payout" required />
-                    <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-priority" name="offer-priority" placeholder="Offer Priority" required />
+                    <section className="my-1">
+                        {/* <label className="form-label fw-semibold my-1">Offer Status</label> */}
+                        <select className="form-select px-2 py-1 fw-semibold">
+                            <option defaultValue="Active">Choose Priority</option>
+                            {priorityArr}
+                        </select>
+                    </section>
                 </div>
             </div>
             <div>
