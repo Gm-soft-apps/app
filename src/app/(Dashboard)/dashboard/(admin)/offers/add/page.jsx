@@ -10,7 +10,7 @@ const AddOffer = () => {
             <div className="row gap-2">
                 <input type="file" className="col form-control my-1 px-2" id="offer-logo" name="offer-logo" required />
                 <div className="col">
-                    <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-num" name="offer-num" placeholder="Offer No" required autoFocus />
+                    <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-num" name="offer-num" placeholder="Offer ID" required autoFocus />
                     <input type="text" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-name" name="offer-name" placeholder="Offer name" required />
                     <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-payout" name="offer-payout" placeholder="Offer payout" required />
                     <section className="my-1">
