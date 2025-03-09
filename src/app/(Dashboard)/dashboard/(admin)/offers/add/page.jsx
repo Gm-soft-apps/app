@@ -1,7 +1,7 @@
 const AddOffer = () => {
     const priorityArr = [];
     for (let i = 0; i < 15; i++) {
-        priorityArr.push(<option defaultValue={i + 1}>{i + 1}</option>)
+        priorityArr.push(<option defaultValue={i + 1} key={i+1}>{i + 1}</option>)
     }
 
     return (
@@ -23,7 +23,7 @@ const AddOffer = () => {
                 </div>
             </div>
             <div>
-                <input type="text" className="form-control fw-semibold py-1 px-2 mb-2 border border-2 rounded-1" id="offer-title" name="offer-name" placeholder="offer title" required />
+                <input type="text" className="form-control fw-semibold py-1 px-2 mb-2 border border-2 rounded-1" id="offer-title" name="offer-name" placeholder="Offer Title" required />
             </div> <hr />
 
             <h2 className="text-center bg-warning py-1 my-1">Offer Details</h2>
@@ -35,8 +35,8 @@ const AddOffer = () => {
 
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label className="form-label fw-semibold my-1">Offer Links</label>
-                <input type="text" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-one" name="link-one" placeholder="Link 1" required />
-                <input type="text" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-two" name="link-two" placeholder="Link 2" required />
+                <input type="text" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-one" name="link-one" placeholder="Link 1 (Self Complete Link)" required />
+                <input type="text" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-two" name="link-two" placeholder="Link 2 (Sharable Link)" required />
             </section>
 
             <section className="border border-2 border-info rounded my-1 p-1">
