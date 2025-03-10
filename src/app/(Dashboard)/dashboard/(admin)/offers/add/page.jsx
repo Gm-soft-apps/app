@@ -35,7 +35,7 @@ const AddOffer = () => {
                     {/* <label htmlFor="offer-logo">Offer Logo Url</label> */}
                     <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-logo" name="offer-logo" placeholder="Logo URL" onChange={(e)=>{setOfferLogo(e.target.value)}}/>
                     <div className="text-center w-100">
-                        <img src={offerLogo} alt={offerName} className="my-1 px-2 rounded-1 border" width={100} height={100} />
+                        <img src={offerLogo} alt={offerName} className="my-1 px-2 rounded-1 border" width={65} height={65} />
                     </div>
                 </div>
                 <div className="col">
