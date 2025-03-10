@@ -33,15 +33,15 @@ const AddOffer = () => {
             <div className="row gap-2">
                 <div className="col">
                     {/* <label htmlFor="offer-logo">Offer Logo Url</label> */}
-                    <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-logo" name="offer-logo" placeholder="Logo URL" onChange={(e)=>{setOfferLogo(e.target.value)}}/>
+                    <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-logo" name="offer-logo" placeholder="Logo URL" onChange={(e)=>{setOfferLogo(e.target.value)}} autoFocus/>
                     <div className="text-center w-100">
-                        <img src={offerLogo} alt={offerName} className="my-1 px-2 rounded-1 border" width={65} height={65} />
+                        <img src={offerLogo} alt={offerName} className="px-2 rounded-1" width={100} height={100} />
                     </div>
                 </div>
                 <div className="col">
-                    <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-num" name="offer-num" placeholder="Offer ID" required autoFocus />
+                    <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-id" name="offer-id" placeholder="Offer ID" required onChange={(e)=>{setOfferId(e.target.value)}}/>
                     <input type="text" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-name" name="offer-name" placeholder="Offer name" onChange={(e)=>{setOfferName(e.target.value)}} required />
-                    <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-payout" name="offer-payout" placeholder="Offer payout" required />
+                    <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-payout" name="offer-payout" placeholder="Offer payout" required onChange={(e)=>{setOfferPayout(e.target.value)}}/>
                     <section className="my-1">
                         {/* <label className="form-label fw-semibold my-1">Offer Status</label> */}
                         <select className="form-select px-2 py-1 fw-semibold" id="offer-priority" name="offer-priority">
@@ -59,7 +59,10 @@ const AddOffer = () => {
 
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label className="form-lable fw-semibold my-1">Offer Banner</label>
-                <input type="file" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-banner" name="offer-banner" />
+                <div className="text-center my-1">
+                    <img src={offerBanner} alt={offerName} className="rounded-1 w-100" height={200}/>
+                </div>
+                <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-banner" name="offer-banner" placeholder="Offer Banner Url" required onChange={(e)=>{setOfferBanner(e.target.value)}}/>
             </section>
 
             <section className="border border-2 border-info rounded my-1 p-1">
