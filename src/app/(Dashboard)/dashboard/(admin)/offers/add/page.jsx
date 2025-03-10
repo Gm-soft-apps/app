@@ -2,6 +2,7 @@
 
 import { createOfferAction } from "app/actions/offers";
 import Loading from "app/ui/AuthForm/loading";
+import Toast from "app/ui/Others/toast";
 import { useState } from "react";
 
 const AddOffer = () => {
@@ -54,6 +55,11 @@ const AddOffer = () => {
         } catch (error) {
             setLoading(false);
             setMessage(error.message)
+        } finally {
+            const toastLiveExample = document.getElementById('liveToast')
+
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+            toastBootstrap.show()
         }
     }
 
@@ -166,8 +172,8 @@ const AddOffer = () => {
                     <option value={false}>Inactive</option>
                 </select>
             </section>
-
-            <button className="btn btn-dark fw-bold w-100 my-1 py-1 position-sticky sticky-bottom" type="submit">{loading? <Loading/> : "Save Offer"}</button>
+            <Toast message={message} />
+            <button className="btn btn-dark fw-bold w-100 my-1 py-1 position-sticky sticky-bottom" type="submit">{loading ? <Loading /> : "Save Offer"}</button>
         </form>
     );
 }
