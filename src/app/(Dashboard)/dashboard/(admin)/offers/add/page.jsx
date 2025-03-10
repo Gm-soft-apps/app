@@ -1,6 +1,7 @@
 "use client"
 
 import { createOfferAction } from "app/actions/offers";
+import Loading from "app/ui/AuthForm/loading";
 import { useState } from "react";
 
 const AddOffer = () => {
@@ -20,7 +21,7 @@ const AddOffer = () => {
     const [offerPayoutRules, setOfferPayoutRules] = useState("");
     const [offerCategory, setOfferCategory] = useState("");
     const [offerStatus, setOfferStatus] = useState(true);
-    const [Loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
     const priorityOptions = Array.from({ length: 15 }, (_, i) => i + 1);
@@ -166,7 +167,7 @@ const AddOffer = () => {
                 </select>
             </section>
 
-            <button className="btn btn-dark fw-bold w-100 my-1 py-1 position-sticky sticky-bottom" type="submit">Save Offer</button>
+            <button className="btn btn-dark fw-bold w-100 my-1 py-1 position-sticky sticky-bottom" type="submit">{loading? <Loading/> : "Save Offer"}</button>
         </form>
     );
 }
