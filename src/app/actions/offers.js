@@ -2,29 +2,32 @@
 
 import { createOffer } from "db/offers/handler"
 
-export const createOfferAction = async (formData)=>{
-    console.log(formData)
+export const createOfferAction = async (form) => {
     try {
         const resp = await createOffer({
-            id: formData.get("offer-num"),
-            offerPriority: formData.get("offer-priority"),
-            offerName: formData.get("offer-name"),
-            offerTitle: formData.get("offer-title"),
-            offerPayout: formData.get("offer-payout"),
-            offerLinkOne: formData.get("link-one"),
-            offerLinkTwo: formData.get("link-two"),
-            offerDetails: formData.get("offer-details"),
-            offerSteps: formData.get("offer-steps"),
-            offerTerms: formData.get("offer-terms"),
-            offerDocs: formData.get("offer-docs"),
-            offerPayoutRules: formData.get("offer-payout-rules"),
-            offerCategory: formData.get("offer-category"),
-            offerStatus: formData.get("offer-status"),
-            offerLogo: formData.get("offer-logo"),
-            offerBanner: formData.get("offer-banner"),
+            id: form.offerId,
+            offerPriority: form.offerPriority,
+            offerName: form.offerName,
+            offerTitle: form.offerName,
+            offerPayout: form.offerPayout,
+            offerLinkOne: form.linkOne,
+            offerLinkTwo: form.linkTwo,
+            offerDetails: form.offerDetails,
+            offerSteps: form.offerSteps,
+            offerTerms: form.offerTerms,
+            offerDocs: form.offerDocs,
+            offerPayoutRules: form.offerPayoutRules,
+            offerCategory: form.offerCategory,
+            offerStatus: form.offerStatus,
+            offerLogo: form.offerLogo,
+            offerBanner: form.offerBanner,
         });
-        // console.log("resp: ", resp)
+        return resp;
     } catch (error) {
-        console.log(error)
+        if (error.name === "LibsqlError") {
+            // return { status: false, message: "Offer not saved, check \"offer Id\" once" };
+            throw error;
+        }
+        console.log("offers.js: ", error);
     }
 }

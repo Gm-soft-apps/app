@@ -19,14 +19,60 @@ const AddOffer = () => {
     const [offerDocs, setOfferDocs] = useState("");
     const [offerPayoutRules, setOfferPayoutRules] = useState("");
     const [offerCategory, setOfferCategory] = useState("");
-    const [offerStatus, setOfferStatus] = useState("");
+    const [offerStatus, setOfferStatus] = useState(true);
+    const [Loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
 
     const priorityOptions = Array.from({ length: 15 }, (_, i) => i + 1);
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        console.log("submitted")
+        setLoading(true);
+        try {
+            const resp = await createOfferAction({
+                offerId,
+                offerName,
+                offerPayout,
+                offerPriority,
+                offerLogo,
+                offerTitle,
+                offerBanner,
+                linkOne,
+                linkTwo,
+                offerDetails,
+                offerSteps,
+                offerTerms,
+                offerDocs,
+                offerPayoutRules,
+                offerCategory,
+                offerStatus
+            });
+            setLoading(false);
+            resetForm();
+            setMessage("Offer Saved Successfully !")
+        } catch (error) {
+            setLoading(false);
+            setMessage(error.message)
+        }
+    }
+
+    const resetForm = () => {
+        setOfferId("");
+        setOfferName("");
+        setOfferPayout("");
+        setOfferPriority("");
+        setOfferLogo("");
+        setOfferTitle("");
+        setOfferBanner("");
+        setLinkOne("");
+        setLinkTwo("");
+        setOfferDetails("");
+        setOfferSteps("");
+        setOfferTerms("");
+        setOfferDocs("");
+        setOfferPayoutRules("");
+        setOfferCategory("");
+        setOfferStatus(true);
     }
 
     return (
@@ -71,38 +117,38 @@ const AddOffer = () => {
 
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label className="form-label fw-semibold my-1">Offer Links</label>
-                <input type="text" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-one" name="link-one" placeholder="Link 1 (Self Complete Link)" value={linkOne} onChange={(e)=>{setLinkOne(e.target.value)}} required />
-                <input type="text" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-two" name="link-two" placeholder="Link 2 (Sharable Link)" value={linkTwo} onChange={(e)=>{setLinkTwo(e.target.value)}} required />
+                <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-one" name="link-one" placeholder="Link 1 (Self Complete Link)" value={linkOne} onChange={(e) => { setLinkOne(e.target.value) }} required />
+                <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-two" name="link-two" placeholder="Link 2 (Sharable Link)" value={linkTwo} onChange={(e) => { setLinkTwo(e.target.value) }} required />
             </section>
 
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label htmlFor="offer-details" className="form-label fw-semibold my-1">Offer Details</label>
-                <textarea className="form-control" id="offer-details" name="offer-details" rows="5" value={offerDetails} onChange={(e)=>{setOfferDetails(e.target.value)}}></textarea>
+                <textarea className="form-control" id="offer-details" name="offer-details" rows="5" value={offerDetails} onChange={(e) => { setOfferDetails(e.target.value) }}></textarea>
             </section>
 
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label htmlFor="offer-steps" className="form-label fw-semibold my-1">Offer Steps</label>
-                <textarea className="form-control" id="offer-steps" name="offer-steps" rows="5" value={offerSteps} onChange={(e)=>{setOfferSteps(e.target.value)}}></textarea>
+                <textarea className="form-control" id="offer-steps" name="offer-steps" rows="5" value={offerSteps} onChange={(e) => { setOfferSteps(e.target.value) }}></textarea>
             </section>
 
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label htmlFor="offer-terms" className="form-label fw-semibold my-1">Offer Terms & Conditions</label>
-                <textarea className="form-control" id="offer-terms" name="offer-terms" rows="5" value={offerTerms} onChange={(e)=>{setOfferTerms(e.target.value)}}></textarea>
+                <textarea className="form-control" id="offer-terms" name="offer-terms" rows="5" value={offerTerms} onChange={(e) => { setOfferTerms(e.target.value) }}></textarea>
             </section>
 
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label htmlFor="offer-docs" className="form-label fw-semibold my-1">Offer Documents</label>
-                <textarea className="form-control" id="offer-docs" name="offer-docs" rows="5" value={offerDocs} onChange={(e)=>{setOfferDocs(e.target.value)}}></textarea>
+                <textarea className="form-control" id="offer-docs" name="offer-docs" rows="5" value={offerDocs} onChange={(e) => { setOfferDocs(e.target.value) }}></textarea>
             </section>
 
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label htmlFor="offer-payout" className="form-label fw-semibold my-1">Offer Payout</label>
-                <textarea className="form-control" id="offer-payout-rules" name="offer-payout-rules" rows="5" value={offerPayoutRules} onChange={(e)=>{setOfferPayoutRules(e.target.value)}}></textarea>
+                <textarea className="form-control" id="offer-payout-rules" name="offer-payout-rules" rows="5" value={offerPayoutRules} onChange={(e) => { setOfferPayoutRules(e.target.value) }}></textarea>
             </section>
 
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label className="form-label fw-semibold my-1">Offer Category</label>
-                <select className="form-select px-2 py-1 fw-semibold" id="offer-category" name="offer-category" value={offerCategory} onChange={(e)=>{setOfferCategory(e.target.value)}}>
+                <select className="form-select px-2 py-1 fw-semibold" id="offer-category" name="offer-category" value={offerCategory} onChange={(e) => { setOfferCategory(e.target.value) }}>
                     <option value="">None</option>
                     <option value="Instant Deals">Instant Deals</option>
                     <option value="Savings Accounts">Savings Accounts</option>
@@ -114,9 +160,9 @@ const AddOffer = () => {
 
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label className="form-label fw-semibold my-1">Offer Status</label>
-                <select className="form-select px-2 py-1 fw-semibold" id="offer-status" name="offer-status" value={offerStatus} onChange={(e)=>{setOfferStatus(e.target.value)}}>
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
+                <select className="form-select px-2 py-1 fw-semibold" id="offer-status" name="offer-status" value={offerStatus} onChange={(e) => { setOfferStatus(e.target.value) }}>
+                    <option value={true}>Active</option>
+                    <option value={false}>Inactive</option>
                 </select>
             </section>
 
