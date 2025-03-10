@@ -1,4 +1,7 @@
+"use client"
+
 import { createOfferAction } from "app/actions/offers";
+import { useState } from "react";
 
 const AddOffer = () => {
     const priorityArr = [];
@@ -6,16 +9,38 @@ const AddOffer = () => {
         priorityArr.push(<option defaultValue={i + 1} key={i + 1}>{i + 1}</option>)
     }
 
+    const [offerId, setOfferId] = useState("");
+    const [offerName, setOfferName] = useState("");
+    const [offerPayout, setOfferPayout] = useState("");
+    const [offerPriority, setOfferPriority] = useState("");
+    const [offerLogo, setOfferLogo] = useState("https://portal.amfiindia.com/images/logos/logo63.gif");
+    const [offerTitle, setOfferTitle] = useState("");
+    const [offerBanner, setOfferBanner] = useState("");
+    const [linkOne, setLinkOne] = useState("");
+    const [linkTwo, setLinkTwo] = useState("");
+    const [offerDetails, setOfferDetails] = useState("");
+    const [offerSteps, setOfferSteps] = useState("");
+    const [offerTerms, setOfferTerms] = useState("");
+    const [offerDocs, setOfferDocs] = useState("");
+    const [offerPayoutRules, setOfferPayoutRules] = useState("");
+    const [offerCategory, setOfferCategory] = useState("");
+    const [offerStatus, setOfferStatus] = useState("");
 
 
     return (
         <form className="bg-white p-1 fw-semibold" action={createOfferAction}>
             <h2 className="text-center bg-warning py-1 mb-2">New Offer</h2>
             <div className="row gap-2">
-                <input type="file" className="col form-control my-1 px-2" id="offer-logo" name="offer-logo" />
+                <div className="col">
+                    {/* <label htmlFor="offer-logo">Offer Logo Url</label> */}
+                    <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-logo" name="offer-logo" placeholder="Logo URL" onChange={(e)=>{setOfferLogo(e.target.value)}}/>
+                    <div className="text-center w-100">
+                        <img src={offerLogo} alt={offerName} className="my-1 px-2 rounded-1 border" width={100} height={100} />
+                    </div>
+                </div>
                 <div className="col">
                     <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-num" name="offer-num" placeholder="Offer ID" required autoFocus />
-                    <input type="text" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-name" name="offer-name" placeholder="Offer name" required />
+                    <input type="text" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-name" name="offer-name" placeholder="Offer name" onChange={(e)=>{setOfferName(e.target.value)}} required />
                     <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-payout" name="offer-payout" placeholder="Offer payout" required />
                     <section className="my-1">
                         {/* <label className="form-label fw-semibold my-1">Offer Status</label> */}
