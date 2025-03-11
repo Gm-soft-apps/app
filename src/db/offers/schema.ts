@@ -1,6 +1,6 @@
 import { int, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-export const offers = sqliteTable("offers",{
+export const offers = sqliteTable("offers", {
     id: int().notNull().unique(),
     offerPriority: int(),
     offerName: text().notNull(),
@@ -14,7 +14,7 @@ export const offers = sqliteTable("offers",{
     offerDocs: text(),
     offerPayoutRules: text(),
     offerCategory: text().notNull(),
-    offerStatus: int({mode: "boolean"}).notNull(),
+    offerStatus: int({ mode: "boolean" }).notNull(),
     offerLogo: text().notNull(),
     offerBanner: text().notNull(),
 })
