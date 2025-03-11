@@ -14,7 +14,7 @@ export const offers = sqliteTable("offers",{
     offerDocs: text(),
     offerPayoutRules: text(),
     offerCategory: text().notNull(),
-    offerStatus: text().notNull(),
-    offerLogo: text(),
-    offerBanner: text(),
+    offerStatus: int({mode: "boolean"}).notNull(),
+    offerLogo: text().notNull(),
+    offerBanner: text().notNull(),
 })

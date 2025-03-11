@@ -12,7 +12,7 @@ const Offers = async () => {
             return (
                 <div className="border border-2 border-black bg-white rounded-1 my-2 p-2 row align-items-center">
                     <div className="col-3 position-relative">
-                        <span className="position-absolute top-0 start-0 bg-primary text-white px-2 rounded-pill">{offer.offerPriority || ""}</span>
+                        <span className="position-absolute top-0 start-0 bg-primary text-white px-2 rounded-pill">{offer.offerPriority}</span>
                         <img src={offer.offerLogo} className="rounded shadow" alt="img" width={65} height={65} />
                     </div>
                     <div className="col-6">
