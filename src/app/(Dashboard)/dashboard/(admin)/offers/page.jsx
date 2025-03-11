@@ -5,7 +5,6 @@ import { getAllOffers } from "db/offers/handler";
 const Offers = async () => {
 
     const offers = await getAllOffers();
-    console.log(offers)
 
     return (
         offers.map((offer) => {
@@ -21,7 +20,7 @@ const Offers = async () => {
                     </div>
                     <div className="d-flex flex-column gap-2 col-3 text-center">
                         <div className="bg-warning px-2 fw-semibold rounded-1">{offer.offerPayout}</div>
-                        <div className="bg-success text-white px-2 rounded-1 fw-semibold">{offer.offerStatus}</div>
+                        <div className={`text-white px-2 rounded-1 fw-semibold ${offer.offerStatus ? "bg-success":"bg-danger"}`}>{offer.offerStatus ? "Active" : "In-ctive"}</div>
                     </div>
                 </div>
             )
