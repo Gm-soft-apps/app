@@ -1,20 +1,31 @@
-import { headers } from "next/headers";
+"use server"
+
+import { getAllOffers } from "db/offers/handler";
 
 const Offers = async () => {
 
-    const hdr = await headers();
+    const offers = await getAllOffers();
+    console.log(offers)
+
     return (
-        <div className="border border-2 border-black bg-white rounded-1 my-2 p-2 d-flex justify-content-between align-items-center position-relative">
-            <div className="bg-warning px-2 fw-semibold position-absolute top-0 end-0">₹200</div>
-            <div>
-                <img src="https://portal.amfiindia.com/images/logos/logo63.gif" className="rounded shadow" alt="img" width={65} height={65} />
-            </div>
-            <div>
-                <h2>Upstox - 0001</h2>
-                <div className="fs-6 fw-semibold">Open Demat Account</div>
-            </div>
-            <div className="bg-success text-white px-2 rounded-1 fw-semibold">Active</div>
-        </div>
+        offers.map((offer) => {
+            return (
+                <div className="border border-2 border-black bg-white rounded-1 my-2 p-2 row align-items-center">
+                    <div className="col-3 position-relative">
+                        <span className="position-absolute top-0 start-0 bg-primary text-white px-2 rounded-pill">{offer.offerPriority || ""}</span>
+                        <img src={offer.offerLogo} className="rounded shadow" alt="img" width={65} height={65} />
+                    </div>
+                    <div className="col-6">
+                        <h2 className="fs-5">{offer.offerName} - {offer.id}</h2>
+                        <div className="fs-6 fw-semibold">{offer.offerName}</div>
+                    </div>
+                    <div className="d-flex flex-column gap-2 col-3 text-center">
+                        <div className="bg-warning px-2 fw-semibold rounded-1">{offer.offerPayout}</div>
+                        <div className="bg-success text-white px-2 rounded-1 fw-semibold">{offer.offerStatus}</div>
+                    </div>
+                </div>
+            )
+        })
     );
 }
 

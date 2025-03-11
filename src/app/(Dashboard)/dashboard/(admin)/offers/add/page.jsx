@@ -54,7 +54,7 @@ const AddOffer = () => {
             setMessage("Offer Saved Successfully !")
         } catch (error) {
             setLoading(false);
-            setMessage(error.message)
+            setMessage("something went wrong. [Check Offer ID] Try Again!");
         } finally {
             const toastLiveExample = document.getElementById('liveToast')
 
@@ -172,7 +172,7 @@ const AddOffer = () => {
                     <option value={false}>Inactive</option>
                 </select>
             </section>
-            <Toast message={message} />
+            <Toast message={message}/>
             <button className="btn btn-dark fw-bold w-100 my-1 py-1 position-sticky sticky-bottom" type="submit">{loading ? <Loading /> : "Save Offer"}</button>
         </form>
     );
