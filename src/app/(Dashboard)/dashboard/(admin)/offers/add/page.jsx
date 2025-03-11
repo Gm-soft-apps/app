@@ -21,7 +21,7 @@ const AddOffer = () => {
     const [offerDocs, setOfferDocs] = useState("");
     const [offerPayoutRules, setOfferPayoutRules] = useState("");
     const [offerCategory, setOfferCategory] = useState("");
-    const [offerStatus, setOfferStatus] = useState(true);
+    const [offerStatus, setOfferStatus] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
