@@ -24,3 +24,7 @@ i {
 #banner {
   height: 200px;
 }
+
+.user-offer-payout{
+  border-bottom-left-radius: 0.5rem;
+}
