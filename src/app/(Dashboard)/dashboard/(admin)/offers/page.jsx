@@ -5,7 +5,7 @@ import { getAllOffers } from "db/offers/handler";
 const Offers = async () => {
 
     const offers = await getAllOffers();
-    console.log(offers)
+    console.log(offers);
 
     return (
         offers.map((offer) => {

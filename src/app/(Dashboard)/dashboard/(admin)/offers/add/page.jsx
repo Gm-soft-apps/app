@@ -88,7 +88,7 @@ const AddOffer = () => {
             <div className="row gap-2">
                 <div className="col">
                     {/* <label htmlFor="offer-logo">Offer Logo Url</label> */}
-                    <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-logo" name="offer-logo" placeholder="Logo Url" value={offerLogo} onChange={(e) => { setOfferLogo(e.target.value) }} required />
+                    <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-logo" name="offer-logo" placeholder="Logo Url" value={offerLogo} onChange={(e) => { setOfferLogo(e.target.value) }} autoFocus  required />
                     {offerLogo ? <div className="text-center w-100">
                         <img src={offerLogo} alt={offerName + " logo"} className="my-1 rounded" width={100} height={100} />
                     </div> : null}
