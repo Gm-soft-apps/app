@@ -8,7 +8,7 @@ export const createOfferAction = async (form) => {
             id: form.offerId,
             offerPriority: form.offerPriority,
             offerName: form.offerName,
-            offerTitle: form.offerName,
+            offerTitle: form.offerTitle,
             offerPayout: form.offerPayout,
             offerLinkOne: form.linkOne,
             offerLinkTwo: form.linkTwo,

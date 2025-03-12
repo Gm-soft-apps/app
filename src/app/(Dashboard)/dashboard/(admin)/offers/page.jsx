@@ -5,6 +5,7 @@ import { getAllOffers } from "db/offers/handler";
 const Offers = async () => {
 
     const offers = await getAllOffers();
+    console.log(offers)
 
     return (
         offers.map((offer) => {
@@ -16,7 +17,7 @@ const Offers = async () => {
                     </div>
                     <div className="col-6">
                         <h2 className="fs-5">{offer.offerName} - {offer.id}</h2>
-                        <div className="fs-6 fw-semibold">{offer.offerName}</div>
+                        <div className="fs-6 fw-semibold">{offer.offerTitle}</div>
                     </div>
                     <div className="d-flex flex-column gap-2 col-3 text-center">
                         <div className="bg-warning px-2 fw-semibold rounded-1">{offer.offerPayout}</div>
