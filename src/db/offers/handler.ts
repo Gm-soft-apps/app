@@ -2,6 +2,7 @@
 
 import { db } from "turso"
 import { offers } from "./schema"
+import { eq } from "drizzle-orm"
 
 export const createOffer = async (offer) => {
     const newOffer = {
@@ -14,4 +15,8 @@ export const createOffer = async (offer) => {
 
 export const getAllOffers = async () => {
     return await db.select().from(offers);
+}
+
+export const getOfferByID = async (id) => {
+    return await db.select().from(offers).where(eq(offers.id, id))
 }
