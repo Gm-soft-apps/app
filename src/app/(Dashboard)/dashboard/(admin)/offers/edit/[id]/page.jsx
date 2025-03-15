@@ -1,9 +1,10 @@
 "use client"
 
+import { updateOfferAction } from "app/actions/offers";
 import Loading from "app/ui/AuthForm/loading";
 import Toast from "app/ui/Others/toast";
 import { getOfferByID } from "db/offers/handler";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const EditOffer = () => {
@@ -30,17 +31,35 @@ const EditOffer = () => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
+    const router = useRouter();
+
     const priorityOptions = Array.from({ length: 15 }, (_, i) => i + 1);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         try {
-            
+            const resp = await updateOfferAction({
+                offerId,
+                offerName,
+                offerPayout,
+                offerPriority,
+                offerLogo,
+                offerTitle,
+                offerBanner,
+                linkOne,
+                linkTwo,
+                offerDetails,
+                offerSteps,
+                offerTerms,
+                offerDocs,
+                offerPayoutRules,
+                offerCategory,
+                offerStatus
+            });
+
             setLoading(false);
-            resetForm();
-            // setMessage("Offer Saved Successfully !")
-            setMessage("Offer Editing code is pending !")
+            // router.push("/dashboard")
         } catch (error) {
             setLoading(false);
             setMessage("something went wrong. [Check Offer ID] Try Again!");
@@ -50,25 +69,6 @@ const EditOffer = () => {
             const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
             toastBootstrap.show()
         }
-    }
-
-    const resetForm = () => {
-        setOfferId("");
-        setOfferName("");
-        setOfferPayout("");
-        setOfferPriority("");
-        setOfferLogo("");
-        setOfferTitle("");
-        setOfferBanner("");
-        setLinkOne("");
-        setLinkTwo("");
-        setOfferDetails("");
-        setOfferSteps("");
-        setOfferTerms("");
-        setOfferDocs("");
-        setOfferPayoutRules("");
-        setOfferCategory("");
-        setOfferStatus(true);
     }
 
     useEffect(() => {
@@ -101,12 +101,12 @@ const EditOffer = () => {
         loadOffer();
     }, [id]);
 
-    if(loading){
-        return <div className="text-center"><Loading/></div>
-    }
+    // if (loading) {
+    //     return <div className="text-center"><Loading /></div>
+    // }
 
     if (!offer) {
-        return <h2>No Offer Found</h2>
+        return <h2 className="text-center">{loading ? <Loading /> : "No Offer Found with this ID"}</h2>
     }
 
     return (
@@ -121,7 +121,7 @@ const EditOffer = () => {
                     </div> : null}
                 </div>
                 <div className="col">
-                    <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-id" name="offer-id" placeholder="Offer Id" value={offerId} onChange={(e) => { setOfferId(e.target.value) }} required />
+                    <input type="number" className="text-secondary form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-id" name="offer-id" placeholder="Offer Id" value={offerId} onChange={(e) => { setOfferId(e.target.value) }} readOnly disabled required />
                     <input type="text" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-name" name="offer-name" placeholder="Offer Name" value={offerName} onChange={(e) => { setOfferName(e.target.value) }} required />
                     <input type="number" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-payout" name="offer-payout" placeholder="Offer Payout" value={offerPayout} onChange={(e) => { setOfferPayout(e.target.value) }} required />
                     <section className="my-1">
@@ -195,12 +195,15 @@ const EditOffer = () => {
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label className="form-label fw-semibold my-1">Offer Status</label>
                 <select className="form-select px-2 py-1 fw-semibold" id="offer-status" name="offer-status" value={offerStatus} onChange={(e) => { setOfferStatus(e.target.value) }}>
-                    <option value={true}>Active</option>
                     <option value={false}>Inactive</option>
+                    <option value={true}>Active</option>
                 </select>
             </section>
             <Toast message={message} />
-            <button className="btn btn-dark fw-bold w-100 my-1 py-1 position-sticky sticky-bottom" type="submit">{loading ? <Loading /> : "Save Offer"}</button>
+            <div className="position-sticky sticky-bottom bg-white row gap-1">
+                <button className="col btn btn-dark rounded-1 fw-bold w-100 my-1 py-1 disabled" type="submit">{loading ? "Delete Offer" : "Delete Offer"}</button>
+                <button className="col btn btn-dark rounded-1 fw-bold w-100 my-1 py-1 " type="submit">{loading ? <Loading /> : "Update Offer"}</button>
+            </div>
         </form>
     );
 }

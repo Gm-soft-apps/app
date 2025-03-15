@@ -6,12 +6,12 @@ import Link from "next/link";
 const Offers = async () => {
 
     const offers = await getAllOffers();
-    console.log(offers);
+    // console.log(offers);
 
     return (
         offers.map((offer) => {
             return (
-                <Link href={"/dashboard/offers/edit/"+offer.id} className="text-decoration-none link-dark border border-2 border-black bg-white rounded-1 my-2 p-2 row align-items-center">
+                <Link href={"/dashboard/offers/edit/"+offer.id} prefetch={true} className="text-decoration-none link-dark border border-2 border-black bg-white rounded-1 my-2 p-2 row align-items-center">
                     <div className="col-3 position-relative">
                         <span className="position-absolute top-0 start-0 bg-primary text-white px-2 rounded-pill">{offer.offerPriority}</span>
                         <img src={offer.offerLogo} className="rounded shadow" alt="img" width={65} height={65} />
