@@ -1,6 +1,6 @@
 "use server"
 
-import { createOffer, updateOffer } from "db/offers/handler"
+import { createOffer, deleteOffer, updateOffer } from "db/offers/handler"
 
 export const createOfferAction = async (form) => {
     try {
@@ -36,7 +36,7 @@ export const updateOfferAction = async (form) => {
     if (form.offerStatus === "false") {
         form.offerStatus = false;
     }
-    
+
     try {
         const resp = await updateOffer({
             // id: form.offerId,
@@ -63,5 +63,13 @@ export const updateOfferAction = async (form) => {
             throw error;
         }
         console.log("offers.js: ", error);
+    }
+}
+
+export const deleteOfferAction = async (id) => {
+    try {
+        const resp = await deleteOffer(id)
+    } catch (error) {
+        console.log(error)
     }
 }

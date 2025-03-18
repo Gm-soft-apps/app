@@ -22,9 +22,13 @@ export const getOfferByID = async (id) => {
 }
 
 export const updateOffer = async (offer, id) => {
-    if (offer.offerStatus) {
-        return await db.update(offers).set({ ...offer, offerStatus: true, offerLastModifiedOn: new Date() }).where(eq(offers.id, id)).returning();
-    } else {
-        return await db.update(offers).set({ ...offer, offerStatus: false, offerLastModifiedOn: new Date() }).where(eq(offers.id, id)).returning();
+    const latestOffer = {
+        ...offer,
+        offerLastModifiedOn: new Date(),
     }
+        return await db.update(offers).set(latestOffer).where(eq(offers.id, id)).returning();
+}
+
+export const deleteOffer = async (id) => {
+    return await db.delete(offers).where(eq(offers.id, id))
 }

@@ -1,15 +1,16 @@
 "use client"
 
-import { updateOfferAction } from "app/actions/offers";
+import { deleteOfferAction, updateOfferAction } from "app/actions/offers";
 import Loading from "app/ui/AuthForm/loading";
 import Toast from "app/ui/Others/toast";
 import { getOfferByID } from "db/offers/handler";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const EditOffer = () => {
 
     const { id } = useParams();
+    const router = useRouter();
 
     const [offer, setOffer] = useState(null);
     const [offerId, setOfferId] = useState("");
@@ -29,6 +30,7 @@ const EditOffer = () => {
     const [offerCategory, setOfferCategory] = useState("");
     const [offerStatus, setOfferStatus] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [deleteLoading, setDeleteLoading] = useState(false);
     const [message, setMessage] = useState("");
 
     const priorityOptions = Array.from({ length: 15 }, (_, i) => i + 1);
@@ -66,6 +68,18 @@ const EditOffer = () => {
 
             const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
             toastBootstrap.show()
+        }
+    }
+
+    const handleDeleteOffer = async (id) => {
+        setDeleteLoading(true);
+        try {
+            const resp = await deleteOfferAction(id);
+            router.push("/dashboard/offers");
+        } catch (error) {
+            setMessage("Offer Delete Failed")
+        } finally {
+            setDeleteLoading(false)
         }
     }
 
@@ -199,8 +213,8 @@ const EditOffer = () => {
             </section>
             <Toast message={message} />
             <div className="position-sticky sticky-bottom bg-white row gap-1">
-                <button className="col btn btn-dark rounded-1 fw-bold w-100 my-1 py-1 disabled" type="submit">{loading ? "Delete Offer" : "Delete Offer"}</button>
-                <button className="col btn btn-dark rounded-1 fw-bold w-100 my-1 py-1 " type="submit">{loading ? <Loading /> : "Update Offer"}</button>
+                <button className="col btn btn-dark rounded-1 fw-bold w-100 my-1 py-1" type="button" onClick={() => handleDeleteOffer(id)}>{deleteLoading ? <Loading /> : "Delete Offer"}</button>
+                <button className="col btn btn-dark rounded-1 fw-bold w-100 my-1 py-1" type="submit">{loading ? <Loading /> : "Update Offer"}</button>
             </div>
         </form>
     );
