@@ -22,8 +22,6 @@ export const getOfferByID = async (id) => {
 }
 
 export const updateOffer = async (offer, id) => {
-    console.log(offer.offerStatus)
-    console.log(typeof offer.offerStatus)
     if (offer.offerStatus) {
         return await db.update(offers).set({ ...offer, offerStatus: true, offerLastModifiedOn: new Date() }).where(eq(offers.id, id)).returning();
     } else {

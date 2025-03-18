@@ -4,7 +4,7 @@ import { updateOfferAction } from "app/actions/offers";
 import Loading from "app/ui/AuthForm/loading";
 import Toast from "app/ui/Others/toast";
 import { getOfferByID } from "db/offers/handler";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const EditOffer = () => {
@@ -30,8 +30,6 @@ const EditOffer = () => {
     const [offerStatus, setOfferStatus] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
-
-    const router = useRouter();
 
     const priorityOptions = Array.from({ length: 15 }, (_, i) => i + 1);
 
@@ -59,10 +57,10 @@ const EditOffer = () => {
             });
 
             setLoading(false);
-            // router.push("/dashboard")
+            setMessage("Offer Edited Successfully")
         } catch (error) {
             setLoading(false);
-            setMessage("something went wrong. [Check Offer ID] Try Again!");
+            setMessage("something went wrong.");
         } finally {
             const toastLiveExample = document.getElementById('liveToast')
 
@@ -195,8 +193,8 @@ const EditOffer = () => {
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label className="form-label fw-semibold my-1">Offer Status</label>
                 <select className="form-select px-2 py-1 fw-semibold" id="offer-status" name="offer-status" value={offerStatus} onChange={(e) => { setOfferStatus(e.target.value) }}>
-                    <option value={false}>Inactive</option>
                     <option value={true}>Active</option>
+                    <option value={false}>Inactive</option>
                 </select>
             </section>
             <Toast message={message} />

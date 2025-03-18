@@ -33,6 +33,10 @@ export const createOfferAction = async (form) => {
 }
 
 export const updateOfferAction = async (form) => {
+    if (form.offerStatus === "false") {
+        form.offerStatus = false;
+    }
+    
     try {
         const resp = await updateOffer({
             // id: form.offerId,

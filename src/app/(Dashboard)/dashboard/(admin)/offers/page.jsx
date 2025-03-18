@@ -22,7 +22,7 @@ const Offers = async () => {
                     </div>
                     <div className="d-flex flex-column gap-2 col-3 text-center">
                         <div className="bg-warning px-2 fw-semibold rounded-1">{offer.offerPayout}</div>
-                        <div className={`text-white px-2 rounded-1 fw-semibold ${offer.offerStatus ? "bg-success":"bg-danger"}`}>{offer.offerStatus ? "Active" : "In-active"}</div>
+                        <div className={`text-white px-2 rounded-1 fw-semibold ${offer.offerStatus ? "bg-success":"bg-danger"}`}>{offer.offerStatus ? "Active" : "In-Active"}</div>
                     </div>
                 </Link>
             )
