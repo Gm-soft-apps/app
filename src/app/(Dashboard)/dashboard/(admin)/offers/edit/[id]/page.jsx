@@ -87,7 +87,6 @@ const EditOffer = () => {
         const loadOffer = async () => {
             setLoading(true);
             let offer = await getOfferByID(id);
-            offer = offer[0];
 
             if (offer) {
                 setOffer(offer);

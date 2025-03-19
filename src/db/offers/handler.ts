@@ -18,7 +18,8 @@ export const getAllOffers = async () => {
 }
 
 export const getOfferByID = async (id) => {
-    return await db.select().from(offers).where(eq(offers.id, id))
+    const resp = await db.select().from(offers).where(eq(offers.id, id));
+    return resp[0];
 }
 
 export const updateOffer = async (offer, id) => {

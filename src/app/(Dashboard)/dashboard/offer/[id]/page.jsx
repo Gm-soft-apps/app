@@ -1,31 +1,42 @@
-import { getAllOffers } from "db/offers/handler";
+"use server"
 
-const Offer = async ()=>{
-    const offers = await getAllOffers();
+import { getOfferByID } from "db/offers/handler";
+
+const OfferPage = async ({ params }) => {
+    const { id } = await params;
+
+    const offer = await getOfferByID(id);
     return (
-        <div className="mx-1 ">
-            <img src={offers[0].offerBanner} alt={""} className="bannerImg w-100 mb-1" height={200}/>
-            <button className="btn btn-success rounded-1 fw-semibold my-1 w-100">Complete Now</button>
-            <button className="btn btn-success rounded-1 fw-semibold my-1 w-100">Sell Now</button><hr/>
+        <div className="px-1">
+            <div id="offer-banner">
+                <img src={offer.offerBanner} className="w-100 shadow" alt={offer.offerName} height={180} />
+            </div>
+            <div className="bg-white my-2 px-1 py-1 row gap-1">
+                <button className="col btn btn-dark fw-semibold w-100 py-1 rounded-1">Self Link</button>
+                <button className="col btn btn-dark fw-semibold w-100 py-1 rounded-1">Share Link</button>
+                <div className="text-center my-2 fw-semibold">https://gm-app.netlify.app</div>
+                <div className="row justify-content-around">
+                    <button className="col-5 btn btn-dark fw-semibold">Copy</button>
+                    <button className="col-5 btn btn-dark fw-semibold">Share</button>
+                </div>
+            </div>
 
-            <h2 className="text-center bg-white py-1 my-1">Offer Details</h2>
+            <div id="offerDetails">
+                <h3>Offer Details</h3>
+                <div>{offer.offerDetails}</div>
+            </div>
 
-            <section>
-                <h3>Documents</h3>
-                <div>{offers[0].offerDocs || "Not Available"}</div>
+            <section id="offer-steps">
+                <h3>Offer Steps</h3>
+                <div>{offer.offerSteps}</div>
             </section>
 
-            <section>
-                <h3>Benifits</h3>
-                <div>{offers[0].offer || "Not Available"}</div>
-            </section>
-
-            <section>
-                <h3>Follow Steps</h3>
-                <div>{offers[0].offerSteps || "Not Available"}</div>
+            <section id="offer-terms">
+                <h3>Offer Terms</h3>
+                <div>{offer.offerTerms}</div>
             </section>
         </div>
     );
 }
 
-export default Offer;
+export default OfferPage;
