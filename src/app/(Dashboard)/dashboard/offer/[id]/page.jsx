@@ -22,27 +22,27 @@ const OfferPage = async ({ params }) => {
             </div><hr/>
 
             <div id="offerDetails" className="my-2">
-                <h3 className="fs-6 my-1">Offer Details</h3>
+                <h3 className="fs-6 my-1 text-primary">Offer Details</h3>
                 <div dangerouslySetInnerHTML={{__html: offer.offerDetails}}></div>
             </div><hr/>
 
             <section id="offer-steps" className="my-2">
-                <h3 className="fs-6 my-1">Offer Steps</h3>
+                <h3 className="fs-6 my-1 text-primary">Offer Steps</h3>
                 <div dangerouslySetInnerHTML={{__html: offer.offerSteps || "N/A"}}></div>
             </section><hr/>
 
             <section id="offer-terms" className="my-2">
-                <h3 className="fs-6 my-1">Offer Terms</h3>
+                <h3 className="fs-6 my-1 text-primary">Offer Terms</h3>
                 <div dangerouslySetInnerHTML={{__html: offer.offerTerms || "N/A"}}></div>
             </section><hr/>
 
             <section id="offer-docs" className="my-2">
-                <h3 className="fs-6 my-1">Offer Documents</h3>
+                <h3 className="fs-6 my-1 text-primary">Offer Documents</h3>
                 <div dangerouslySetInnerHTML={{__html: offer.offerDocs || "N/A"}}></div>
             </section><hr/>
 
             <section id="offer-payout-rules" className="my-2">
-                <h3 className="fs-6 my-1">Offer Payout Rules</h3>
+                <h3 className="fs-6 my-1 text-primary">Offer Payout Rules</h3>
                 <div dangerouslySetInnerHTML={{__html: offer.offerPayoutRules || "N/A"}}></div>
             </section>
         </div>
