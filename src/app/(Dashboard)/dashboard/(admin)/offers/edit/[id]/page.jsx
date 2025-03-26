@@ -155,7 +155,7 @@ const EditOffer = () => {
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label className="form-lable fw-semibold my-1">Offer Banner</label>
                 {offerBanner ? <div className="text-center my-1">
-                    <img src={offerBanner} alt={offerName} className="rounded w-100" height={200} />
+                    <img src={offerBanner} alt={offerName} className="rounded w-100" height={120} />
                 </div> : null}
                 <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-banner" name="offer-banner" placeholder="Offer Banner Url" value={offerBanner} onChange={(e) => { setOfferBanner(e.target.value) }} required />
             </section>
