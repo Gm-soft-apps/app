@@ -2,9 +2,11 @@ import { headers } from "next/headers";
 import Link from "next/link";
 
 const Refer = async () => {
-    const headersList = await headers();
-    const host = headersList.get("host");
-    const protocal = headersList.get("x-forwarded-proto");
+    const reqHeaders = await headers();
+    const host = reqHeaders.get("host");
+    const protocal = reqHeaders.get("x-forwarded-proto");
+    const user = JSON.parse(reqHeaders.get("x-user"));
+    console.log(protocal)
 
     return (
         <div className="mx-2">
@@ -12,7 +14,7 @@ const Refer = async () => {
                 <h1>Banner</h1>
             </div><hr />
 
-            <div className="bg-success text-white fw-bold fs-3 d-flex justify-content-around align-items-center my-2 py-2 rounded-1">
+            <div className="bg-success text-white fw-bold fs-3 d-flex justify-content-around align-items-center my-2 py-1 rounded-1">
                 <span>Referred</span>
                 <span>-</span>
                 <span>10</span>
@@ -22,20 +24,20 @@ const Refer = async () => {
                 <div className="col-9 fs-3 fw-bold">Referral Link</div>
                 <div className="col-3 btn btn-outline-dark align-self-center py-1">History<i className="bi bi-list"></i></div>
                 <div className="my-2 border border-dark py-1 px-2 rounded-1 d-flex justify-content-between align-items-center">
-                    <span>Copy Link</span>
+                    <span>{protocal+"://" + host+"/"+user.referralCode}</span>
                     <span><i className="bi bi-clipboard fs-2"></i></span>
                 </div>
                 <div className="my-2 border border-dark py-1 px-2 rounded-1 d-flex justify-content-between align-items-center">
-                    <span>Copy Code</span>
+                    <span>{user.referralCode}</span>
                     <span><i className="bi bi-clipboard fs-2"></i></span>
                 </div>
             </div>
 
             <div id="shareIcons" className="my-4 fs-1 d-flex justify-content-evenly align-items-center">
                 <span className="fw-semibold">Share:</span>
-                <Link href={`https://api.whatsapp.com/send?text=${protocal+"://"+host}`}           className="bi bi-whatsapp link-dark"></Link>
-                <Link href={`https://www.facebook.com/sharer/sharer.php?u=${protocal+"://"+host}`} className="bi bi-facebook link-dark"></Link>
-                <Link href={`https://telegram.dog/share/url?url=${protocal+"://"+host}`}           className="bi bi-telegram link-dark"></Link>
+                <Link href={`https://api.whatsapp.com/send?text=${protocal + "://" + host}`} className="bi bi-whatsapp link-dark"></Link>
+                <Link href={`https://www.facebook.com/sharer/sharer.php?u=${protocal + "://" + host}`} className="bi bi-facebook link-dark"></Link>
+                <Link href={`https://telegram.dog/share/url?url=${protocal + "://" + host}`} className="bi bi-telegram link-dark"></Link>
                 {/* <Link href="" className="bi bi-instagram"></Link> */}
             </div>
         </div>
