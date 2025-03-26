@@ -6,7 +6,6 @@ const Refer = async () => {
     const host = reqHeaders.get("host");
     const protocal = reqHeaders.get("x-forwarded-proto");
     const user = JSON.parse(reqHeaders.get("x-user"));
-    console.log(protocal)
 
     return (
         <div className="mx-2">
