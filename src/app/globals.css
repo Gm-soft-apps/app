@@ -17,7 +17,7 @@ i {
   line-height: 0;
 }
 
-#bottom-nav span{
+#bottom-nav span {
   font-size: 0.84rem;
 }
 
@@ -25,14 +25,17 @@ i {
   height: 120px;
 }
 
-.user-offer-payout{
+.user-offer-payout {
   border-bottom-left-radius: 0.5rem;
 }
 
-.bannerImg {
+.bannerImg {}
+
+ul {
+  list-style-type: disc;
 }
 
-ul{
-  list-style-type: disc;
+ol, ul {
   list-style-position: inside;
+  line-height: 1.8rem;
 }

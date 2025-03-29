@@ -7,7 +7,7 @@ const OfferPage = async ({ params }) => {
     const offer = await getOfferByID(id);
 
     return (
-        <div className="px-1 bg-white">
+        <div className="px-2 bg-white">
             <div id="offer-banner">
                 <img src={offer.offerBanner} className="w-100 shadow-lg" alt={offer.offerName} height={120} />
             </div>
@@ -21,30 +21,47 @@ const OfferPage = async ({ params }) => {
                 </div>
             </div><hr />
 
-            <div id="offerDetails" className="my-2">
-                <h3 className="fs-6 my-1 text-primary">Offer Details</h3>
-                <div dangerouslySetInnerHTML={{ __html: offer.offerDetails || "N/A" }}></div>
-            </div><hr />
+            {
+                offer.offerDetails ? <div>
+                    <div id="offerDetails" className="my-2">
+                        <div dangerouslySetInnerHTML={{ __html: offer.offerDetails }}></div>
+                    </div><hr />
+                </div> : ""
+            }
 
-            <section id="offer-steps" className="my-2">
-                <h3 className="fs-6 my-1 text-primary">Offer Steps</h3>
-                <div dangerouslySetInnerHTML={{ __html: offer.offerSteps || "N/A" }}></div>
-            </section><hr />
+            {
+                offer.offerSteps ? <div>
+                    <section id="offer-steps" className="my-2">
+                        {/* <h3 className="fs-6 my-1 text-primary">Offer Steps</h3> */}
+                        <div dangerouslySetInnerHTML={{ __html: offer.offerSteps }}></div>
+                    </section><hr />
+                </div> : ""
+            }
 
-            <section id="offer-terms" className="my-2">
-                <h3 className="fs-6 my-1 text-primary">Offer Terms</h3>
-                <div dangerouslySetInnerHTML={{ __html: offer.offerTerms || "N/A" }}></div>
-            </section><hr />
+            {
+                offer.offerTerms ? <div>
+                    <section id="offer-terms" className="my-2">
+                        {/* <h3 className="fs-6 my-1 text-primary">Offer Terms</h3> */}
+                        <div dangerouslySetInnerHTML={{ __html: offer.offerTerms }}></div>
+                    </section><hr />
+                </div> : ""
+            }
 
-            <section id="offer-docs" className="my-2">
-                <h3 className="fs-6 my-1 text-primary">Offer Documents</h3>
-                <div dangerouslySetInnerHTML={{ __html: offer.offerDocs || "N/A" }}></div>
-            </section><hr />
+            {
+                offer.offerDocs ? <div>
+                    <section id="offer-docs" className="my-2">
+                        {/* <h3 className="fs-6 my-1 text-primary">Offer Documents</h3> */}
+                        <div dangerouslySetInnerHTML={{ __html: offer.offerDocs }}></div>
+                    </section><hr />
+                </div> : ""
+            }
 
-            <section id="offer-payout-rules" className="my-2">
-                <h3 className="fs-6 my-1 text-primary">Offer Payout Rules</h3>
-                <div dangerouslySetInnerHTML={{ __html: offer.offerPayoutRules || "N/A" }}></div>
-            </section>
+            {
+                offer.offerPayoutRules ? <section id="offer-payout-rules" className="my-2">
+                    {/* <h3 className="fs-6 my-1 text-primary">Offer Payout Rules</h3> */}
+                    <div dangerouslySetInnerHTML={{ __html: offer.offerPayoutRules }}></div>
+                </section> : ""
+            }
         </div>
     );
 }
