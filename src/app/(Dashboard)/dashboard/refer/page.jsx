@@ -23,7 +23,7 @@ const Refer = async () => {
                 <div className="col-9 fs-3 fw-bold">Referral Link</div>
                 <div className="col-3 btn btn-outline-dark align-self-center py-1">History<i className="bi bi-list"></i></div>
                 <div className="my-2 border border-dark py-1 px-2 rounded-1 d-flex justify-content-between align-items-center">
-                    <span>{protocal+"://" + host+"/"+user.referralCode}</span>
+                    <span>{protocal + "://" + host + "/register?ref=" + user.referralCode}</span>
                     <span><i className="bi bi-clipboard fs-2"></i></span>
                 </div>
                 <div className="my-2 border border-dark py-1 px-2 rounded-1 d-flex justify-content-between align-items-center">
