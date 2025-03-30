@@ -9,11 +9,11 @@ const Wallet = () => {
                 <h3 className="fw-bold fs-1 my-3">₹0.00</h3>
                 <div className="w-100 btn btn-primary py-1 fw-bold disabled">Withdraw</div>
             </div><hr />
-            <div className="row gap-1">
-                <Link href={""} className="col-2 link-light text-center fw-semibold text-decoration-none rounded-1 bg-dark">All</Link>
-                <Link href={""} className="col   link-light text-center fw-semibold text-decoration-none rounded-1 bg-success">Completed</Link>
-                <Link href={""} className="col   link-light text-center fw-semibold text-decoration-none rounded-1 bg-success">Processing</Link>
-                <Link href={""} className="col-2 link-light text-center fw-semibold text-decoration-none rounded-1 bg-success">Failed</Link>
+            <div className="row gap-1 mt-2">
+                <Link href={""} className="col-2 py-1 link-light text-center fw-semibold text-decoration-none rounded-1 bg-dark">All</Link>
+                <Link href={""} className="col   py-1 link-light text-center fw-semibold text-decoration-none rounded-1 bg-success">Completed</Link>
+                <Link href={""} className="col   py-1 link-light text-center fw-semibold text-decoration-none rounded-1 bg-success">Processing</Link>
+                <Link href={""} className="col-2 py-1 link-light text-center fw-semibold text-decoration-none rounded-1 bg-success">Failed</Link>
             </div>
             <div className="my-2 card p-2 py-3">
                 <div className="d-flex justify-content-between align-items-center">
