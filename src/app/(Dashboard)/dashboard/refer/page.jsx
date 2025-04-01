@@ -10,18 +10,27 @@ const Refer = async () => {
     return (
         <div className="mx-2">
             <div id="banner" className="d-flex justify-content-center align-items-center card shadow mb-2">
-                <img className="w-100 object-fit-cover" src="https://media.geeksforgeeks.org/wp-content/uploads/20240429125422/what-is-banner-copy.webp" alt="Refer banner" height={120}/>
+                <img className="w-100 object-fit-cover" src="https://media.geeksforgeeks.org/wp-content/uploads/20240429125422/what-is-banner-copy.webp" alt="Refer banner" height={120} />
             </div><hr />
 
-            <div className="bg-success text-white fw-bold fs-3 d-flex justify-content-around align-items-center my-2 py-1 rounded-1">
-                <span>Referred</span>
-                <span>-</span>
-                <span>10</span>
+            <div className="row my-1">
+                <table className="table table-bordered border-dark text-center">
+                    <tbody>
+                        <tr>
+                            <th className="p-1">Total Reffered</th>
+                            <th className="p-1">Total Earnings</th>
+                        </tr>
+                        <tr>
+                            <td className="p-1">10</td>
+                            <td className="p-1">450</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <div className="row fw-semibold my-2">
                 <div className="col-9 fs-3 fw-bold">Referral Link</div>
-                <div className="col-3 btn btn-outline-dark align-self-center py-1">History<i className="bi bi-list"></i></div>
+                <Link href="/dashboard/refer/history" className="col-3 btn btn-outline-dark align-self-center py-1">History<i className="bi bi-list"></i></Link>
                 <div className="my-2 border border-dark py-1 px-1 rounded-1 row">
                     <div className="col-11 text-truncate">{protocal + "://" + host + "/register?ref=" + user.referralCode}</div>
                     <div className="col"><i className="bi bi-clipboard fs-2"></i></div>
