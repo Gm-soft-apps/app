@@ -7,11 +7,11 @@ const Wallet = () => {
                 <div className="col bg-white text-center py-1 rounded-start-2">
                     <img className="w-100" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgqqGUTfWX5VisLv6q8l586IskPaKyUe_5UI31J0GllIYB8SvZ83k4bDTH3_a4KBUDqpl6X6ZWMdsRbPTiD25L3yTwHB6Aqm2H2a5_anTg1KJWxKRWh6CklL1MZuKxJ3epLRcLytX3V2rkQwN7dDZVCKO7ScXv7tEZ0QWDv-iuAupxXelv2j3FmXhhqJ9M/s16000/%E2%82%B9200%20(2).png" alt="wallet Banner" height={23}/>
                 </div>
-                <span className="col-3 px-2 py-1 btn btn-outline-dark rounded-start-0 rounded-end-2">History <i className="bi bi-list"></i></span>
+                <span className="col-3 px-2 py-1 btn btn-dark rounded-start-0 rounded-end-2">History <i className="bi bi-list"></i></span>
             </div>
             <div className="card rounded-1 p-2 text-center shadow my-2">
                 <h3>Available Balance</h3>
-                <h3 className="fw-bold fs-1 my-3">₹0.00</h3>
+                <h3 className="fw-bold fs-1 my-3">₹360.81</h3>
                 <div className="w-100 btn btn-primary py-1 fw-bold disabled">Withdraw</div>
             </div><hr />
             <div className="row gap-1 mt-2">
