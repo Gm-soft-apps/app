@@ -4,7 +4,9 @@ const Wallet = () => {
     return (
         <div className="mx-1">
             <div className="row gap-1">
-                <div className="col bg-white text-center py-1 rounded-start-2"><h3>Banner</h3></div>
+                <div className="col bg-white text-center py-1 rounded-start-2">
+                    <img className="w-100" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgqqGUTfWX5VisLv6q8l586IskPaKyUe_5UI31J0GllIYB8SvZ83k4bDTH3_a4KBUDqpl6X6ZWMdsRbPTiD25L3yTwHB6Aqm2H2a5_anTg1KJWxKRWh6CklL1MZuKxJ3epLRcLytX3V2rkQwN7dDZVCKO7ScXv7tEZ0QWDv-iuAupxXelv2j3FmXhhqJ9M/s16000/%E2%82%B9200%20(2).png" alt="wallet Banner" height={23}/>
+                </div>
                 <span className="col-3 px-2 py-1 btn btn-outline-dark rounded-start-0 rounded-end-2">History <i className="bi bi-list"></i></span>
             </div>
             <div className="card rounded-1 p-2 text-center shadow my-2">
