@@ -10,7 +10,7 @@ const Refer = async () => {
     return (
         <div className="mx-2">
             <div id="banner" className="d-flex justify-content-center align-items-center card shadow mb-2">
-                <h1>Banner</h1>
+                <img className="w-100 object-fit-cover" src="https://media.geeksforgeeks.org/wp-content/uploads/20240429125422/what-is-banner-copy.webp" alt="Refer banner" height={120}/>
             </div><hr />
 
             <div className="bg-success text-white fw-bold fs-3 d-flex justify-content-around align-items-center my-2 py-1 rounded-1">
@@ -22,17 +22,17 @@ const Refer = async () => {
             <div className="row fw-semibold my-2">
                 <div className="col-9 fs-3 fw-bold">Referral Link</div>
                 <div className="col-3 btn btn-outline-dark align-self-center py-1">History<i className="bi bi-list"></i></div>
-                <div className="my-2 border border-dark py-1 px-2 rounded-1 d-flex justify-content-between align-items-center">
-                    <span>{protocal + "://" + host + "/register?ref=" + user.referralCode}</span>
-                    <span><i className="bi bi-clipboard fs-2"></i></span>
+                <div className="my-2 border border-dark py-1 px-1 rounded-1 row">
+                    <div className="col-11 text-truncate">{protocal + "://" + host + "/register?ref=" + user.referralCode}</div>
+                    <div className="col"><i className="bi bi-clipboard fs-2"></i></div>
                 </div>
-                <div className="my-2 border border-dark py-1 px-2 rounded-1 d-flex justify-content-between align-items-center">
-                    <span>{user.referralCode}</span>
-                    <span><i className="bi bi-clipboard fs-2"></i></span>
+                <div className="my-2 border border-dark py-1 px-1 rounded-1 row">
+                    <div className="col-11">{user.referralCode}</div>
+                    <div className="col"><i className="bi bi-clipboard fs-2"></i></div>
                 </div>
             </div>
 
-            <div id="shareIcons" className="my-4 fs-1 d-flex justify-content-evenly align-items-center">
+            <div id="shareIcons" className="bg-white rounded-1 shadow-sm fs-1 d-flex justify-content-evenly align-items-center">
                 <span className="fw-semibold">Share:</span>
                 <Link href={`https://api.whatsapp.com/send?text=${protocal + "://" + host}`} className="bi bi-whatsapp link-dark"></Link>
                 <Link href={`https://www.facebook.com/sharer/sharer.php?u=${protocal + "://" + host}`} className="bi bi-facebook link-dark"></Link>
