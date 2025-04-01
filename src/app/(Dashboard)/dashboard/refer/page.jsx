@@ -28,16 +28,18 @@ const Refer = async () => {
                 </table>
             </div>
 
-            <div className="row fw-semibold my-2">
-                <div className="col-9 fs-3 fw-bold">Referral Link</div>
-                <Link href="/dashboard/refer/history" className="col-3 btn btn-outline-dark align-self-center py-1">History<i className="bi bi-list"></i></Link>
+            <div className="fw-semibold my-2">
+                <div className="d-flex justify-content-between bg-primary text-white px-1">
+                    <div className="fs-3 fw-bold ms-2">Referral Link</div>
+                    <Link href="/dashboard/refer/history" className="link-light text-decoration-none align-self-center py-1">History<i className="ms-1 bi bi-list"></i></Link>
+                </div>
                 <div className="my-2 border border-dark py-1 px-1 rounded-1 row">
                     <div className="col-11 text-truncate">{protocal + "://" + host + "/register?ref=" + user.referralCode}</div>
-                    <div className="col"><i className="bi bi-clipboard fs-2"></i></div>
+                    <div className="col"><i className="bi bi-copy fs-2"></i></div>
                 </div>
                 <div className="my-2 border border-dark py-1 px-1 rounded-1 row">
                     <div className="col-11">{user.referralCode}</div>
-                    <div className="col"><i className="bi bi-clipboard fs-2"></i></div>
+                    <div className="col"><i className="bi bi-copy fs-2"></i></div>
                 </div>
             </div>
 

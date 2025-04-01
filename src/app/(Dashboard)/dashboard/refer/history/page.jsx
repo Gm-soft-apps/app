@@ -1,6 +1,12 @@
+import Link from "next/link";
+
 const ReferHistory = () => {
     return (
         <div className="mx-1">
+            <section className="bg-primary text-white p-1 text-center fs-4 mb-1 row">
+                <Link href="/dashboard/refer" className="col-1 bi bi-arrow-left-circle link-light"></Link>
+                <div className="col">Referral History</div>
+            </section>
             <table className="table table-bordered border-dark p-1 text-center">
                 <thead>
                     <tr>
@@ -31,6 +37,8 @@ const ReferHistory = () => {
                     </tr>
                 </tbody>
             </table>
+
+            <div className="fw-semibold text-center mt-2">No more data</div>
         </div>
     );
 }
