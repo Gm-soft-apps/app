@@ -7,6 +7,7 @@ export const users = sqliteTable("users", {
     password: text().notNull(),
     role: text().notNull().default("user"),
     referralCode: text().notNull().unique(),
+    invitedBy: text().notNull(),
     verifiedAccount: int({ mode: "boolean" }).default(false),
     lastVerified: int({ mode: "timestamp_ms" }),
     registeredOn: int({ mode: "timestamp_ms" }).notNull(),
