@@ -46,6 +46,7 @@ export const getUserByID = async (id: number) => {
         phoneNumber: users.phoneNumber,
         role: users.role,
         referralCode: users.referralCode,
+        invitedBy: users.invitedBy,
         verifiedAccount: users.verifiedAccount,
         lastVerified: users.lastVerified,
         registeredOn: users.registeredOn,
@@ -56,4 +57,21 @@ export const getUserByID = async (id: number) => {
         return null;
     }
     return resp[0];
+}
+
+export const getRefHistory = async (refCode: string) => {
+    const resp = await db.select({
+        // id: users.id,
+        // countryCode: users.countryCode,
+        phoneNumber: users.phoneNumber,
+        // role: users.role,
+        // referralCode: users.referralCode,
+        invitedBy: users.invitedBy,
+        verifiedAccount: users.verifiedAccount,
+        // lastVerified: users.lastVerified,
+        // registeredOn: users.registeredOn,
+        // lastUpdated: users.lastUpdated,
+    }).from(users).where(eq(users.invitedBy, refCode));
+
+    return resp;
 }

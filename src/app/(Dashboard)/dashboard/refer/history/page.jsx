@@ -1,10 +1,16 @@
+import { getRefHistory } from "db/users/handler";
+import { headers } from "next/headers";
 import Link from "next/link";
 
-const ReferHistory = () => {
+const ReferHistory = async () => {
+
+    const user = JSON.parse((await headers()).get("x-user"));
+
+    const referrals = await getRefHistory(user.referralCode)
     return (
         <div className="mx-1">
-            <section className="bg-primary text-white p-1 text-center fs-4 mb-1 row">
-                <Link href="/dashboard/refer" className="col-1 bi bi-arrow-left-circle link-light"></Link>
+            <section className="bg-primary text-white p-1 text-center fw-semibold fs-4 mb-1 row">
+                <Link href="/dashboard/refer" className="col-1  bi bi-arrow-left-circle link-light"></Link>
                 <div className="col">Referral History</div>
             </section>
             <table className="table table-bordered border-dark p-1 text-center">
@@ -17,24 +23,18 @@ const ReferHistory = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>99XXXXXX62</td>
-                        <td>530</td>
-                        <td className="bi bi-check-circle text-success"></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>99XXXXXX62</td>
-                        <td>530</td>
-                        <td className="bi bi-check-circle text-success"></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>99XXXXXX62</td>
-                        <td>530</td>
-                        <td className="bi bi-check-circle text-success"></td>
-                    </tr>
+                    {
+                        referrals.map((referee, index) => {
+                            return (
+                                <tr>
+                                    <td>{index + 1}</td>
+                                    <td>{referee.phoneNumber}</td>
+                                    <td>{5}</td>
+                                    <td className={`bi ${referee.verifiedAccount? "bi-check-circle-fill text-success": "bi-x-circle-fill text-danger"}`}></td>
+                                </tr>
+                            );
+                        })
+                    }
                 </tbody>
             </table>
 

@@ -1,3 +1,4 @@
+import { getRefHistory } from "db/users/handler";
 import { headers } from "next/headers";
 import Link from "next/link";
 
@@ -6,6 +7,7 @@ const Refer = async () => {
     const host = reqHeaders.get("host");
     const protocal = reqHeaders.get("x-forwarded-proto");
     const user = JSON.parse(reqHeaders.get("x-user"));
+    const referrals = await getRefHistory(user.referralCode)
 
     return (
         <div className="mx-2">
@@ -21,8 +23,8 @@ const Refer = async () => {
                             <th className="p-1">Total Earnings</th>
                         </tr>
                         <tr>
-                            <td className="p-1">10</td>
-                            <td className="p-1">450</td>
+                            <td className="p-1">{referrals.length}</td>
+                            <td className="p-1">{referrals.length*5}</td>
                         </tr>
                     </tbody>
                 </table>
