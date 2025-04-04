@@ -1,6 +1,6 @@
 "use server"
 
-import TopNavBar from "app/ui/Dashboard/TopNavNar";
+import TopNavBar from "app/ui/Dashboard/TopNavBar";
 import BottomNavBar from "app/ui/Dashboard/BottomNavBar";
 import { headers } from "next/headers";
 import AdminTopNavBar from "app/ui/Dashboard/AdminTopNavBar";
