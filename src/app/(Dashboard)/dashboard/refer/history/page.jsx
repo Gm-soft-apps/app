@@ -1,6 +1,7 @@
 import { getRefHistory } from "db/users/handler";
 import { headers } from "next/headers";
 import Link from "next/link";
+import { maskPhoneNumber } from "utils/others";
 
 const ReferHistory = async () => {
 
@@ -28,7 +29,7 @@ const ReferHistory = async () => {
                             return (
                                 <tr>
                                     <td>{index + 1}</td>
-                                    <td>{referee.phoneNumber}</td>
+                                    <td>{maskPhoneNumber(referee.phoneNumber)}</td>
                                     <td>{5}</td>
                                     <td className={`bi ${referee.verifiedAccount? "bi-check-circle-fill text-success": "bi-x-circle-fill text-danger"}`}></td>
                                 </tr>
