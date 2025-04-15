@@ -20,8 +20,13 @@ const UserDashboard = () => {
     const searchParams = useSearchParams();
     const router = useRouter();
 
-    const categoryFromURL = searchParams.get("category") || "";
-    const [selectedCategory, setSelectedCategory] = useState(categoryFromURL);
+    const [selectedCategory, setSelectedCategory] = useState("");
+
+    useEffect(() => {
+        const categoryFromURL = searchParams.get("category") || "";
+        setSelectedCategory(categoryFromURL);
+    }, [searchParams]);
+
 
     useEffect(() => {
         const fetchOffers = async () => {
@@ -93,15 +98,17 @@ const UserDashboard = () => {
                 ))
             }
 
-            <hr />
-
-            <section className="mt-2 p-2 bg-white d-flex flex-column gap-2">
-                <h3 className="text-center mb-1">Join Our Social Media Networks</h3>
-                <img className="w-100" src="/join-telegram.png" alt="Join Telegram" />
-                <img className="w-100" src="/join-youtube.png" alt="Join Youtube" />
-                <img className="w-100" src="/join-whatsapp.png" alt="Join WhatsApp" />
-                <img className="w-100" src="/join-instagram.png" alt="Join Instagram" />
-            </section>
+            {selectedCategory === "" && (
+                <>
+                    <hr />
+                    <section className="mt-2 p-2 bg-white d-flex flex-column gap-2">
+                        <img className="w-100" src="/join-telegram.png" alt="Join Telegram" />
+                        <img className="w-100" src="/join-youtube.png" alt="Join Youtube" />
+                        <img className="w-100" src="/join-whatsapp.png" alt="Join WhatsApp" />
+                        <img className="w-100" src="/join-instagram.png" alt="Join Instagram" />
+                    </section>
+                </>
+            )}
         </>
     );
 };
