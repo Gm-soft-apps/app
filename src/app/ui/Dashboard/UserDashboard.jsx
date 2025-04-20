@@ -102,10 +102,11 @@ const UserDashboard = () => {
                 <>
                     <hr />
                     <section className="mt-2 p-2 bg-white d-flex flex-column gap-2">
-                        <img className="w-100" src="/join-telegram.png" alt="Join Telegram" />
-                        <img className="w-100" src="/join-youtube.png" alt="Join Youtube" />
-                        <img className="w-100" src="/join-whatsapp.png" alt="Join WhatsApp" />
-                        <img className="w-100" src="/join-instagram.png" alt="Join Instagram" />
+                        <div className="text-center my-1 fs-5 fw-semibold">Join Our Social Media Networks</div>
+                        <img className="w-100" src="/join-telegram.webp" alt="Join Telegram" />
+                        <img className="w-100" src="/join-youtube.webp" alt="Join Youtube" />
+                        <img className="w-100" src="/join-whatsapp.webp" alt="Join WhatsApp" />
+                        <img className="w-100" src="/join-instagram.webp" alt="Join Instagram" />
                     </section>
                 </>
             )}
