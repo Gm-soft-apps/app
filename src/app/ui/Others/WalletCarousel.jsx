@@ -14,7 +14,7 @@ export default function WalletCarousel() {
     }, []);
 
     return (
-        <div id="carouselExampleAutoplaying" className="carousel carousel-fade col" data-bs-ride="carousel">
+        <div id="carouselExampleAutoplaying" className="carousel slide col" data-bs-ride="carousel">
             <div className="carousel-inner">
                 <div className="carousel-item active" data-bs-interval="3500">
                     <img src="/wallet-banner-1.webp " className="d-block w-100" alt="Join Telegram" />
