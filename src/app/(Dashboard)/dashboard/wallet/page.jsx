@@ -50,7 +50,11 @@ const Wallet = () => {
                 <div className="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                     <div className="progress-bar progress-bar-striped bg-warning fw-bold" style={{ width: "50%" }}>50%</div>
                 </div>
+                <div className="text-center fw-semibold mt-1">
+                    Note: You Almost done
+                </div>
             </div>
+            <div className="text-center fw-semibold">No More Data</div>
         </div>
     );
 }
