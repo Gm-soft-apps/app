@@ -48,6 +48,7 @@ const UserDashboard = () => {
     };
 
     const filteredOffers = offers.filter((offer) => {
+        if (!offer.offerStatus) return false;
         if (selectedCategory === "") {
             return offer.offerPriority;
         } else if (selectedCategory === "All Offers") {
@@ -83,23 +84,27 @@ const UserDashboard = () => {
             </div>
 
             {offers.length === 0 ? (
-                <div className="text-center py-2 bg-white fw-bold"><Loading/></div>
-            ) : filteredOffers.map((offer, idx) => (
-                <div className="p-2 bg-white mx-2 rounded my-2 shadow-lg position-relative" key={idx}>
-                    <div className="user-offer-payout bg-warning position-absolute top-0 end-0 px-3 fw-semibold">Earn Flat ₹ {offer.offerPayout}</div>
-                    <div className="row">
-                        <div className="col-3">
-                            <img src={offer.offerLogo} alt={offer.offerName} className="shadow rounded-1 border border-2" width={65} height={65} />
+                <div className="text-center py-2 bg-white fw-bold"><Loading /></div>
+            ) : filteredOffers.length === 0 ? (
+                <div className="text-center py-2 mx-1 bg-white fw-semibold">No offers found at this time!</div>
+            ) : (
+                filteredOffers.map((offer, idx) => (
+                    <div className="p-2 bg-white mx-2 rounded my-2 shadow-lg position-relative" key={idx}>
+                        <div className="user-offer-payout bg-warning position-absolute top-0 end-0 px-3 fw-semibold">Earn Flat ₹ {offer.offerPayout}</div>
+                        <div className="row">
+                            <div className="col-3">
+                                <img src={offer.offerLogo} alt={offer.offerName} className="shadow rounded-1 border border-2" width={65} height={65} />
+                            </div>
+                            <div className="col align-self-center">
+                                <h2 className="fs-4 mt-3">{offer.offerName}</h2>
+                            </div>
+                            <div className="fs-6 fw-semibold mt-1">{"※ " + offer.offerTitle}</div>
                         </div>
-                        <div className="col align-self-center">
-                            <h2 className="fs-4 mt-3">{offer.offerName}</h2>
-                        </div>
-                        <div className="fs-6 fw-semibold mt-1">{"※ " + offer.offerTitle}</div>
+                        <Link href={`/dashboard/offer/${offer.id}`} prefetch={true} className="btn btn-primary py-1 mt-1 w-100 fw-semibold">Complete Now</Link>
                     </div>
-                    <Link href={`/dashboard/offer/${offer.id}`} prefetch={true} className="btn btn-primary py-1 mt-1 w-100 fw-semibold">Complete Now</Link>
-                </div>
-            ))
-            }
+                ))
+            )}
+
 
             {selectedCategory === "" && (
                 <JoinSocialNetworks />
