@@ -12,6 +12,9 @@ const JoinSocialMedia = () => {
     const router = useRouter();
     const [image, setImage] = useState("");
     const [message, setMessage] = useState("");
+    const [isUploading, setIsUploading] = useState(false);
+    const [timer, setTimer] = useState(10);
+    const [status, setStatus] = useState(false);
 
     const socialLinks = {
         telegram: "No Link Available",
@@ -44,12 +47,29 @@ const JoinSocialMedia = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(image)
-        if(!image){
+
+        if (!image) {
+            setIsUploading(false);
             setMessage("Please Select Image from Gallery!");
             return null
         }
-        
+
+        setIsUploading(true);
+        setTimer(10);
+        setMessage("");
+
+        const interval = setInterval(() => {
+            setTimer(prev => {
+                if (prev <= 1) {
+                    clearInterval(interval);
+                    setIsUploading(false);
+                    setStatus(true);
+                    setMessage("Amount Credited Succesfully!");
+                    return 10;
+                }
+                return prev - 1;
+            });
+        }, 1000);
     }
 
     return (
@@ -68,10 +88,19 @@ const JoinSocialMedia = () => {
 
             <div className="bg-white px-1 py-2 text-center">
                 <form onSubmit={handleSubmit} className="border border-dark rounded-top-1 p-2">
-                    <label htmlFor="screenshot" className="d-block mb-2 fw-semibold fs-1 h-300px d-flex justify-content-center align-items-center">+</label>
-                    <input type="file" name="screenshot" id="screenshot" accept="image/*" className="d-none" onChange={(e)=>{setImage(e.target.value)}} />
-                    <div className="fw-semibold text-danger my-1">{message}</div>
-                    <button type="submit" className="fw-semibold py-1 btn btn-outline-dark w-100">Upload Screenshot</button>
+                    <label htmlFor="screenshot" id="plusLabel" className="d-block mb-2 fw-semibold fs-1 h-300px d-flex justify-content-center align-items-center">
+                        <img src={image ? image : "/gallery-placeholder.webp"} id="plusLabel" alt="" className="w-100" height={300} />
+                    </label>
+                    <input type="file" name="screenshot" id="screenshot" accept="image/*" className="d-none"
+                        onChange={(e) => {
+                            const file = e.target.files[0];
+                            if (file) {
+                                const url = URL.createObjectURL(file);
+                                setImage(url);
+                            }
+                        }} />
+                    <div className={`fw-semibold ${status ? "text-success" : "text-danger"} my-1`}>{message}</div>
+                    <button type="submit" className="fw-semibold py-1 btn btn-outline-dark w-100">{isUploading ? `Uploading (${timer})` : "Upload Screenshot"}</button>
                 </form>
             </div>
         </div>
