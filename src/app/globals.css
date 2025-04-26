@@ -35,11 +35,16 @@ ul {
   list-style-type: disc;
 }
 
-ol, ul {
+ol,
+ul {
   list-style-position: inside;
   line-height: 1.8rem;
 }
 
 .h-300px {
   height: 300px !important;
+}
+
+.ig-color {
+  background-image: linear-gradient(to bottom right, #6228d7, #ee2a7b);
 }
