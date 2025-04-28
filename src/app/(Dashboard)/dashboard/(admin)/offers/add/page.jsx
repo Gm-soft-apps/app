@@ -22,6 +22,7 @@ const AddOffer = () => {
     const [offerPayoutRules, setOfferPayoutRules] = useState("");
     const [offerCategory, setOfferCategory] = useState("");
     const [offerStatus, setOfferStatus] = useState(false);
+    const [affNetwork, setAffNetwork] = useState("")
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
@@ -47,7 +48,8 @@ const AddOffer = () => {
                 offerDocs,
                 offerPayoutRules,
                 offerCategory,
-                offerStatus
+                offerStatus,
+                affNetwork,
             });
             setLoading(false);
             resetForm();
@@ -80,6 +82,7 @@ const AddOffer = () => {
         setOfferPayoutRules("");
         setOfferCategory("");
         setOfferStatus(true);
+        setAffNetwork("");
     }
 
     return (
@@ -88,7 +91,7 @@ const AddOffer = () => {
             <div className="row gap-2">
                 <div className="col">
                     {/* <label htmlFor="offer-logo">Offer Logo Url</label> */}
-                    <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-logo" name="offer-logo" placeholder="Logo Url" value={offerLogo} onChange={(e) => { setOfferLogo(e.target.value) }} autoFocus  required />
+                    <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="offer-logo" name="offer-logo" placeholder="Logo Url" value={offerLogo} onChange={(e) => { setOfferLogo(e.target.value) }} autoFocus required />
                     {offerLogo ? <div className="text-center w-100">
                         <img src={offerLogo} alt={offerName + " logo"} className="my-1 rounded" width={100} height={100} />
                     </div> : null}
@@ -124,8 +127,8 @@ const AddOffer = () => {
 
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label className="form-label fw-semibold my-1">Offer Links</label>
-                <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-one" name="link-one" placeholder="Link 1 (Self Complete Link)" value={linkOne} onChange={(e) => { setLinkOne(e.target.value) }} required />
-                <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-two" name="link-two" placeholder="Link 2 (Sharable Link)" value={linkTwo} onChange={(e) => { setLinkTwo(e.target.value) }} required />
+                <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-one" name="link-one" placeholder="Main Aff Link" value={linkOne} onChange={(e) => { setLinkOne(e.target.value) }} required />
+                {/* <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-two" name="link-two" placeholder="Link 2 (Sharable Link)" value={linkTwo} onChange={(e) => { setLinkTwo(e.target.value) }} required /> */}
             </section>
 
             <section className="border border-2 border-info rounded my-1 p-1">
@@ -172,7 +175,16 @@ const AddOffer = () => {
                     <option value={false}>Inactive</option>
                 </select>
             </section>
-            <Toast message={message}/>
+
+            <section className="border border-2 border-info rounded my-1 p-1">
+                <label htmlFor="aff-network" className="form-label fw-semibold my-1">Affiliate Network</label>
+                <select name="aff-network" id="aff-network" className="form-select px-2 py-1 fw-semibold" value={affNetwork} onChange={(e) => { setAffNetwork(e.target.value) }}>
+                    <option value="">Choose Aff Network</option>
+                    <option value="monetizedeal">MonetizeDeal.com</option>
+                    <option value="admitad">AdmitAd.com</option>
+                </select>
+            </section>
+            <Toast message={message} />
             <button className="btn btn-dark fw-bold w-100 my-1 py-1 position-sticky sticky-bottom" type="submit">{loading ? <Loading /> : "Save Offer"}</button>
         </form>
     );
