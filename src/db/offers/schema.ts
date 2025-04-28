@@ -15,6 +15,7 @@ export const offers = sqliteTable("offers", {
     offerPayoutRules: text(),
     offerCategory: text().notNull(),
     offerStatus: int({ mode: "boolean" }).notNull(),
+    affNetwork: text(),
     offerLogo: text().notNull(),
     offerBanner: text().notNull(),
     offerCreatedOn: int({mode: "timestamp_ms"}).notNull(),
