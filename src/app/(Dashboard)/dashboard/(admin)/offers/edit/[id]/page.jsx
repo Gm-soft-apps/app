@@ -29,6 +29,7 @@ const EditOffer = () => {
     const [offerPayoutRules, setOfferPayoutRules] = useState("");
     const [offerCategory, setOfferCategory] = useState("");
     const [offerStatus, setOfferStatus] = useState(false);
+    const [affNetwork, setAffNetwork] = useState("");
     const [loading, setLoading] = useState(false);
     const [deleteLoading, setDeleteLoading] = useState(false);
     const [message, setMessage] = useState("");
@@ -55,7 +56,8 @@ const EditOffer = () => {
                 offerDocs,
                 offerPayoutRules,
                 offerCategory,
-                offerStatus
+                offerStatus,
+                affNetwork,
             });
 
             setLoading(false);
@@ -106,6 +108,7 @@ const EditOffer = () => {
                 setOfferPayoutRules(offer.offerPayoutRules);
                 setOfferCategory(offer.offerCategory);
                 setOfferStatus(offer.offerStatus);
+                setAffNetwork(offer.affNetwork);
             }
             setLoading(false);
         }
@@ -161,9 +164,9 @@ const EditOffer = () => {
             </section>
 
             <section className="border border-2 border-info rounded my-1 p-1">
-                <label className="form-label fw-semibold my-1">Offer Links</label>
-                <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-one" name="link-one" placeholder="Link 1 (Self Complete Link)" value={linkOne} onChange={(e) => { setLinkOne(e.target.value) }} required />
-                <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-two" name="link-two" placeholder="Link 2 (Sharable Link)" value={linkTwo} onChange={(e) => { setLinkTwo(e.target.value) }} required />
+                <label className="form-label fw-semibold my-1">Affiliate Link</label>
+                <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-one" name="link-one" placeholder="Main Aff Link" value={linkOne} onChange={(e) => { setLinkOne(e.target.value) }} required />
+                {/* <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-two" name="link-two" placeholder="Link 2 (Sharable Link)" value={linkTwo} onChange={(e) => { setLinkTwo(e.target.value) }} required /> */}
             </section>
 
             <section className="border border-2 border-info rounded my-1 p-1">
@@ -210,6 +213,16 @@ const EditOffer = () => {
                     <option value={false}>Inactive</option>
                 </select>
             </section>
+
+            <section className="border border-2 border-info rounded my-1 p-1">
+                <label htmlFor="aff-network" className="form-label fw-semibold my-1">Affiliate Network</label>
+                <select name="aff-network" id="aff-network" className="form-select px-2 py-1 fw-semibold" value={affNetwork} onChange={(e) => { setAffNetwork(e.target.value) }}>
+                    <option value="">Choose Aff Network</option>
+                    <option value="monetizedeal">MonetizeDeal.com</option>
+                    <option value="admitad">AdmitAd.com</option>
+                </select>
+            </section>
+
             <Toast message={message} />
             <div className="position-sticky sticky-bottom bg-white row gap-1">
                 <button className="col btn btn-dark rounded-1 fw-bold w-100 my-1 py-1" type="button" onClick={() => handleDeleteOffer(id)}>{deleteLoading ? <Loading /> : "Delete Offer"}</button>

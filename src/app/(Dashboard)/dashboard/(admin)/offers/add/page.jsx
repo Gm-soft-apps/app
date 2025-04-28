@@ -126,7 +126,7 @@ const AddOffer = () => {
             </section>
 
             <section className="border border-2 border-info rounded my-1 p-1">
-                <label className="form-label fw-semibold my-1">Offer Links</label>
+                <label className="form-label fw-semibold my-1">Affiliate Link</label>
                 <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-one" name="link-one" placeholder="Main Aff Link" value={linkOne} onChange={(e) => { setLinkOne(e.target.value) }} required />
                 {/* <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-two" name="link-two" placeholder="Link 2 (Sharable Link)" value={linkTwo} onChange={(e) => { setLinkTwo(e.target.value) }} required /> */}
             </section>

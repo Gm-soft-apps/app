@@ -54,6 +54,7 @@ export const updateOfferAction = async (form) => {
             offerPayoutRules: form.offerPayoutRules,
             offerCategory: form.offerCategory,
             offerStatus: form.offerStatus,
+            affNetwork: form.affNetwork,
             offerLogo: form.offerLogo,
             offerBanner: form.offerBanner,
         }, form.offerId)
