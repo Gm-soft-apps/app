@@ -9,7 +9,8 @@ const OffersLayout = (props) => {
   const status = searchParams.get("status");
 
   const isAddOffers = path === "/dashboard/offers/add";
-  const isAll = !status && !isAddOffers;
+  const isEditOffers = path.startsWith("/dashboard/offers/edit/");
+  const isAll = !status && !isAddOffers && !isEditOffers;
   const isActive = status === "active";
   const isInactive = status === "inactive";
 

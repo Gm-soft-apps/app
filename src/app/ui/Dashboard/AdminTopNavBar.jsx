@@ -6,10 +6,7 @@ import { usePathname } from "next/navigation";
 const AdminTopNavBar = () => {
     const path = usePathname();
 
-    let isPathOffers = false;
-    if (path === "/dashboard/offers" || path === "/dashboard/offers/add" || path === "/dashboard/offers/edit") {
-        isPathOffers = true;
-    }
+    let isPathOffers = path.startsWith("/dashboard/offers");
     const isPathUsers = path === "/dashboard/users";
     const isPathWithdrawls = path === "/dashboard/withdrawls";
 
