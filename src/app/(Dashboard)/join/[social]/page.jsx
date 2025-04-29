@@ -89,7 +89,9 @@ const JoinSocialMedia = () => {
             <div className="bg-white px-1 py-2 text-center">
                 <form onSubmit={handleSubmit} className="border border-dark rounded-top-1 p-2">
                     <label htmlFor="screenshot" id="plusLabel" className="d-block mb-2 fw-semibold fs-1 h-300px d-flex justify-content-center align-items-center">
-                        <img src={image ? image : "/gallery-placeholder.webp"} id="plusLabel" alt="" className="w-100" height={300} />
+                        {
+                            !image ? "+" : <img src={image} alt="" className="w-100" height={300} />
+                        }
                     </label>
                     <input type="file" name="screenshot" id="screenshot" accept="image/*" className="d-none"
                         onChange={(e) => {
