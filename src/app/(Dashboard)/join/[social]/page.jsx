@@ -74,8 +74,8 @@ const JoinSocialMedia = () => {
 
     return (
         <div className="mx-1">
-            <div className={`${color} text-white py-1 row align-items-center my-2`}>
-                <Link href="/dashboard" className="col-2 link-light text-decoration-none text-center">
+            <div className={`${color} text-white py-1 px-2  row align-items-center my-2`}>
+                <Link href="/dashboard" className="col-1 link-light text-decoration-none text-center">
                     <i className="bi bi-arrow-left-circle fs-4"></i>
                 </Link>
                 <div className={`col text-center fw-semibold fs-5`}>Join {social} Get ₹5</div>
