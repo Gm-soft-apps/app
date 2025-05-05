@@ -11,15 +11,6 @@ const OfferPage = async ({ params }) => {
             <div id="offer-banner">
                 <img src={offer.offerBanner} className="w-100 shadow-lg" alt={offer.offerName} height={120} />
             </div>
-            {/* <div className="bg-white mb-2 px-1 py-1 row gap-1 border">
-                <button className="col btn btn-dark fw-semibold w-100 py-1 rounded-1">Self Link</button>
-                <button className="col btn btn-dark fw-semibold w-100 py-1 rounded-1">Share Link</button>
-                <div className="text-center my-2 fw-semibold">https://gm-app.netlify.app</div>
-                <div className="row justify-content-around">
-                    <button className="col-5 btn btn-dark fw-semibold">Copy</button>
-                    <button className="col-5 btn btn-dark fw-semibold">Share</button>
-                </div>
-            </div><hr /> */}
 
             <div className="my-2 p-2 border">
                 <ul className="nav nav-tabs mb-2 row gap-1 fw-semibold">
@@ -34,11 +25,7 @@ const OfferPage = async ({ params }) => {
                 <div className="tab-content">
                     {/* Self Link Tab */}
                     <div className="tab-pane fade show active" id="self" role="tabpanel" aria-labelledby="self-tab">
-                        <div className="text-center my-2 fw-semibold">https://gm-app.netlify.app</div>
-                        <div className="row justify-content-around">
-                            <button className="col-5 btn btn-dark fw-semibold">Copy</button>
-                            <button className="col-5 btn btn-dark fw-semibold">Share</button>
-                        </div>
+                        <div className="text-center mt-2 fw-semibold">https://gm-app.netlify.app</div>
                     </div>
 
                     {/* Share Link Tab */}
