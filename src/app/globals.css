@@ -48,3 +48,14 @@ ul {
 .ig-color {
   background-image: linear-gradient(to bottom right, #6228d7, #ee2a7b);
 }
+
+.nav-tabs .nav-link.active {
+  background-color: #212529 !important;
+  /* Bootstrap bg-dark */
+  color: #fff !important;
+  border-color: #212529 #212529 #fff !important;
+}
+
+.nav-tabs .nav-link {
+  color: #212529;
+}
