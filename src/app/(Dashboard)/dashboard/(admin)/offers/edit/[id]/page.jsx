@@ -21,7 +21,6 @@ const EditOffer = () => {
     const [offerTitle, setOfferTitle] = useState("");
     const [offerBanner, setOfferBanner] = useState("");
     const [linkOne, setLinkOne] = useState("");
-    const [linkTwo, setLinkTwo] = useState("");
     const [offerDetails, setOfferDetails] = useState("");
     const [offerSteps, setOfferSteps] = useState("");
     const [offerTerms, setOfferTerms] = useState("");
@@ -49,7 +48,6 @@ const EditOffer = () => {
                 offerTitle,
                 offerBanner,
                 linkOne,
-                linkTwo,
                 offerDetails,
                 offerSteps,
                 offerTerms,
@@ -91,6 +89,7 @@ const EditOffer = () => {
             let offer = await getOfferByID(id);
 
             if (offer) {
+                console.log(offer)
                 setOffer(offer);
                 setOfferId(offer.id);
                 setOfferName(offer.offerName);
@@ -99,8 +98,7 @@ const EditOffer = () => {
                 setOfferLogo(offer.offerLogo);
                 setOfferTitle(offer.offerTitle);
                 setOfferBanner(offer.offerBanner);
-                setLinkOne(offer.offerLinkOne);
-                setLinkTwo(offer.offerLinkTwo);
+                setLinkOne(offer.offerLink);
                 setOfferDetails(offer.offerDetails);
                 setOfferSteps(offer.offerSteps);
                 setOfferTerms(offer.offerTerms);
@@ -166,7 +164,6 @@ const EditOffer = () => {
             <section className="border border-2 border-info rounded my-1 p-1">
                 <label className="form-label fw-semibold my-1">Affiliate Link</label>
                 <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-one" name="link-one" placeholder="Main Aff Link" value={linkOne} onChange={(e) => { setLinkOne(e.target.value) }} required />
-                {/* <input type="url" className="form-control fw-semibold my-1 py-1 px-2 border border-2 rounded-1" id="link-two" name="link-two" placeholder="Link 2 (Sharable Link)" value={linkTwo} onChange={(e) => { setLinkTwo(e.target.value) }} required /> */}
             </section>
 
             <section className="border border-2 border-info rounded my-1 p-1">
