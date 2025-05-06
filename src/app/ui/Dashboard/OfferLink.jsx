@@ -1,0 +1,37 @@
+import Link from "next/link";
+
+const OfferLink = ({offer}) => {
+    return (
+        <>
+            <div className="my-2 p-2 border">
+                <ul className="nav nav-tabs mb-2 row gap-1 fw-semibold">
+                    <li className="nav-item col">
+                        <button className="nav-link active w-100" id="self-tab" data-bs-toggle="tab" data-bs-target="#self" type="button" role="tab" aria-controls="self" aria-selected="true">Self Link</button>
+                    </li>
+                    <li className="nav-item col">
+                        <button className="nav-link w-100" id="share-tab" data-bs-toggle="tab" data-bs-target="#share" type="button" role="tab" aria-controls="share" aria-selected="false">Share Link</button>
+                    </li>
+                </ul>
+
+                <div className="tab-content">
+                    {/* Self Link Tab */}
+                    <div className="tab-pane fade show active" id="self" role="tabpanel" aria-labelledby="self-tab">
+                        <Link href={"/"} className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">https://gm-app.netlify.app</Link>
+                        <div className="text-center my-1 fw-semibold text-danger text-small">* Click the link above</div>
+                    </div>
+
+                    {/* Share Link Tab */}
+                    <div className="tab-pane fade" id="share" role="tabpanel" aria-labelledby="share-tab">
+                        <Link href={"/"} className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">https://gm-app.netlify.app/share</Link>
+                        <div className="row justify-content-evenly">
+                            <div className="col-5 py-1 bg-dark text-white text-center fw-semibold rounded-1">Copy <i className="bi bi-copy"></i></div>
+                            <div className="col-5 py-1 bg-dark text-white text-center fw-semibold rounded-1">Share <i className="bi bi-share"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div><hr />
+        </>
+    );
+}
+
+export default OfferLink;
