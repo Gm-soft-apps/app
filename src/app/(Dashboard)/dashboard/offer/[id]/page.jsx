@@ -26,7 +26,7 @@ const OfferPage = async ({ params }) => {
                     {/* Self Link Tab */}
                     <div className="tab-pane fade show active" id="self" role="tabpanel" aria-labelledby="self-tab">
                         <div className="text-center my-2 fw-semibold border py-1">https://gm-app.netlify.app</div>
-                        <div className="text-center my-1">* Click the link above</div>
+                        <div className="text-center my-1 fw-semibold text-danger fs-6">* Click the link above</div>
                     </div>
 
                     {/* Share Link Tab */}
