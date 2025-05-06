@@ -32,8 +32,8 @@ const OfferPage = async ({ params }) => {
                     <div className="tab-pane fade" id="share" role="tabpanel" aria-labelledby="share-tab">
                         <div className="text-center my-2 fw-semibold">https://gm-app.netlify.app/share</div>
                         <div className="row justify-content-evenly">
-                            <button className="col-5 btn btn-dark fw-semibold rounded-1">Copy <i className="bi bi-copy"></i></button>
-                            <button className="col-5 btn btn-dark fw-semibold rounded-1">Share <i className="bi bi-share"></i></button>
+                            <button className="col-5 py-1 btn btn-dark fw-semibold rounded-1">Copy <i className="bi bi-copy"></i></button>
+                            <button className="col-5 py-1 btn btn-dark fw-semibold rounded-1">Share <i className="bi bi-share"></i></button>
                         </div>
                     </div>
                 </div>
