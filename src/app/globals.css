@@ -60,3 +60,7 @@ ul {
   color: #fff;
   background-color: #4f85f0;
 }
+
+.text-small {
+  font-size: 9px !important;
+}
