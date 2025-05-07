@@ -1,6 +1,19 @@
+import { createOfferLinkAction } from "app/actions/offer-links";
+import { searchOfferLinkWith } from "db/offer-links/handler";
+import { headers } from "next/headers";
 import Link from "next/link";
 
-const OfferLink = ({offer}) => {
+const OfferLink = async ({ offer }) => {
+    const reqHeaders = await headers();
+    const user = JSON.parse(reqHeaders.get("x-user"));
+
+    const offerLinkObj = await searchOfferLinkWith(offer.id, user.id);
+    console.log(offerLinkObj[0])
+
+    if(offerLinkObj.length === 0){
+        const resp = createOfferLinkAction(offer.id, user.id)
+    }
+    
     return (
         <>
             <div className="my-2 p-2 border">
@@ -16,7 +29,7 @@ const OfferLink = ({offer}) => {
                 <div className="tab-content">
                     {/* Self Link Tab */}
                     <div className="tab-pane fade show active" id="self" role="tabpanel" aria-labelledby="self-tab">
-                        <Link href={"/"} className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">https://gm-app.netlify.app</Link>
+                        <Link href={"/"} className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">https://gm-app.netlify.app/{offerLinkObj[0].self_path}</Link>
                         <div className="text-center my-1 fw-semibold text-danger text-small">* Click the link above</div>
                     </div>
 
