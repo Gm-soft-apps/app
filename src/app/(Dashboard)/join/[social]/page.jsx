@@ -74,11 +74,11 @@ const JoinSocialMedia = () => {
 
     return (
         <div className="mx-1">
-            <div className={`${color} text-white py-1 px-2  row align-items-center my-2`}>
+            <div className={`${color} text-white py-1 px-2  row align-items-center my-2 position-relative`}>
                 <Link href="/dashboard" className="col-1 link-light text-decoration-none text-center">
                     <i className="bi bi-arrow-left-circle fs-4"></i>
                 </Link>
-                <div className={`col text-center fw-semibold fs-5`}>Join {social} Get ₹5</div>
+                <div className={`col text-center fw-semibold fs-5 position-absolute start-0`}>Join {social} Get ₹5</div>
             </div>
 
             <div className="bg-white p-2 text-center my-2">
