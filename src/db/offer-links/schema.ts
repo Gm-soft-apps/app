@@ -7,5 +7,6 @@ export const offerLinks = sqliteTable("offer_links", {
     self_path: text().notNull().unique(),
     share_path: text().notNull().unique(),
     created_on: int(),
+    user_ip: text(),
 })
 

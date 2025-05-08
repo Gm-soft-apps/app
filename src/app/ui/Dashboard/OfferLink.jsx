@@ -9,11 +9,13 @@ const OfferLink = async ({ offer }) => {
     const reqHeaders = await headers();
     const user = JSON.parse(reqHeaders.get("x-user"));
     const protocol= reqHeaders.get("x-forwarded-proto");
-    const host = reqHeaders.get("host")
+    const host = reqHeaders.get("host");
+    const userIP = reqHeaders.get("x-forwarded-for");
+
     let offerLinkObj = await searchOfferLinkWith(offer.id, user.id);
 
     if(!offerLinkObj){
-        offerLinkObj = await createOfferLinkAction(offer.id, user.id)
+        offerLinkObj = await createOfferLinkAction(offer.id, user.id, userIP)
 
     }
 
