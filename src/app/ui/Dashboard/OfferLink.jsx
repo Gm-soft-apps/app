@@ -1,3 +1,5 @@
+"use server"
+
 import { createOfferLinkAction } from "app/actions/offer-links";
 import { searchOfferLinkWith } from "db/offer-links/handler";
 import { headers } from "next/headers";
@@ -6,13 +8,17 @@ import Link from "next/link";
 const OfferLink = async ({ offer }) => {
     const reqHeaders = await headers();
     const user = JSON.parse(reqHeaders.get("x-user"));
-
+    const protocol= reqHeaders.get("x-forwarded-proto");
+    const host = reqHeaders.get("host")
     let offerLinkObj = await searchOfferLinkWith(offer.id, user.id);
-    console.log(offerLinkObj[0])
 
-    if(offerLinkObj.length === 0){
-        offerLinkObj = createOfferLinkAction(offer.id, user.id)
+    if(!offerLinkObj){
+        offerLinkObj = await createOfferLinkAction(offer.id, user.id)
+
     }
+
+    const selfLink = `${protocol}://${host}/${offerLinkObj.self_path}`;
+    const shareLink = `${protocol}://${host}/s/${offerLinkObj.share_path}`;
     
     return (
         <>
@@ -29,13 +35,13 @@ const OfferLink = async ({ offer }) => {
                 <div className="tab-content">
                     {/* Self Link Tab */}
                     <div className="tab-pane fade show active" id="self" role="tabpanel" aria-labelledby="self-tab">
-                        <Link href={"/"} className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">https://gm-app.netlify.app/{offerLinkObj[0].self_path}</Link>
+                        <Link href={selfLink} className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">{selfLink}</Link>
                         <div className="text-center my-1 fw-semibold text-danger text-small">* Click the link above</div>
                     </div>
 
                     {/* Share Link Tab */}
                     <div className="tab-pane fade" id="share" role="tabpanel" aria-labelledby="share-tab">
-                        <Link href={"/"} className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">https://gm-app.netlify.app/{offerLinkObj[0].share_path}</Link>
+                        <Link href={shareLink} className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">{shareLink}</Link>
                         <div className="row justify-content-evenly">
                             <div className="col-5 py-1 bg-dark text-white text-center fw-semibold rounded-1">Copy <i className="bi bi-copy"></i></div>
                             <div className="col-5 py-1 bg-dark text-white text-center fw-semibold rounded-1">Share <i className="bi bi-share"></i></div>
