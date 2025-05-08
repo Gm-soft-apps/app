@@ -100,7 +100,7 @@ const UserDashboard = () => {
                             </div>
                             <div className="fs-6 fw-semibold mt-1">{"※ " + offer.offerTitle}</div>
                         </div>
-                        <Link href={`/dashboard/offer/${offer.id}`} prefetch={true} className="btn btn-primary py-1 mt-1 w-100 fw-semibold">Complete Now</Link>
+                        <Link href={`/dashboard/offer/${offer.id}`} prefetch={false} className="btn btn-primary py-1 mt-1 w-100 fw-semibold">Complete Now</Link>
                     </div>
                 ))
             )}
