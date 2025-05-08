@@ -36,13 +36,13 @@ const OfferLink = async ({ offer }) => {
                 <div className="tab-content">
                     {/* Self Link Tab */}
                     <div className="tab-pane fade show active" id="self" role="tabpanel" aria-labelledby="self-tab">
-                        <Link href={selfLink} target="_blank" className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">{selfLink}</Link>
+                        <Link href={selfLink} target="_blank" prefetch={false} className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">{selfLink}</Link>
                         <div className="text-center my-1 fw-semibold text-danger text-small">* Click the link above</div>
                     </div>
 
                     {/* Share Link Tab */}
                     <div className="tab-pane fade" id="share" role="tabpanel" aria-labelledby="share-tab">
-                        <Link href={shareLink} target="_blank" className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">{shareLink}</Link>
+                        <Link href={shareLink} target="_blank" prefetch={false} className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">{shareLink}</Link>
                         <div className="row justify-content-evenly">
                             <div className="col-5 py-1 bg-dark text-white text-center fw-semibold rounded-1">Copy <i className="bi bi-copy"></i></div>
                             <div className="col-5 py-1 bg-dark text-white text-center fw-semibold rounded-1">Share <i className="bi bi-share"></i></div>
