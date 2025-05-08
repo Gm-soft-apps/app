@@ -1,6 +1,7 @@
 import { searchSelfPathOffer } from "db/offer-links/handler";
 import { getOfferByID } from "db/offers/handler";
 import { redirect } from "next/navigation";
+import { NextResponse } from "next/server";
 
 export const GET = async (request, { params }) => {
     const { slug } = await params;
@@ -15,7 +16,7 @@ export const GET = async (request, { params }) => {
     const userID = offerLinkObj.user_id;
     const offer = await getOfferByID(offerID)
 
-    redirect(offer.offerLink)
+    // redirect(offer.offerLink)
 
-    return Response.json({ message: "Redirecting to Partner Site!" })
+    return NextResponse.redirect(offer.offerLink)
 }
