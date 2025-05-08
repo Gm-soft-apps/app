@@ -2,7 +2,7 @@ import Loading from "app/ui/AuthForm/loading";
 
 const OfferPageLoading = ()=>{
     return (
-        <div className="bg-white d-flex justify-content-center align-items-center">
+        <div className="bg-white py-1 d-flex justify-content-center align-items-center">
             <Loading/>
         </div>
     );
