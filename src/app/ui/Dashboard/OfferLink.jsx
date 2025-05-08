@@ -7,11 +7,11 @@ const OfferLink = async ({ offer }) => {
     const reqHeaders = await headers();
     const user = JSON.parse(reqHeaders.get("x-user"));
 
-    const offerLinkObj = await searchOfferLinkWith(offer.id, user.id);
+    let offerLinkObj = await searchOfferLinkWith(offer.id, user.id);
     console.log(offerLinkObj[0])
 
     if(offerLinkObj.length === 0){
-        const resp = createOfferLinkAction(offer.id, user.id)
+        offerLinkObj = createOfferLinkAction(offer.id, user.id)
     }
     
     return (
@@ -35,7 +35,7 @@ const OfferLink = async ({ offer }) => {
 
                     {/* Share Link Tab */}
                     <div className="tab-pane fade" id="share" role="tabpanel" aria-labelledby="share-tab">
-                        <Link href={"/"} className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">https://gm-app.netlify.app/share</Link>
+                        <Link href={"/"} className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">https://gm-app.netlify.app/{offerLinkObj[0].share_path}</Link>
                         <div className="row justify-content-evenly">
                             <div className="col-5 py-1 bg-dark text-white text-center fw-semibold rounded-1">Copy <i className="bi bi-copy"></i></div>
                             <div className="col-5 py-1 bg-dark text-white text-center fw-semibold rounded-1">Share <i className="bi bi-share"></i></div>
