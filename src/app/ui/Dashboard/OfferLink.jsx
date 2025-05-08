@@ -8,20 +8,19 @@ import Link from "next/link";
 const OfferLink = async ({ offer }) => {
     const reqHeaders = await headers();
     const user = JSON.parse(reqHeaders.get("x-user"));
-    const protocol= reqHeaders.get("x-forwarded-proto");
+    const protocol = reqHeaders.get("x-forwarded-proto");
     const host = reqHeaders.get("host");
     const userIP = reqHeaders.get("x-forwarded-for");
 
     let offerLinkObj = await searchOfferLinkWith(offer.id, user.id);
 
-    if(!offerLinkObj){
+    if (!offerLinkObj) {
         offerLinkObj = await createOfferLinkAction(offer.id, user.id, userIP)
-
     }
 
     const selfLink = `${protocol}://${host}/${offerLinkObj.self_path}`;
     const shareLink = `${protocol}://${host}/s/${offerLinkObj.share_path}`;
-    
+
     return (
         <>
             <div className="my-2 p-2 border">
