@@ -4,10 +4,16 @@ import { NextResponse } from "next/server"; // Import NextResponse for better co
 
 export default auth(async (req) => {
     const path = req.nextUrl.pathname;
+
     const publicUrl = ["/login", "/register"];
     const adminUrl = ["/dashboard/offers", "/dashboard/users"];
     const userUrl = ["/dashboard", "/dashboard/wallet", "/dashboard/refer"];
-    const isPublicUrl = publicUrl.includes(path);
+
+    // Match shortlinks like /ABC123 or /s/XYZ789 (exactly 6 uppercase letters/numbers)
+    const shortlinkRegex = /^\/(?:s\/)?[A-Z0-9]{6}$/;
+    const isShortlink = shortlinkRegex.test(path);
+
+    const isPublicUrl = publicUrl.includes(path) || isShortlink;
     const isAdminUrl = adminUrl.includes(path);
     const isUserUrl = userUrl.includes(path);
 
@@ -15,38 +21,37 @@ export default auth(async (req) => {
     let user = null;
     if (req.auth?.user) {
         user = await getUserByID(Number(req.auth.user.id));
-        // Attach user data to a custom header
         req.headers.set("x-user", JSON.stringify(user));
     }
 
-    // Redirect logic for unauthenticated users
+    // Redirect unauthenticated users away from protected pages
     if (!isPublicUrl && !req.auth?.user) {
         const newUrl = new URL("/login", req.nextUrl.origin);
         return Response.redirect(newUrl);
     }
 
-    // Redirect authenticated users from public URLs to dashboard
-    if (req.auth?.user && isPublicUrl) {
+    // Redirect authenticated users away from login/register, but NOT from shortlinks
+    if (req.auth?.user && publicUrl.includes(path)) {
         const newUrl = new URL("/dashboard", req.nextUrl.origin);
         return Response.redirect(newUrl);
     }
 
-    // Restrict non-admin users from admin URLs
+    // Restrict non-admins from admin-only URLs
     if (req.auth?.user && user?.role !== "admin" && isAdminUrl) {
         const newUrl = new URL("/dashboard", req.nextUrl.origin);
         return Response.redirect(newUrl);
     }
 
-    // Restrict admin users from regular user URLs
+    // Restrict admins from regular user-only URLs
     if (req.auth?.user && user?.role === "admin" && isUserUrl) {
         const newUrl = new URL("/dashboard/offers", req.nextUrl.origin);
         return Response.redirect(newUrl);
     }
 
-    // Pass the request forward with modified headers
+    // Forward request with modified headers
     return NextResponse.next({
         request: {
-            headers: req.headers, // Pass the modified headers along
+            headers: req.headers,
         },
     });
 });
