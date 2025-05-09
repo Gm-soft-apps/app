@@ -15,6 +15,16 @@ CREATE TABLE `users` (
 CREATE UNIQUE INDEX `users_id_unique` ON `users` (`id`);--> statement-breakpoint
 CREATE UNIQUE INDEX `users_phoneNumber_unique` ON `users` (`phoneNumber`);--> statement-breakpoint
 CREATE UNIQUE INDEX `users_referralCode_unique` ON `users` (`referralCode`);--> statement-breakpoint
+CREATE TABLE `offer_paths` (
+	`sl_no` integer PRIMARY KEY NOT NULL,
+	`offer_id` integer NOT NULL,
+	`user_id` integer NOT NULL,
+	`path` text NOT NULL,
+	`created_on` integer,
+	`user_ip` text
+);
+--> statement-breakpoint
+CREATE UNIQUE INDEX `offer_paths_path_unique` ON `offer_paths` (`path`);--> statement-breakpoint
 CREATE TABLE `offers` (
 	`id` integer NOT NULL,
 	`offerPriority` integer,

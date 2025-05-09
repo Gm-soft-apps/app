@@ -1,1 +1,0 @@
-ALTER TABLE `offer_links` ADD `user_ip` text;
