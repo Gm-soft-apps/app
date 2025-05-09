@@ -4,6 +4,7 @@ import { createOfferPathAction } from "app/actions/offerPaths";
 import { searchOfferPathWith } from "db/offer-paths/handler";
 import { headers } from "next/headers";
 import Link from "next/link";
+import OfferLinkCopy from "./OfferLinkCopy";
 
 const OfferLink = async ({ offer }) => {
     const reqHeaders = await headers();
@@ -44,10 +45,11 @@ const OfferLink = async ({ offer }) => {
                     {/* Share Link Tab */}
                     <div className="tab-pane fade" id="share" role="tabpanel" aria-labelledby="share-tab">
                         <Link href={shareLink} target="_blank" prefetch={false} className="text-center d-block text-decoration-none link-dark my-2 fw-semibold border py-1">{shareLink}</Link>
-                        <div className="row justify-content-evenly">
+                        {/* <div className="row justify-content-evenly">
                             <div className="col-5 py-1 bg-dark text-white text-center fw-semibold rounded-1">Copy <i className="bi bi-copy"></i></div>
                             <div className="col-5 py-1 bg-dark text-white text-center fw-semibold rounded-1">Share <i className="bi bi-share"></i></div>
-                        </div>
+                        </div> */}
+                        <OfferLinkCopy shareLink={shareLink}/>
                     </div>
                 </div>
             </div><hr />
