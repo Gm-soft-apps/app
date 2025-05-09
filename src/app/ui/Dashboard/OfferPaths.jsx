@@ -11,7 +11,7 @@ const OfferLink = async ({ offer }) => {
     const protocol = reqHeaders.get("x-forwarded-proto");
     const host = reqHeaders.get("host");
     const userIP = reqHeaders.get("x-forwarded-for");
-
+console.log(userIP)
     let offerPathObj = await searchOfferPathWith(offer.id, user.id);
 
     if (!offerPathObj) {
