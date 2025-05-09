@@ -22,6 +22,20 @@
       "when": 1746696615440,
       "tag": "0002_clever_senator_kelly",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1746762496263,
+      "tag": "0003_ordinary_master_chief",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1746763341284,
+      "tag": "0004_lush_nightcrawler",
+      "breakpoints": true
     }
   ]
 }
