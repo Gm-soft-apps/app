@@ -23,7 +23,7 @@ const OfferLink = async ({ offer }) => {
 
     return (
         <>
-            <div className="my-2 p-2 border">
+            <div className="my-2 p-2 border">{reqHeaders.get("x-forwarded-for")}
                 <ul className="nav nav-tabs mb-2 row gap-1 fw-semibold">
                     <li className="nav-item col">
                         <button className="nav-link active w-100" id="self-tab" data-bs-toggle="tab" data-bs-target="#self" type="button" role="tab" aria-controls="self" aria-selected="true">Self Link</button>
