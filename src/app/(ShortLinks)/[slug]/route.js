@@ -1,4 +1,4 @@
-import { searchSelfPathOffer } from "db/offer-links/handler";
+import { searchOfferPath } from "db/offer-paths/handler";
 import { getOfferByID } from "db/offers/handler";
 import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
@@ -11,9 +11,9 @@ export const GET = async (request, { params }) => {
         redirect("/register")
     }
 
-    const offerLinkObj = await searchSelfPathOffer(slug);
-    const offerID = offerLinkObj.offer_id;
-    const userID = offerLinkObj.user_id;
+    const offerPathObj = await searchOfferPath(slug);
+    const offerID = offerPathObj.offer_id;
+    const userID = offerPathObj.user_id;
     const offer = await getOfferByID(offerID)
 
     // redirect(offer.offerLink)

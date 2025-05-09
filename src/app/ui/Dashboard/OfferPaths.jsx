@@ -1,7 +1,7 @@
 "use server"
 
-import { createOfferLinkAction } from "app/actions/offer-links";
-import { searchOfferLinkWith } from "db/offer-links/handler";
+import { createOfferPathAction } from "app/actions/offerPaths";
+import { searchOfferPathWith } from "db/offer-paths/handler";
 import { headers } from "next/headers";
 import Link from "next/link";
 
@@ -12,14 +12,14 @@ const OfferLink = async ({ offer }) => {
     const host = reqHeaders.get("host");
     const userIP = reqHeaders.get("x-forwarded-for");
 
-    let offerLinkObj = await searchOfferLinkWith(offer.id, user.id);
+    let offerPathObj = await searchOfferPathWith(offer.id, user.id);
 
-    if (!offerLinkObj) {
-        offerLinkObj = await createOfferLinkAction(offer.id, user.id, userIP)
+    if (!offerPathObj) {
+        offerPathObj = await createOfferPathAction(offer.id, user.id, userIP)
     }
 
-    const selfLink = `${protocol}://${host}/${offerLinkObj.self_path}`;
-    const shareLink = `${protocol}://${host}/s/${offerLinkObj.share_path}`;
+    const selfLink = `${protocol}://${host}/${offerPathObj.path}`;
+    const shareLink = `${protocol}://${host}/s/${offerPathObj.path}`;
 
     return (
         <>

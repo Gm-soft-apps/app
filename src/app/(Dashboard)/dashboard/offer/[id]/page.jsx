@@ -1,6 +1,6 @@
 "use server"
 
-import OfferLink from "app/ui/Dashboard/OfferLink";
+import OfferLink from "app/ui/Dashboard/OfferPaths";
 import { getOfferByID } from "db/offers/handler";
 
 const OfferPage = async ({ params }) => {
