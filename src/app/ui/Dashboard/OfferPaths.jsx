@@ -10,8 +10,9 @@ const OfferLink = async ({ offer }) => {
     const user = JSON.parse(reqHeaders.get("x-user"));
     const protocol = reqHeaders.get("x-forwarded-proto");
     const host = reqHeaders.get("host");
-    const userIP = reqHeaders.get("x-forwarded-for");
-console.log(userIP)
+    const forwardedFor= reqHeaders.get("x-forwarded-for");
+    const userIP = forwardedFor.split(",")[0].trim()
+
     let offerPathObj = await searchOfferPathWith(offer.id, user.id);
 
     if (!offerPathObj) {
