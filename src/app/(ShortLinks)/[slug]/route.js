@@ -7,7 +7,7 @@ import { nanoidString } from "utils/nanoid";
 export const GET = async (request, { params }) => {
     const { slug } = await params;
     const headers = request.headers;
-    const forwardedFor= reqHeaders.get("x-forwarded-for");
+    const forwardedFor= headers.get("x-forwarded-for");
     const userIP = forwardedFor.split(",")[0].trim()
 
     const offerPathObj = await searchOfferPath(slug);
