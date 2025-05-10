@@ -27,7 +27,7 @@ export const GET = async (request, { params }) => {
         linkPath: slug,
         linkUserID: userID,
         linkOfferID: offerID,
-        offerAmount: offer.offerAmount,
+        offerAmount: offer.offerPayout,
         affLink: affLink,
         linkType: "self",
         userBrowser: headers.get("user-agent"),
