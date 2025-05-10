@@ -8,6 +8,13 @@
       "when": 1746806168932,
       "tag": "0000_chief_yellow_claw",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1746863572476,
+      "tag": "0001_flaky_saracen",
+      "breakpoints": true
     }
   ]
 }
