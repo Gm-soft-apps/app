@@ -21,5 +21,9 @@ export const GET = async (request, { params }) => {
         affLink = `${offer.offerLink}?s1=${userID}&s2=${offerID}`
     }
 
+    if(offer.affNetwork === "admitad") {
+        affLink = `${affLink}?subid1=${userID}&subid2=${offerID}`
+    }
+
     return NextResponse.redirect(affLink)
 }
